@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        ul {
+            list-style: none;
+            padding: 0px;
+            margin: 0px;
+        }
+        a {
+            text-decoration: none;
+            color: black;
+        }
+
+        .wrapper {
+            width: 100%;
+            margin: 0 auto;
+            
+        }
+          .wrapper > main > .item {
+            display: flex;
+            flex-wrap: wrap;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .wrapper > main > .item > ul {
+            border: 1px solid red;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-basis: 50%;
+        }
+
+        .wrapper > main > .item > ul > li {
+            border: 1px solid violet;
+            width: 300px;
+            position: relative;
+            text-align: center;
+        }
+        .wrapper > main > .item > ul > li:last-child::before {
+            content: "";
+        }
+
+        .wrapper > main > .item > ul > li > a {
+            display: block;
+        }
+
+        .item-info {
+            margin-top: 10px;
+            padding: 10px;
+            border: 1px solid lightgray;
+            background-color: #f9f9f9;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <main>
+            <div class="item">
+               
+                <ul>
+                    <li><a href="#">1</a></li>
+                    <li><a href="#">1</a></li>
+                    <li><a href="#">1</a></li>
+                    <li><a href="#">1</a></li>
+                    
+                    </ul>
+                    
+                    
+                </div>
+        </main>   
+    </div>
+ 
+</body>
+</html>

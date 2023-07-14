@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- lodash cdn -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.21/lodash.min.js" integrity="sha512-WFN04846sdKMIP5LKNphMaWzU7YpMyCU245etK3g/2ARYbPK9Ub18eG+ljU96qKRCWh+quCY7yefSmlkQw1ANQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <style>
+        body{
+            height: 5000px;
+        }
+        .badge{
+            width: 100px;
+            height: 200px;
+            background-color: beige;
+            position: fixed;
+            left:0px; top: 200px;
+            z-index: 5;
+            transition: 1s;
+        }
+        .hidden{
+            opacity: 0;
+        }
+    </style>
+</head>
+<body>
+    <section>
+        <div class="badge"></div>
+    </section>
+
+    <script>
+        const badge_el = document.querySelector('.badge');
+        // window.addEventListener('scroll',function(){
+        //     console.log("scroll_event's Y :" ,window.scrollY)
+        // })
+            //lodash's _.throttle(함수,지연시간) 사용
+            window.addEventListener('scroll',_.throttle(function(){
+            console.log("scroll_event's Y :" ,window.scrollY);
+            if(window.scrollY>700){
+                badge_el.classList.add('hidden')
+            }else{
+                badge_el.classList.remove('hidden')
+            }
+        },300))
+    </script>
+</body>
+</html>

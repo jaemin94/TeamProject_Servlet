@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css"
+/>
+
+<script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+<style>
+    .wrapper{}
+    .wrapper .swiper{
+        width: 1000px;
+        height: 50px;
+        border: 1px solid;
+    }
+</style>
+</head>
+<body>
+    
+    <div class="wrapper">
+        <section class = "first_section">
+            <!-- Slider main container -->
+<div class="swiper">
+    <!-- Additional required wrapper -->
+    <div class="swiper-wrapper">
+      <!-- Slides -->
+      <div class="swiper-slide">Slide 1</div>
+      <div class="swiper-slide">Slide 2</div>
+      <div class="swiper-slide">Slide 3</div>
+    </div>
+    
+  </div>
+        </section>
+        <section></section>
+        <section></section>
+    </div>
+    <script>
+        const swiper_vertical = new Swiper('.first_section .swiper', {
+  // Optional parameters
+  
+  direction: 'vertical',
+  autoplay:{
+    dealy:1000,
+  },
+  loop: true,
+ 
+});
+
+
+
+    </script>
+
+</body>
+</html>
