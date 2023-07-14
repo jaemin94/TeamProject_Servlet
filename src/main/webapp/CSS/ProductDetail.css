@@ -1,4 +1,4 @@
-@charset "EUC-KR";
+@charset "UTF-8";
 /* @import './header.css';
 @import './main.css';
 @import './footer.css'; */
@@ -30,7 +30,7 @@ button {
     /* padding: 3px; */
 }
 
-/* ¸ÞÀÎ ÀÎÆ÷ -ÀÌ¹ÌÁö */
+/* ë©”ì¸ ì¸í¬ -ì´ë¯¸ì§€ */
 
 .wrapper--productpage>.productmaininfo {
     position: relative;
@@ -100,7 +100,7 @@ button {
 
 .wrapper--productpage>.productmaininfo>.productmainimg>img {}
 
-/* ¸ÞÀÎ ÀÎÆ÷ -°¡°Ý µî*/
+/* ë©”ì¸ ì¸í¬ -ê°€ê²© ë“±*/
 
 .productmaininfo>.productin {
     position: absolute;
@@ -136,7 +136,7 @@ button {
 }
 
 
-/* ¿É¼Ç */
+/* ì˜µì…˜ */
 
 
 .color ul {
@@ -229,7 +229,7 @@ button {
 }
 
 
-/* ¸ÞÀÎÀÎÆ÷ ¹öÆ° */
+/* ë©”ì¸ì¸í¬ ë²„íŠ¼ */
 
 .productmaininfo>.productin>.buybutton {
 

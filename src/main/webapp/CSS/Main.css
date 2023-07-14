@@ -1,5 +1,5 @@
-@charset "EUC-KR";
-/* ±×¸®µå */
+@charset "UTF-8";
+/* ê·¸ë¦¬ë“œ */
 
 .main{
   height: 100%;
@@ -33,7 +33,7 @@
     text-align: center;
   }
   
-  /* ½½¶óÀÌµå */
+  /* ìŠ¬ë¼ì´ë“œ */
   .slide-frame {
     width: 100%;
     height: 500px;

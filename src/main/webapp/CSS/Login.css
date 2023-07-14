@@ -1,4 +1,4 @@
-@charset "EUC-KR";
+@charset "UTF-8";
 
 
 
@@ -36,6 +36,18 @@ form {
     font-size: 18px;
     padding: 10px 20px;
     margin-top: 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+   .register {
+    background-color: #008CBA;
+    color: white;
+    font-size: 18px;
+    padding: 10px 20px;
+    margin-top: 20px;
+    margin-left: 20px;
     border: none;
     border-radius: 5px;
     cursor: pointer;

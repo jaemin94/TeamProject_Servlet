@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" %>
+<%@ page import="java.net.URLEncoder" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -41,38 +41,38 @@
         <nav class="banner_bottom">
             <ul class="navbar">
               <li class="nav-item"> 
-                <a href="#" class="nav-link">»óÀÇ</a>
+                <a href="#" class="nav-link">ìƒì˜</a>
                 <div class="dropdown-menu">
-                  <a href="#" class="dropdown-item">¹ÝÆÈ</a>
-                  <a href="#" class="dropdown-item">±äÆÈ</a>
-                  <a href="#" class="dropdown-item">´ÏÆ®</a>
+                  <a href="#" class="dropdown-item">ë°˜íŒ”</a>
+                  <a href="#" class="dropdown-item">ê¸´íŒ”</a>
+                  <a href="#" class="dropdown-item">ë‹ˆíŠ¸</a>
                 </div>
               </li>
               <li class="nav-item">
-                <a href="#" class="nav-link">ÇÏÀÇ</a>
+                <a href="#" class="nav-link">í•˜ì˜</a>
                 <div class="dropdown-menu">
-                  <a href="#" class="dropdown-item">Ä¡¸¶</a>
-                  <a href="#" class="dropdown-item">¹Ý¹ÙÁö</a>
-                  <a href="#" class="dropdown-item">Æ®·¢ÆÒÃ÷</a>
-                  <a href="#" class="dropdown-item">Ã»¹ÙÁö</a>
+                  <a href="#" class="dropdown-item">ì¹˜ë§ˆ</a>
+                  <a href="#" class="dropdown-item">ë°˜ë°”ì§€</a>
+                  <a href="#" class="dropdown-item">íŠ¸ëž™íŒ¬ì¸ </a>
+                  <a href="#" class="dropdown-item">ì²­ë°”ì§€</a>
                 </div>
               </li>
               <li class="nav-item">
-                <a href="#" class="nav-link">¿ÜÅõ</a>
+                <a href="#" class="nav-link">ì™¸íˆ¬</a>
                 <div class="dropdown-menu">
-                  <a href="#" class="dropdown-item">ÆÐµù</a>
-                  <a href="#" class="dropdown-item">°¡µð°Ç</a>
-                  <a href="#" class="dropdown-item">ºí·¹ÀÌÀú</a>
-                  <a href="#" class="dropdown-item">ÀÚÄÏ</a>
+                  <a href="#" class="dropdown-item">íŒ¨ë”©</a>
+                  <a href="#" class="dropdown-item">ê°€ë””ê±´</a>
+                  <a href="#" class="dropdown-item">ë¸”ë ˆì´ì €</a>
+                  <a href="#" class="dropdown-item">ìžì¼“</a>
                 </div>
               </li>
               <li class="nav-item">
-                <a href="#" class="nav-link">°í°´¼¾ÅÍ</a>
+                <a href="#" class="nav-link">ê³ ê°ì„¼í„°</a>
                 <div class="dropdown-menu">
-                  <a href="#" class="dropdown-item">1:1¹®ÀÇ</a>
-                  <a href="#" class="dropdown-item">ÀÚÁÖ ¹¯´Â Áú¹®</a>
-                  <a href="#" class="dropdown-item">È¯ºÒ¹®ÀÇ</a>
-                  <a href="#" class="dropdown-item">ÀÔ°í Áö¿¬ »óÇ° ¾È³»</a>
+                  <a href="#" class="dropdown-item">1:1ë¬¸ì˜</a>
+                  <a href="#" class="dropdown-item">ìžì£¼ ë¬»ëŠ” ì§ˆë¬¸</a>
+                  <a href="#" class="dropdown-item">í™˜ë¶ˆë¬¸ì˜</a>
+                  <a href="#" class="dropdown-item">ìž…ê³  ì§€ì—° ìƒí’ˆ ì•ˆë‚´</a>
                 </div>
               </li>
             </ul>
@@ -90,7 +90,7 @@
         <form action="" role="form" method="get" class="productinfo" id="addform" name="addform">
           <div class="addmainimg">
             <div class="addimgbutton">
-              <label for="addimgfile"> ¸ÞÀÎ ÀÌ¹ÌÁö ¼±ÅÃ</label>
+              <label for="addimgfile"> ë©”ì¸ ì´ë¯¸ì§€ ì„ íƒ</label>
             </div>
             <input type="file" id="addimgfile" accept="image/jepg,image/jpg,image/png" required>
           </div>
@@ -99,26 +99,26 @@
           <div class="productin">
             <div class="productinfor">
               <li class="addmaininformation">
-                <label for="category">Ä«Å×°í¸® :</label>
+                <label for="category">ì¹´í…Œê³ ë¦¬ :</label>
                 <div class="addin">
                   <select name="category" id="cate" required>
-                    <option value="" disabled selected> ¼±ÅÃ </option>
-                    <optgroup label="»óÀÇ">
-                      <option value="halfslv">¹ÝÆÈ</option>
-                      <option value="longslv">±äÆÈ</option>
-                      <option value="nt">´ÏÆ®</option>
+                    <option value="" disabled selected> ì„ íƒ </option>
+                    <optgroup label="ìƒì˜">
+                      <option value="halfslv">ë°˜íŒ”</option>
+                      <option value="longslv">ê¸´íŒ”</option>
+                      <option value="nt">ë‹ˆíŠ¸</option>
                     </optgroup>
-                    <optgroup label="ÇÏÀÇ">
-                      <option value="skirt">Ä¡¸¶</option>
-                      <option value="shorts">¹Ý¹ÙÁö</option>
-                      <option value="trackp">Æ®·¢ÆÒÃ÷</option>
-                      <option value="denim">Ã»¹ÙÁö</option>
+                    <optgroup label="í•˜ì˜">
+                      <option value="skirt">ì¹˜ë§ˆ</option>
+                      <option value="shorts">ë°˜ë°”ì§€</option>
+                      <option value="trackp">íŠ¸ëž™íŒ¬ì¸ </option>
+                      <option value="denim">ì²­ë°”ì§€</option>
                     </optgroup>
-                    <optgroup label="¿ÜÅõ">
-                      <option value="padding">ÆÐµù</option>
-                      <option value="cardigan">°¡µð°Ç</option>
-                      <option value="blazer">ºí·¹ÀÌÁ®</option>
-                      <option value="jacket">ÀÚÄÏ</option>
+                    <optgroup label="ì™¸íˆ¬">
+                      <option value="padding">íŒ¨ë”©</option>
+                      <option value="cardigan">ê°€ë””ê±´</option>
+                      <option value="blazer">ë¸”ë ˆì´ì ¸</option>
+                      <option value="jacket">ìžì¼“</option>
                     </optgroup>
                 </div>
 
@@ -127,26 +127,26 @@
 
 
               <li class="addmaininformation">
-                <label for="name"> »óÇ°¸í : </label>
+                <label for="name"> ìƒí’ˆëª… : </label>
                 <div class="addin">
                   <input type="text" id="name" required>
                 </div>
               </li>
               <li class="addmaininformation">
-                <label for="price"> ÆÇ¸Å°¡ : </label>
+                <label for="price"> íŒë§¤ê°€ : </label>
                 <div class="addin">
-                  <input type="text" placeholder="´ÜÀ§ = ¿ø" id="price" required pattern="[0-9]+$">
+                  <input type="text" placeholder="ë‹¨ìœ„ = ì›" id="price" required pattern="[0-9]+$">
                 </div>
               </li>
               <li class="addmaininformation">
-                <label for="deliveryfee"> ¹è¼Ûºñ : </label>
+                <label for="deliveryfee"> ë°°ì†¡ë¹„ : </label>
                 <div class="addin">
-                  <input type="text" placeholder="´ÜÀ§ = ¿ø" id="deliveryfee" pattern="[0-9]+$" required>
+                  <input type="text" placeholder="ë‹¨ìœ„ = ì›" id="deliveryfee" pattern="[0-9]+$" required>
                 </div>
               </li>
 
               <li class="addmaininformation">
-                <label for="op1"> ¿É¼Ç : </label>
+                <label for="op1"> ì˜µì…˜ : </label>
                 <div class="addin"><input type="text" id="op1">
                   <input type="button" value="+" id="add4">
                 </div>
@@ -154,7 +154,7 @@
             </div>
             <div class="addbutton">
               <div class="addbutton2">
-                <button type="submit" form="addform">¸ÞÀÎ Á¤º¸ µî·Ï</button>
+                <button type="submit" form="addform">ë©”ì¸ ì •ë³´ ë“±ë¡</button>
               </div>
             </div>
           </div>
@@ -178,7 +178,7 @@
       <form action="" id="adddetail">
         <section>
           <article>
-            <label for="dinfo"> »óÇ° »ó¼¼ ¼³¸í :</label>
+            <label for="dinfo"> ìƒí’ˆ ìƒì„¸ ì„¤ëª… :</label>
             <textarea name="dinfo" form="adddetail" id="dinfo" cols="100" rows="10"></textarea>
           </article>
         </section>
@@ -187,7 +187,7 @@
 
           <div>
             <div>
-               <label for="detimg">»ó¼¼ Á¤º¸ ÆÄÀÏ ¼±ÅÃ</label>
+               <label for="detimg">ìƒì„¸ ì •ë³´ íŒŒì¼ ì„ íƒ</label>
             </div>
            
             <input type="file" accept="image/*" id="detimg" required>
@@ -195,7 +195,7 @@
          
         </section>
 
-        <button type="submit" form="adddetail"> »ó¼¼ Á¤º¸ µî·Ï</button>
+        <button type="submit" form="adddetail"> ìƒì„¸ ì •ë³´ ë“±ë¡</button>
       </form>
     </div>
 
@@ -210,10 +210,10 @@
 
   <Footer>
     <div class="Footer">
-      <p><a href="">°øÁö»çÇ×</a> | <a href="">ÀÌ¿ë¾à°ü</a> | <a href="">°³ÀÎÁ¤º¸Ãë±Þ ¹æÄ§</a></p>
-      <p>&copy;»óÈ£¸í (ÁÖ) Daily Friday ´ëÇ¥ : 9Á¶</p>
-      <p>»ç¾÷ÀÚ µî·Ï ¹øÈ£ : 916-14-56874 | ´ë±¸ Áß±¸ ´ö»êµ¿ 00ºôµù</p>
-      <p>´ëÇ¥ ÀüÈ­ ¹øÈ£ : 010-4568-5468</p>
+      <p><a href="">ê³µì§€ì‚¬í•­</a> | <a href="">ì´ìš©ì•½ê´€</a> | <a href="">ê°œì¸ì •ë³´ì·¨ê¸‰ ë°©ì¹¨</a></p>
+      <p>&copy;ìƒí˜¸ëª… (ì£¼) Daily Friday ëŒ€í‘œ : 9ì¡°</p>
+      <p>ì‚¬ì—…ìž ë“±ë¡ ë²ˆí˜¸ : 916-14-56874 | ëŒ€êµ¬ ì¤‘êµ¬ ë•ì‚°ë™ 00ë¹Œë”©</p>
+      <p>ëŒ€í‘œ ì „í™” ë²ˆí˜¸ : 010-4568-5468</p>
       <p>email : dfteam9@naver.com</p>
     </div>
   </Footer>

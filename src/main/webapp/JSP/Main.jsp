@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" %>
+<%@ page import="java.net.URLEncoder" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,7 +8,9 @@
  <link rel="stylesheet"
     href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
   <link href="https://fonts.googleapis.com/css2?family=Chewy&display=swap" rel="stylesheet">
-<meta charset="EUC-KR">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>DFMall</title>
 </head>
@@ -36,38 +38,38 @@
         <nav class="banner_bottom">
             <ul class="navbar">
               <li class="nav-item"> 
-                <a href="#" class="nav-link">»óÀÇ</a>
+                <a href="#" class="nav-link">ìƒì˜</a>
                 <div class="dropdown-menu">
-                  <a href="#" class="dropdown-item">¹ÝÆÈ</a>
-                  <a href="#" class="dropdown-item">±äÆÈ</a>
-                  <a href="#" class="dropdown-item">´ÏÆ®</a>
+                  <a href="#" class="dropdown-item">ë°˜íŒ”</a>
+                  <a href="#" class="dropdown-item">ê¸´íŒ”</a>
+                  <a href="#" class="dropdown-item">ë‹ˆíŠ¸</a>
                 </div>
               </li>
               <li class="nav-item">
-                <a href="#" class="nav-link">ÇÏÀÇ</a>
+                <a href="#" class="nav-link">í•˜ì˜</a>
                 <div class="dropdown-menu">
-                  <a href="#" class="dropdown-item">Ä¡¸¶</a>
-                  <a href="#" class="dropdown-item">¹Ý¹ÙÁö</a>
-                  <a href="#" class="dropdown-item">Æ®·¢ÆÒÃ÷</a>
-                  <a href="#" class="dropdown-item">Ã»¹ÙÁö</a>
+                  <a href="#" class="dropdown-item">ì¹˜ë§ˆ</a>
+                  <a href="#" class="dropdown-item">ë°˜ë°”ì§€</a>
+                  <a href="#" class="dropdown-item">íŠ¸ëž™íŒ¬ì¸ </a>
+                  <a href="#" class="dropdown-item">ì²­ë°”ì§€</a>
                 </div>
               </li>
               <li class="nav-item">
-                <a href="#" class="nav-link">¿ÜÅõ</a>
+                <a href="#" class="nav-link">ì™¸íˆ¬</a>
                 <div class="dropdown-menu">
-                  <a href="#" class="dropdown-item">ÆÐµù</a>
-                  <a href="#" class="dropdown-item">°¡µð°Ç</a>
-                  <a href="#" class="dropdown-item">ºí·¹ÀÌÀú</a>
-                  <a href="#" class="dropdown-item">ÀÚÄÏ</a>
+                  <a href="#" class="dropdown-item">íŒ¨ë”©</a>
+                  <a href="#" class="dropdown-item">ê°€ë””ê±´</a>
+                  <a href="#" class="dropdown-item">ë¸”ë ˆì´ì €</a>
+                  <a href="#" class="dropdown-item">ìžì¼“</a>
                 </div>
               </li>
               <li class="nav-item">
-                <a href="#" class="nav-link">°í°´¼¾ÅÍ</a>
+                <a href="#" class="nav-link">ê³ ê°ì„¼í„°</a>
                 <div class="dropdown-menu">
-                  <a href="#" class="dropdown-item">1:1¹®ÀÇ</a>
-                  <a href="#" class="dropdown-item">ÀÚÁÖ ¹¯´Â Áú¹®</a>
-                  <a href="#" class="dropdown-item">È¯ºÒ¹®ÀÇ</a>
-                  <a href="#" class="dropdown-item">ÀÔ°í Áö¿¬ »óÇ° ¾È³»</a>
+                  <a href="#" class="dropdown-item">1:1ë¬¸ì˜</a>
+                  <a href="#" class="dropdown-item">ìžì£¼ ë¬»ëŠ” ì§ˆë¬¸</a>
+                  <a href="#" class="dropdown-item">í™˜ë¶ˆë¬¸ì˜</a>
+                  <a href="#" class="dropdown-item">ìž…ê³  ì§€ì—° ìƒí’ˆ ì•ˆë‚´</a>
                 </div>
               </li>
             </ul>
@@ -128,10 +130,10 @@
 
   <Footer>
     <div class="Footer">
-      <p><a href="">°øÁö»çÇ×</a> | <a href="">ÀÌ¿ë¾à°ü</a> | <a href="">°³ÀÎÁ¤º¸Ãë±Þ ¹æÄ§</a></p>
-      <p>&copy;»óÈ£¸í (ÁÖ) Daily Friday ´ëÇ¥ : 9Á¶</p>
-      <p>»ç¾÷ÀÚ µî·Ï ¹øÈ£ : 916-14-56874 | ´ë±¸ Áß±¸ ´ö»êµ¿ 00ºôµù</p>
-      <p>´ëÇ¥ ÀüÈ­ ¹øÈ£ : 010-4568-5468</p>
+      <p><a href="">ê³µì§€ì‚¬í•­</a> | <a href="">ì´ìš©ì•½ê´€</a> | <a href="">ê°œì¸ì •ë³´ì·¨ê¸‰ ë°©ì¹¨</a></p>
+      <p>&copy;ìƒí˜¸ëª… (ì£¼) Daily Friday ëŒ€í‘œ : 9ì¡°</p>
+      <p>ì‚¬ì—…ìž ë“±ë¡ ë²ˆí˜¸ : 916-14-56874 | ëŒ€êµ¬ ì¤‘êµ¬ ë•ì‚°ë™ 00ë¹Œë”©</p>
+      <p>ëŒ€í‘œ ì „í™” ë²ˆí˜¸ : 010-4568-5468</p>
       <p>email : dfteam9@naver.com</p>
     </div>
   </Footer>
