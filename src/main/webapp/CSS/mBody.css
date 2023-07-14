@@ -1,0 +1,93 @@
+@charset "EUC-KR";
+
+main{
+    margin:0 auto;
+    padding-top: 10px;
+    width: 100%;
+    padding-bottom: 300px;
+}
+
+.wrapper--productpage{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.productmaininfo{
+    display: flex;
+    flex-wrap: nowrap;
+}
+.productmaininfo>div{
+    min-width: 100%;
+}
+.productinfo{
+
+}
+.productin{
+    top: 100%;
+    min-width: 100%;
+}
+
+.productmainim{
+    padding-top: 70px;
+    width: 100%;
+}
+.productmainimg{
+
+}
+
+.productpagemiddle{
+    position: relative;
+    top: 350px;
+
+}
+.productpagemiddle>li:nth-child(4)>a::before{
+    margin-left: 18%;
+
+}
+
+.productpagemiddle>li>a{
+    font-size: smaller;
+}
+
+.productpagemiddle>li{
+    width: 20%;
+}
+.detailwrap{
+    display: flex;
+    flex-wrap: wrap;
+    position: relative;
+    margin-top: 10px;
+    top: 300px;
+}
+.detailsec2{
+    height:fit-content;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.detailsec2>article{
+    width: 100%;
+}
+
+.detailsec2>aside{
+    width: 100%;
+    margin-top: 10px;
+}
+.warninfo{
+    width: 100%;
+    text-align: left;
+}
+
+.productmainimg>#frontimg,
+.productmainimg>#backimg {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    margin-bottom: 10px;
+    width: 80%;
+    height: auto;
+    backface-visibility: hidden;
+}

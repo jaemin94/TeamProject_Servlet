@@ -1,0 +1,225 @@
+@charset "EUC-KR";
+@import './header.css';
+@import './main.css';
+@import './footer.css';
+@import './productdetail.css';
+
+
+ .addmaininfo{
+    margin: 0 auto;
+    width: 100%;
+    height: fit-content;
+    min-height: 300px;
+    justify-content: space-between;
+ }
+
+ /* 메인 이미지 파일 서낵 */
+
+ .addmainimg{
+    margin: 0 auto;
+    background-color: rgb(201, 201, 201);
+    width: 40%;
+    height: 300px;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+    border: 2px dashed gray;
+    overflow: hidden;
+ }
+ .productmainim>img{
+    width: 70%;
+    height: 70%;
+ }
+
+ /* 메인 정보 등록 버튼 */
+.addbutton {
+    position: relative;
+    left: 10%;
+    bottom: 0px;
+    width: 80%;
+    height: 18%;
+
+}
+
+
+.addbutton>.addbutton2 {
+    width: 100%;
+    height: 100%;
+}
+
+.addbutton>.addbutton2>button {
+   position: absolute;
+    left: 0; right: 0;
+    top: 0; bottom: 0;
+    margin: auto;
+    font-size: medium;
+    width: 100%;
+    height: 50%;
+}
+/* 상위 wrapper */
+
+.productinfo{
+    display: flex;
+    width: 100%;
+    height: 80%;
+    justify-content: space-between;
+}
+
+
+/* 제품 메인정보 폼 */
+.productin{
+    width: 50%;
+    position: relative;
+    list-style: none;
+}
+
+
+.productinfor{
+
+    height: 100%;
+    justify-content: space-around;
+}
+
+
+.productinfo>.addmaininformation{
+    height: 20%;
+    display: flex; 
+    align-items: center;
+}
+
+#cate{
+    /* position: absolute; */
+    width: 70%;
+    height: 50%;
+}
+.addmaininformation{
+    display: flex;
+    height: 20%;
+}
+
+.addmaininformation>.addin{
+    width: 80%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.addmaininformation>.addin>input{
+    width: 70%;
+    height:  50%;
+   
+}
+.addmaininformation>label{
+    top: 0; bottom: 0;
+    margin: auto;
+    position:relative;
+    width:20%;
+    text-align: left;
+}
+
+#add4{
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    position: absolute;
+    right: 0px;
+    background-color: yellow;
+    font-size: 2rem;
+    border: none;
+}
+
+.addimgbutton{
+    display: flex;
+    justify-content: center;
+}
+.addimgbutton>label{
+    height: fit-content;
+    cursor: pointer;
+    position: absolute;
+    top: 0; bottom: 0;
+    margin: auto;
+    font-size: 1.4rem;
+    font-weight: 900;
+    color: black;
+    text-shadow: 1px 1px 1px white;
+}
+#addimgfile{
+    position: absolute;
+    bottom: 0px;
+    left: -75px;
+}
+
+.adddetailinfo{
+    margin-top: 100px;
+    min-height: 500px;
+    height: fit-content;
+}
+
+#adddetail>*{
+    margin-top: 50px;
+
+}
+#adddetail>section:nth-child(1){
+}
+
+#adddetail>section:nth-child(1)>article{
+    width: 100%;
+    position: relative;
+}
+
+#adddetail>section:nth-child(1)>article>label{
+    position: absolute;
+    left: 15%;
+    top: -15px;
+    /* margin: 20px; */
+    display: block;
+}
+
+#adddetail>section:nth-child(1)>article>textarea{
+    margin: 15px auto;
+    border-radius: 5px;
+    resize: none;
+    width: 70%;
+}
+
+#adddetail>section:nth-child(1)>article>textarea:focus{
+    outline: 3px solid skyblue;
+    border:none;
+    padding: 10px;
+    font-size: 1rem;
+}
+
+#adddetail>section:nth-child(2){
+}
+
+
+#adddetail>section:nth-child(2)>div{
+    position: relative;
+    background-color: rgb(201, 201, 201);
+    width: 70%;
+    height: 50%;
+    margin: 0 auto;
+    height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px dashed gray;
+    overflow: hidden;
+}
+#adddetail>section:nth-child(2)>div>div>label{
+   font-weight: 700;
+   text-shadow: 1px 1px 1px white;
+   cursor: pointer;
+   font-size: 1.5rem;
+}
+#adddetail>section:nth-child(2)>div>input{
+   position: absolute;
+   bottom: 0px;
+   left: -75px;
+}
+
+#adddetail>button{
+    width: 50%;
+    height: 30px;
+    font-size: medium;
+}

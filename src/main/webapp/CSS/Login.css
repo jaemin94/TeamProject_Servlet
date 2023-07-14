@@ -1,0 +1,43 @@
+@charset "EUC-KR";
+
+
+
+form {
+    width: 300px;
+    height: 50%;
+    margin: 0 auto;
+    margin-top: 100px;
+    text-align: center;
+    justify-items : center;
+    
+  }
+  
+  h1 {
+    font-size: 32px;
+    margin-top: 30px;
+  }
+  
+  label {
+    display: block;
+    margin-top: 20px;
+  }
+  
+  input {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+  }
+  
+  .login {
+    background-color: #008CBA;
+    color: white;
+    font-size: 18px;
+    padding: 10px 20px;
+    margin-top: 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
