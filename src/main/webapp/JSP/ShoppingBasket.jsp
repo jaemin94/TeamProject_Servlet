@@ -1,5 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="java.net.URLEncoder" %>
+<%@ page import="java.util.Map" %>
+<%@ page import= "Domain.Common.Dto.OrderDto" %>
+<%@ page import="java.util.* " %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -67,23 +71,49 @@
 		</div>
 	</header>
 
-	<main>
-		<div class="main">
+	
+<h1>장바구니</h1>
+	
 
-			<section>
+<c:set var="result" value="${requestScope.result}" />
+<c:set var="resultList" value="${result.result}" />
+<c:set var="resultElement" value="" scope="request" />
 
-				<ul class="table">
-					<li class="li"></li>
-					<li class="li"></li>
-					<li class="li"></li>
+<c:if test="${resultList != null}">
+    <c:catch var="resultConversionError">
+        <c:set var="resultElement" value="${resultList[0]}" />
+    </c:catch>
+</c:if>
 
-				</ul>
-			</section>
-		</div>
+<c:choose>
+    <c:when test="${resultConversionError != null}">
+        <c:set var="singletonList" value="${result.result}" scope="request" />
+        <c:set var="resultget" value="${singletonList ne null ? [singletonList] : []}" />
+    </c:when>
+    <c:otherwise>
+        <c:set var="resultget" value="${resultList}" />
+    </c:otherwise>
+</c:choose>
+
+<c:forEach items="${resultget}" var="vo" varStatus="status">
+	<ul>
+        <li class="product">수량:${vo.odr_amount != null ? vo.odr_amount : 0 }</li>
+        <li class="product">주소:${vo.adr_addr != null ? vo.adr_addr : '-' }</li>
+        <li class="product">가격:${vo.price != null ? vo.price : 0 }</li>
+        <li class="product">날짜:${vo.odr_date != null ? vo.odr_date : '-' }</li>
+        <li class="product">제품이름:${vo.product_name != null ? vo.product_name : '-' }</li>
+    </ul>
 
 
-	</main>
+    <div class="product">수량:${vo.odr_amount != null ? vo.odr_amount : 0 }</div>
+	<div class="product">주소:${vo.adr_addr != null ? vo.adr_addr : '-' }</div>
+	<div class="product">가격:${vo.price != null ? vo.price : 0 }</div>
+	<div class="product">날짜:${vo.odr_date != null ? vo.odr_date : '-' }</div>
+	<div class="product">제품이름:${vo.product_name != null ? vo.product_name : '-' }</div>
+</c:forEach>
 
+
+	
 	<hr style="margin-left: 10px; margin-right: 10px;">
 
 	<Footer>
