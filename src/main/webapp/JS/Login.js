@@ -8,7 +8,8 @@
     // 로그인 버튼 클릭 시 로그인 페이지로 이동
     window.location.href = "./Login.jsp";
   });
-
+  
+ 
   /*var isLoggedIn = getCookie("isLoggedIn");
   if (isLoggedIn) {
     var loginButton = document.getElementById("login-button");
