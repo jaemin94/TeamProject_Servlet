@@ -80,18 +80,49 @@
 
 	<main>
 		<div class="main">
+		<div class="main">
+			<div class="odrmanage">쇼핑몰관리</div>
+			<div class="odrlisttag">주문목록조회</div>
+			<!-- 검색창 -->
+			<div class="searchwrapper">
+				<div class="midsearchwrapper">
+					<select name="category" id="c_select">
+						<option value="주문 ID">주문 ID</option>
+						<option value="User ID">User ID</option>
+						<option value="제품코드">제품코드</option>
+						<option value="제품명">제품명</option>
+						<option value="주소">주소</option>
+						<option value="수량">수량</option>
+						<option value="날짜">날짜</option>
+						<option value="가격">가격</option>
+					</select>
+					<input type="text" id="odrtype" autocomplete="off">
+					<input type="button" id="submint_button" value="조회">
+					<div class ="buttons">
+						<input type="button" id="edit_button" value="수정">
+						<input type="button" id="delete_button" value="삭제">
+	  				</div>
+			
+				</div>
+			<!-- 추천창 -->
+				<div id="suggestion_box" class="invisible">
+					<div id="suggestedd_items"></div>
+				</div>
+			</div>
+			
     <section>
       <ul class="table">
       
       		<li class="li" id="listhead">
-				<span>oder-id</span>
-				<span>user-id</span>
-				<span>prod-code</span>
-				<span>prod-name</span>
-				<span>address</span>
-				<span>amount</span>
-				<span>odr-date</span>
-				<span>price</span>
+      			<span>
+      			<input type="checkbox" id="select-all-checkbox">주문 ID</span>
+				<span>User ID</span>
+				<span>제품코드</span>
+				<span>제품명</span>
+				<span>주소</span>
+				<span>수량</span>
+				<span>날짜</span>
+				<span>가격</span>
 			</li>
       		<% 
       		Connection conn = null;
@@ -123,7 +154,11 @@
 					int Price=rs.getInt("price");
 	           %>
 	       		<li class="li">
-	          	  <span><%=Order_id %></span>
+	       		 	
+	          	  <span>
+	          	 	<input type="checkbox" id="select-all-checkbox">
+	          		<label for="select-checkbox"><%=Order_id %> </label>
+				  </span>
 	          	  <span><%= Member_id %></span>
 	          	  <span><%= Product_code %></span>
 	          	  <span id="pname"><%= Product_name%></span>
@@ -142,6 +177,7 @@
 			}		
 			%>
       </ul>
+   
     </section>
   </div>
 
@@ -160,6 +196,54 @@
 			<p>email : dfteam9@naver.com</p>
 		</div>
 	</Footer>
+	
+	<script>
+  document.getElementById('select-all-checkbox').addEventListener('change', function() {
+    var checkboxes = document.querySelectorAll('.li input[type="checkbox"]');
+    var selectAllCheckbox = document.getElementById('select-all-checkbox');
+    
+    checkboxes.forEach(function(checkbox) {
+      checkbox.checked = selectAllCheckbox.checked;
+    });
+  });
+  
+  document.getElementById('edit-button').addEventListener('click', function() {
+    var selectedOrderIds = [];
+    var checkboxes = document.querySelectorAll('.li input[type="checkbox"]');
+    
+    checkboxes.forEach(function(checkbox) {
+      if (checkbox.checked) {
+        var orderId = checkbox.parentElement.querySelector('span:nth-child(1)').innerText;
+        selectedOrderIds.push(orderId);
+      }
+    });
+    
+    // 선택된 주문 ID에 대한 수정 기능 실행
+    // selectedOrderIds 배열을 이용하여 선택된 주문 ID를 전달하고 수정을 수행
+    
+    // 예시: 선택된 주문 ID를 콘솔에 출력
+    console.log(selectedOrderIds);
+  });
+  
+  document.getElementById('delete-button').addEventListener('click', function() {
+    var selectedOrderIds = [];
+    var checkboxes = document.querySelectorAll('.li input[type="checkbox"]');
+    
+    checkboxes.forEach(function(checkbox) {
+      if (checkbox.checked) {
+        var orderId = checkbox.parentElement.querySelector('span:nth-child(1)').innerText;
+        selectedOrderIds.push(orderId);
+      }
+    });
+    
+    // 선택된 주문 ID에 대한 삭제 기능 실행
+    // selectedOrderIds 배열을 이용하여 선택된 주문 ID를 전달하고 삭제를 수행
+    
+    // 예시: 선택된 주문 ID를 콘솔에 출력
+    console.log(selectedOrderIds);
+  });
+</script>
+	
 </body>
 
 </html>
