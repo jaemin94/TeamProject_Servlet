@@ -1,12 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" %>
 <%@ page import="java.net.URLEncoder" %>
+<%@ page import="java.sql.*" %>
+<%@ page import="java.io.PrintWriter" %>
+
 <!DOCTYPE html>
 <html>
 <head>
-<link href=" ${pageContext.request.contextPath}/CSS/Common.css"
+<link href=" ${pageContext.request.contextPath}/CSS/Common.css" 
 	rel="stylesheet" type="text/css">
 <link href=" ${pageContext.request.contextPath}/CSS/mCommon.css"
 	rel="stylesheet" type="text/css" media="all and (max-width: 480px) ">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+	
 <link rel="stylesheet"
 	href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 <link href="https://fonts.googleapis.com/css2?family=Chewy&display=swap"
@@ -14,8 +19,14 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  
 <title>장바구니</title>
 </head>
+
+
+
 <body>
 	<header>
 		<div class="header">
@@ -69,18 +80,106 @@
 
 	<main>
 		<div class="main">
-
-			<section>
-
-				<ul class="table">
-					<li class="li"></li>
-					<li class="li"></li>
-					<li class="li"></li>
-
-				</ul>
-			</section>
-		</div>
-
+		<div class="main">
+			<div class="odrmanage">쇼핑몰관리</div>
+			<div class="odrlisttag">주문목록조회</div>
+			<!-- 검색창 -->
+			<div class="searchwrapper">
+				<div class="midsearchwrapper">
+					<select name="category" id="c_select">
+						<option value="주문 ID">주문 ID</option>
+						<option value="User ID">User ID</option>
+						<option value="제품코드">제품코드</option>
+						<option value="제품명">제품명</option>
+						<option value="주소">주소</option>
+						<option value="수량">수량</option>
+						<option value="날짜">날짜</option>
+						<option value="가격">가격</option>
+					</select>
+					<input type="text" id="odrtype" autocomplete="off">
+					<input type="button" id="submint_button" value="조회">
+					<div class ="buttons">
+						<input type="button" id="edit_button" value="수정">
+						<input type="button" id="delete_button" value="삭제">
+	  				</div>
+			
+				</div>
+			<!-- 추천창 -->
+				<div id="suggestion_box" class="invisible">
+					<div id="suggestedd_items"></div>
+				</div>
+			</div>
+			
+    <section>
+      <ul class="table">
+      
+      		<li class="li" id="listhead">
+      			<span>
+      			<input type="checkbox" id="select-all-checkbox">주문 ID</span>
+				<span>User ID</span>
+				<span>제품코드</span>
+				<span>제품명</span>
+				<span>주소</span>
+				<span>수량</span>
+				<span>날짜</span>
+				<span>가격</span>
+			</li>
+      		<% 
+      		Connection conn = null;
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+		
+			response.setContentType("text/html;charset=utf-8");
+			PrintWriter outt = response.getWriter();
+			
+			try{
+				Class.forName("com.mysql.jdbc.Driver");
+	        	String url = "jdbc:mysql://localhost:3306/shoppingdb";
+	        	String id = "root";
+	       		String pw = "1234";
+	       		conn = DriverManager.getConnection(url, id, pw);
+	        	
+	        	String query = "SELECT * FROM tbl_order";
+	        	pstmt = conn.prepareStatement(query);
+	        	rs = pstmt.executeQuery();
+	        	
+	        	while (rs.next()) {
+	        		String Order_id= rs.getString("order_id");
+					String Member_id=rs.getString("Member_id");
+					int Product_code=rs.getInt("product_code");
+					String Product_name=rs.getString("product_name");
+					String Adr_addr=rs.getString("adr_addr");
+					int Odr_amount=rs.getInt("odr_amount");
+					Date Odr_date=rs.getDate("odr_date");
+					int Price=rs.getInt("price");
+	           %>
+	       		<li class="li">
+	       		 	
+	          	  <span>
+	          	 	<input type="checkbox" id="select-all-checkbox">
+	          		<label for="select-checkbox"><%=Order_id %> </label>
+				  </span>
+	          	  <span><%= Member_id %></span>
+	          	  <span><%= Product_code %></span>
+	          	  <span id="pname"><%= Product_name%></span>
+	          	  <span><%= Adr_addr %></span>
+	          	  <span><%= Odr_amount%></span>
+	          	  <span><%= Odr_date%></span>
+	          	  <span><%= Price %></span>
+	          	</li>
+	           <% 
+	           	} 
+	        	rs.close();
+	            pstmt.close();
+	            conn.close();
+	            }catch(Exception e){
+				e.printStackTrace();			
+			}		
+			%>
+      </ul>
+   
+    </section>
+  </div>
 
 	</main>
 
@@ -97,6 +196,54 @@
 			<p>email : dfteam9@naver.com</p>
 		</div>
 	</Footer>
+	
+	<script>
+  document.getElementById('select-all-checkbox').addEventListener('change', function() {
+    var checkboxes = document.querySelectorAll('.li input[type="checkbox"]');
+    var selectAllCheckbox = document.getElementById('select-all-checkbox');
+    
+    checkboxes.forEach(function(checkbox) {
+      checkbox.checked = selectAllCheckbox.checked;
+    });
+  });
+  
+  document.getElementById('edit-button').addEventListener('click', function() {
+    var selectedOrderIds = [];
+    var checkboxes = document.querySelectorAll('.li input[type="checkbox"]');
+    
+    checkboxes.forEach(function(checkbox) {
+      if (checkbox.checked) {
+        var orderId = checkbox.parentElement.querySelector('span:nth-child(1)').innerText;
+        selectedOrderIds.push(orderId);
+      }
+    });
+    
+    // 선택된 주문 ID에 대한 수정 기능 실행
+    // selectedOrderIds 배열을 이용하여 선택된 주문 ID를 전달하고 수정을 수행
+    
+    // 예시: 선택된 주문 ID를 콘솔에 출력
+    console.log(selectedOrderIds);
+  });
+  
+  document.getElementById('delete-button').addEventListener('click', function() {
+    var selectedOrderIds = [];
+    var checkboxes = document.querySelectorAll('.li input[type="checkbox"]');
+    
+    checkboxes.forEach(function(checkbox) {
+      if (checkbox.checked) {
+        var orderId = checkbox.parentElement.querySelector('span:nth-child(1)').innerText;
+        selectedOrderIds.push(orderId);
+      }
+    });
+    
+    // 선택된 주문 ID에 대한 삭제 기능 실행
+    // selectedOrderIds 배열을 이용하여 선택된 주문 ID를 전달하고 삭제를 수행
+    
+    // 예시: 선택된 주문 ID를 콘솔에 출력
+    console.log(selectedOrderIds);
+  });
+</script>
+	
 </body>
 
 </html>
