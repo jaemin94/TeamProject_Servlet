@@ -56,6 +56,33 @@ body{
     top: 45px;
   }
 
+          table {
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    th, td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+    }
+
+    th {
+        background-color: #f2f2f2;
+    }
+   .order-button {
+        background-color: #4CAF50;
+        border: none;
+        color: white;
+        text-align: center;
+        display: inline-block;
+        font-size: 16px;
+        margin: 10px 0;
+        cursor: pointer;
+        padding: 12px 24px;
+        border-radius: 4px;
+    }
+
 
   /* #login-button>img{
     background-color: white;

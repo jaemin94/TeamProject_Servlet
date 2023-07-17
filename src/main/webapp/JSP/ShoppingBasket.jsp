@@ -95,23 +95,29 @@
     </c:otherwise>
 </c:choose>
 
-<c:forEach items="${resultget}" var="vo" varStatus="status">
-	<ul>
-        <li class="product">수량:${vo.odr_amount != null ? vo.odr_amount : 0 }</li>
-        <li class="product">주소:${vo.adr_addr != null ? vo.adr_addr : '-' }</li>
-        <li class="product">가격:${vo.price != null ? vo.price : 0 }</li>
-        <li class="product">날짜:${vo.odr_date != null ? vo.odr_date : '-' }</li>
-        <li class="product">제품이름:${vo.product_name != null ? vo.product_name : '-' }</li>
-    </ul>
-
-
-    <div class="product">수량:${vo.odr_amount != null ? vo.odr_amount : 0 }</div>
-	<div class="product">주소:${vo.adr_addr != null ? vo.adr_addr : '-' }</div>
-	<div class="product">가격:${vo.price != null ? vo.price : 0 }</div>
-	<div class="product">날짜:${vo.odr_date != null ? vo.odr_date : '-' }</div>
-	<div class="product">제품이름:${vo.product_name != null ? vo.product_name : '-' }</div>
-</c:forEach>
-
+<table>
+    <thead>
+        <tr>
+            <th>주문 수량</th>
+            <th>주소</th>
+            <th>가격</th>
+            <th>주문 날짜</th>
+            <th>상품명</th>
+        </tr>
+    </thead>
+    <tbody>
+        <c:forEach items="${resultget}" var="vo" varStatus="status">
+            <tr>
+                <td>${vo.odr_amount != null ? vo.odr_amount : 0 }</td>
+                <td>${vo.adr_addr != null ? vo.adr_addr : '-' }</td>
+                <td>${vo.price != null ? vo.price : 0 }</td>
+                <td>${vo.odr_date != null ? vo.odr_date : '-' }</td>
+                <td>${vo.product_name != null ? vo.product_name : '-' }</td>
+            </tr>
+        </c:forEach>
+    </tbody>
+</table>
+<button class="order-button" type="button">주문하기</button>
 
 	
 	<hr style="margin-left: 10px; margin-right: 10px;">
