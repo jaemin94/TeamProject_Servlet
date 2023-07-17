@@ -23,7 +23,7 @@
       <div class="banner">
         <div class="logo">
           <a href = "./Main.jsp">
-            <img src=""></img>
+            <img src="${pageContext.request.contextPath}/SRC/logo.png"></img>
           </a>
         </div>
         <div class="banner_top">

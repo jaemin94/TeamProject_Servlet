@@ -1,0 +1,67 @@
+@charset "UTF-8";
+
+@import './Header.css';
+@import './Minyoung.css';
+@import './Footer.css';
+
+
+body{
+    position: relative; 
+    text-align: center ;
+    justify-content: center;
+    background-color: white;
+    font-size: 16px;
+    margin: 0;
+    padding: 0;
+    
+    
+}
+
+.Main {
+	border:1px solid;
+    height: 500px;
+   
+}
+
+/* Google Icon Class CSS */
+.material-symbols-outlined {
+    font-variation-settings:
+    'FILL' 0,
+    'wght' 700,
+    'GRAD' 0,
+    'opsz' 48;
+
+    font-size:2rem;
+    transition: 0.5s;
+
+    color: white;
+
+
+  }
+  .material-symbols-outlined:hover{
+      transform:scale(1.5,1.5);
+      transition: 0.15s;
+  }
+
+  .df{
+    display: flex;
+    width: 300px;
+    font-family:'Chewy', cursive;
+    color: rgb(255, 157, 0);
+    font-style: italic;
+    text-decoration: underline;
+    font-size: 48px;
+    position: absolute;
+    left: 40%;
+    top: 45px;
+  }
+
+  /* #login-button>img{
+    background-color: white;
+    background-position: center;
+    width: 60%;
+    height: 30%;
+    transition: 0.5s;
+
+    color: black;
+  } */

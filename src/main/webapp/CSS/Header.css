@@ -24,12 +24,14 @@
     align-items: center;
 }
 .logo {
-    width: auto;
-    height: 156px;
     position: absolute;
-
-    left: 25px;
     top: 0;
+    bottom: 0;
+    margin: auto auto;
+}
+
+.logo>a>img{
+    height: 90%;
 }
 
 .banner_top {

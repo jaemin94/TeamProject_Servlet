@@ -1,5 +1,10 @@
 @charset "UTF-8";
 /* 그리드 */
+*{
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 
 .main{
   height: 100%;
@@ -34,9 +39,9 @@
   }
   
   /* 슬라이드 */
-  .swiper_section {
-    width: 1024px;
-    height: 700px;
+  .slide-frame {
+    width: 100%;
+    height: 500px;
     display: flex;
     position: relative;
     justify-content: center;
@@ -44,48 +49,71 @@
     border: 1px solid black; 
     
   }
-  
-   .main>.swiper_section .swiper>.swiper-wrapper>.swiper-slide {
-            text-align: center;
-            display:flex;
-            justify-content:center;
-            line-height: 700px;
-            border: 1px solid;
-           
-        }
-        
-    .main>.swiper_section .swiper>.swiper-wrapper>.swiper-slide>img {
-            text-align: center;
-            height:500px;
-            line-height:100%;
-            margin-top:100px;
-            width:90%;
- 		    border:1px solid red;
-     
-            
-        }
-
-  
  .table {
+    list-style : none;
     width: 100%;
     height: 500px;
     display: flex;
     position: relative;
-    margin: 0 auto;
+    margin: 0;
+    padding: 0;
     border: 1px solid black; 
     flex-direction: column;
-  	align-items: center;
-    
-    
+  	align-items: first baseline;
   }
   
   .li{
-  width: 675px;
-  height:30px;
-  border : solid 1px red;
-
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0;
+  	width: 100%;
+  	height:auto;
   }
 
+
+  li:not(:first-child) span:first-child {
+    background-color: lightgrey;
+    border-bottom: 1px solid;
+    overflow: hidden;
+    font-size : 10px;
+  }
+ 
+  #listhead{
+    box-sizing: border-box;
+    height: 40px;
+    font-size: small;
+    font-weight: bold;
+    border-bottom: 1px solid;
+  }
+
+  #listhead>span{
+  	background-color:grey;
+    overflow: hidden;
+    height: 40px;
+    line-height: 40px;
+    display: block;
+    
+  }
+
+
+  .li>span{
+  	display : flex;
+    justify-content:center;
+    align-items:center;
+    height:100%;
+    min-height: 35px;
+    overflow: auto;
+    flex: 1;
+    border-right:1px solid gray;
+    border-bottom:1px solid;
+	margin:1px 1px;
+  }
+
+  #pname{
+  	
+	font-size:10px;
+  }
 
   .imageframe {
     position: absolute;

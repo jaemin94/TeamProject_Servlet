@@ -28,7 +28,7 @@
 		<div class="header">
 			<div class="banner">
 				<div class="logo">
-					<a href="./Main.jsp"> <img src=""></img>
+					<a href="./Main.jsp"> <img src="${pageContext.request.contextPath}/SRC/logo.png"></img>
 					</a>
 				</div>
 				<div class="banner_top">
@@ -81,7 +81,7 @@
 			<label><input type="password" id="password"
 				placeholder="비밀번호"></label>
 			<button class="login" type="submit">로그인</button>
-			<button class="register" type="submit" id="regis">회원가입</button>
+			<button class="register" type="button" id="regis">회원가입</button>
 			<script type="text/javascript"
 						src="${pageContext.request.contextPath}/JS/Register.js"></script>
 
