@@ -1,9 +1,14 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" %>
-<%@ page import="java.net.URLEncoder" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ page import="java.net.URLEncoder"%>
+<%@ page import="java.util.Map"%>
+<%@ page import="Domain.Common.Dto.OrderDto"%>
+<%@ page import="java.util.* "%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
-<link href=" ${pageContext.request.contextPath}/CSS/Common.css"
+<link href=" ${pageContext.request.contextPath}/CSS/Common_User.css"
 	rel="stylesheet" type="text/css">
 <link href=" ${pageContext.request.contextPath}/CSS/mCommon.css"
 	rel="stylesheet" type="text/css" media="all and (max-width: 480px) ">
@@ -11,9 +16,9 @@
 	href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 <link href="https://fonts.googleapis.com/css2?family=Chewy&display=swap"
 	rel="stylesheet">
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>장바구니</title>
 </head>
 <body>
@@ -21,7 +26,8 @@
 		<div class="header">
 			<div class="banner">
 				<div class="logo">
-					<a href="./Main.jsp"> <img src="${pageContext.request.contextPath}/SRC/logo.png"></img>
+					<a href="./Main.jsp"> <img
+						src="${pageContext.request.contextPath}/SRC/logo.png"></img>
 					</a>
 				</div>
 				<div class="banner_top">
@@ -67,23 +73,56 @@
 		</div>
 	</header>
 
-	<main>
-		<div class="main">
 
-			<section>
+	<h1>장바구니</h1>
+	<div class="Main">
 
-				<ul class="table">
-					<li class="li"></li>
-					<li class="li"></li>
-					<li class="li"></li>
+		<c:set var="result" value="${requestScope.result}" />
+		<c:set var="resultList" value="${result.result}" />
+		<c:set var="resultElement" value="" scope="request" />
 
-				</ul>
-			</section>
-		</div>
+		<c:if test="${resultList != null}">
+			<c:catch var="resultConversionError">
+				<c:set var="resultElement" value="${resultList[0]}" />
+			</c:catch>
+		</c:if>
 
+		<c:choose>
+			<c:when test="${resultConversionError != null}">
+				<c:set var="singletonList" value="${result.result}" scope="request" />
+				<c:set var="resultget"
+					value="${singletonList ne null ? [singletonList] : []}" />
+			</c:when>
+			<c:otherwise>
+				<c:set var="resultget" value="${resultList}" />
+			</c:otherwise>
+		</c:choose>
 
-	</main>
+		<table>
+			<thead>
+				<tr>
+					<th>주문 수량</th>
+					<th>주소</th>
+					<th>가격</th>
+					<th>주문 날짜</th>
+					<th>상품명</th>
+				</tr>
+			</thead>
+			<tbody>
+				<c:forEach items="${resultget}" var="vo" varStatus="status">
+					<tr>
+						<td>${vo.odr_amount != null ? vo.odr_amount : 0 }</td>
+						<td>${vo.adr_addr != null ? vo.adr_addr : '-' }</td>
+						<td>${vo.price != null ? vo.price : 0 }</td>
+						<td>${vo.odr_date != null ? vo.odr_date : '-' }</td>
+						<td>${vo.product_name != null ? vo.product_name : '-' }</td>
+					</tr>
+				</c:forEach>
+			</tbody>
+		</table>
+		<button class="order-button" type="button">주문하기</button>
 
+	</div>
 	<hr style="margin-left: 10px; margin-right: 10px;">
 
 	<Footer>
