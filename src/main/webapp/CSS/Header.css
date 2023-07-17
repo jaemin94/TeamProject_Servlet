@@ -16,7 +16,7 @@
 
 .banner {
     position: relative; 
-    width: 1024px;
+    width: 85%;
     
     text-align: center;
     min-width: 60%;
@@ -28,14 +28,19 @@
     top: 0;
     bottom: 0;
     margin: auto auto;
+    margin-left:30px;
 }
 
 .logo>a>img{
-    height: 90%;
+    height: 125px;
+    width: 125px;
+    margin-left: 30px;
+    margin-top: 15px;
 }
 
 .banner_top {
     text-align: right;
+        margin-right: 13%;
 
 
 }
@@ -55,8 +60,8 @@
 
 .navbar {
     display: flex;
-    justify-content: center;
-    align-content: center;
+    justify-content: space-evenly;
+    margin-left: 15px;
 
 }
 
@@ -101,7 +106,7 @@
     background-color: black;
     display:none;
     position: absolute;
-    top : 30px;
+    top : 23px;
     left: 0;
     text-align: center;
     /* padding: 10px; */
