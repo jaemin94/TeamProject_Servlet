@@ -1,6 +1,9 @@
 @charset "UTF-8";
 /* 그리드 */
 
+@charset "UTF-8";
+/* 그리드 */
+
 .main{
   height: 100%;
   width: 70%;
@@ -16,32 +19,75 @@
   margin: 0 auto;
   min-width: 60%;
 }
+.bs{
+	color: #333;
+    animation: bs 6s infinite;
+    height:30px;
+    width: 200px;
+    margin:auto;
+    margin-top:20px;
+    text-decoration : underline;
+}
 
+@keyframes bs {
+  	 25% {color: gold;}
+     50% {color: tomato;}
+     75% {color: #fff;}
+}
 .grid-container {
+	margin-top:100px;
+	width:100%;
+	height:auto;
     display: grid;
-    grid-template-columns: repeat(4, 4fr);
+    grid-template-columns: repeat(4, 1fr);
     grid-gap: 5px;
-    justify-content: center;
-    margin:0;
-    padding:0;
+    justify-content:center;
+    align-items:center;
     /* position: relative; */
+    margin-bottom:50px;
+    
   }
   
   .grid-item {
     /* background-color: #ddd; */
-    padding: 20px;
-    text-align: center;
+    display:flex;
+    width:100%;
+    height:100%;
+    border-bottom:2px solid light-gray;
+    margin:5px;
+    justify-content: center;
+  	align-items: center;
+  	padding:5px;
+ }
+ 
+ .grid-item:hover{
+ 	box-shadow:-2px -2px 1px gray;
+ 	border-right:1px solid lightgrey;
+ 	border-bottom:1px solid lightgrey;
+ }
+ 
+
+  .grid-item>img{
+	
+	width:90%;
+    height:auto;
+ 	object-fit:contain; 
+
   }
   
   /* 슬라이드 */
+  .swiper{
+  }
+  
   .swiper_section {
-    width: 1024px;
+
+    width: 1119px;
     height: 700px;
     display: flex;
     position: relative;
     justify-content: center;
-    margin: 0 auto;
-    border: 1px solid black; 
+    margin: 60px auto;
+
     
   }
   
@@ -50,7 +96,7 @@
             display:flex;
             justify-content:center;
             line-height: 700px;
-            border: 1px solid;
+            
            
         }
         
@@ -60,29 +106,82 @@
             line-height:100%;
             margin-top:100px;
             width:90%;
- 		    border:1px solid red;
-     
-            
+ 			display:block;
+ 			transition:transform 0.3s ease;
+ 			object-fit:contain; 
         }
 
   
- .table {
-    width: 100%;
-    height: 500px;
-    display: flex;
-    position: relative;
-    margin: 0 auto;
-    border: 1px solid black; 
-    flex-direction: column;
-  	align-items: center;
-    
-    
+  	/* 중앙에 위치한 이미지 크기 조정 */
+	.swiper-slide-active img {
+  		transform: scale(1.2);
+	}
+
+	/* 외곽 이미지 크기 조정 */
+	.swiper-slide-next img,
+	.swiper-slide-prev img {
+ 		 transform: scale(0.8);
+ 		 opacity:0.5;
+	}
+
+	/* 슬라이드 이미지 애니메이션 */
+	.swiper-slide img {
+	  transition: transform 0.3s ease;
+	}
+
+	/* 이전/다음 버튼 스타일 수정 */
+   .swiper-button-prev,
+   .swiper-button-next {
+  	  background-color: rgba(0, 0, 0, 0.5);
+  	  color: #fff;
+  	  width: 30px;
+  	  height: 30px;
+  	  border-radius: 50%;
+  	  font-size: 20px;
+  	  line-height: 30px;
+	}
+
+	.swiper-button-prev::before,
+	.swiper-button-next::before {
+  	  content: "";
+	}
+
+	/* 페이징 스타일 수정 */
+	.swiper-pagination {
+ 	 position: absolute;
+  	 bottom: 10px;
+  	 left: 50%;
+  	 transform: translateX(-50%);
+	}
+	
+	.swiper-pagination-bullet {
+  	 background-color: #fff;
+  	 width: 10px;
+  	 height: 10px;
+  	 border-radius: 50%;
+  	 opacity: 0.5;
+  	 transition: opacity 0.3s ease;
+	}
+
+	.swiper-pagination-bullet-active {
+  	 opacity: 1;
+	}
+  
+ 	.table {
+     width: 100%;
+     height: 500px;
+     display: flex;
+     position: relative;
+     margin: 0 auto;
+     border: 1px solid black; 
+     flex-direction: column;
+  	 align-items: center;
   }
   
   .li{
-  width: 675px;
-  height:30px;
-  border : solid 1px red;
+ 	 width: 675px;
+	 height:30px;
+ 
 
   }
 
@@ -92,7 +191,6 @@
     width: 1024px;
     height: 500px;
     /* display: flex; */
-     border: 1px solid orange; 
   }
 	
 
@@ -119,3 +217,5 @@
     left:100%;
     top:0px;
   }
+  
+  
