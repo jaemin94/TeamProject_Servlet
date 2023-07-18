@@ -69,13 +69,12 @@
 	</header>
 	<!-- 로그인 폼 -->
    <div class="Main">
-  <form id="register-form">
+  <form action="/TeamProject2/register" method="post" id="register-form">
     <h1>회원가입</h1>
-    <label><input type="text" id="name" placeholder="이름"></label>
-    
-    <label><input type="text" id="addr" placeholder="주소"></label>
-    <label><input type="text" id="username" placeholder="아이디"></label>
-    <label><input type="password" id="password" placeholder="비밀번호"></label>
+    <label for="name"><input type="text" id="name" name="name" placeholder="이름"></label>
+    <label for="adr_addr"><input type="text" id="addr" name="adr_addr" placeholder="주소"></label>
+    <label for="member_id"><input type="text" id="username" name="member_id" placeholder="아이디"></label>
+    <label for="pw"><input type="password" id="password" name="pw" placeholder="비밀번호"></label>
     <button class="register" type="submit">회원가입</button>
     <button class="cancle" type="button" id="cancle">취소</button>
     <script type="text/javascript"
