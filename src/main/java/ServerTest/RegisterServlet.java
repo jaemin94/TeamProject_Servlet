@@ -1,6 +1,7 @@
 package ServerTest;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -19,7 +20,7 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/register")
 public class RegisterServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	   String jdbcURL = "jdbc:mysql://localhost:3306/shoppingdb";
+	   String jdbcURL = "jdbc:mysql://localhost:3306/shoppingdb?useUnicode=true&characterEncoding=UTF-8";
        String dbUser = "root";
        String dbPassword = "1234";
        protected static Connection conn;
@@ -36,7 +37,9 @@ public class RegisterServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// 입력한 회원 정보 받기
+    	request.setCharacterEncoding("UTF-8");
+    	response.setContentType("text/html; charset=UTF-8");
+    	// 입력한 회원 정보 받기
         String name = request.getParameter("name");
         System.out.println(name);
         String adr_addr = request.getParameter("adr_addr");
@@ -52,6 +55,7 @@ public class RegisterServlet extends HttpServlet {
 		{
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			if(conn==null) {
+				
 				conn = DriverManager.getConnection(jdbcURL,dbUser,dbPassword); 
 			}
 		} 
@@ -91,6 +95,7 @@ public class RegisterServlet extends HttpServlet {
         
         try {
             // DB 연결
+        	
             connection = DriverManager.getConnection(jdbcURL, dbUser, dbPassword);
             
             // 사용자명 중복 체크 쿼리
@@ -127,21 +132,23 @@ public class RegisterServlet extends HttpServlet {
     }
     
     // 회원 정보 저장
-    private boolean saveUser(String name, String adr_addr, String member_id, String pw) {
+    private boolean saveUser(String name, String adr_addr, String member_id, String pw) throws UnsupportedEncodingException {
         Connection connection = null;
         PreparedStatement statement = null;
         
         try {
             // DB 연결
+        	
             connection = DriverManager.getConnection(jdbcURL, dbUser, dbPassword);
             
             // 회원 정보 저장 쿼리
             String query = "INSERT INTO tbl_member (member_id,pw,name,adr_addr) VALUES (?,?,?,?)";
             statement = connection.prepareStatement(query);
-            statement.setString(1, member_id);
-            statement.setString(2, pw);
-            statement.setString(3, name);
-            statement.setString(4, adr_addr);
+            statement.setString(1, new String(member_id.getBytes("UTF-8"), "UTF-8"));
+            statement.setString(2, new String(pw.getBytes("UTF-8"), "UTF-8"));
+            statement.setString(3, new String(name.getBytes("UTF-8"), "UTF-8"));
+            statement.setString(4, new String(adr_addr.getBytes("UTF-8"), "UTF-8"));
+
             
             int rowsInserted = statement.executeUpdate();
             return rowsInserted > 0; // 저장 성공 시 true 반환
