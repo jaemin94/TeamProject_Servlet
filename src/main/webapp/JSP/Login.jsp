@@ -75,10 +75,10 @@
 	</header>
 	<!-- 로그인 폼 -->
 	<div class="Main">
-		<form id="login-form">
+		<form action="/TeamProject2/Login" method="post" id="login-form">
 			<h1>로그인</h1>
-			<label><input type="text" id="username" placeholder="아이디"></label>
-			<label><input type="password" id="password"
+			<label><input type="text" id="username" name="member_id" placeholder="아이디"></label>
+			<label><input type="password" id="password" name="pw"
 				placeholder="비밀번호"></label>
 			<button class="login" type="submit">로그인</button>
 			<button class="register" type="button" id="regis">회원가입</button>

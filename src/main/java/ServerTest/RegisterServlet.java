@@ -32,13 +32,17 @@ public class RegisterServlet extends HttpServlet {
         super();
         // TODO Auto-generated constructor stub
     }
+    
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    	request.setCharacterEncoding("UTF-8");
-    	response.setContentType("text/html; charset=UTF-8");
+
+     	response.setContentType("text/html; charset=UTF-8");
+     	request.setCharacterEncoding("UTF-8");
+     	response.setCharacterEncoding("UTF-8");
+			
     	// 입력한 회원 정보 받기
         String name = request.getParameter("name");
         System.out.println(name);
@@ -70,18 +74,20 @@ public class RegisterServlet extends HttpServlet {
             // DB에 값 저장
             if (saveUser(name, adr_addr,member_id,pw)) {
             	String message = "회원가입이 완료되었습니다!";
-                String script = "<script>alert('" + message + "');</script>";
+                String script = "<script>alert('" + message + "'); window.close();window.location.href='./JSP/Login.jsp';</script>";
                 response.setContentType("text/html; charset=UTF-8");
                 response.getWriter().write(script);
+                
             } else {
             	String message = "회원가입에 실패하였습니다!";
-                String script = "<script>alert('" + message + "');</script>";
+                String script = "<script>alert('" + message + "');window.close();window.location.href='./JSP/Register.jsp'</script>";
                 response.setContentType("text/html; charset=UTF-8");
                 response.getWriter().write(script);
+
             }
         } else {
         	String message = "중복된 사용자입니다!";
-            String script = "<script>alert('" + message + "');</script>";
+            String script = "<script>alert('" + message + "');window.close();window.location.href='./JSP/Register.jsp'</script>";
             response.setContentType("text/html; charset=UTF-8");
             response.getWriter().write(script);
         }
