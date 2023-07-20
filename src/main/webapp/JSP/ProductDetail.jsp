@@ -16,6 +16,10 @@
     href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 
 </head>
+  <%
+    String memberId = (String) request.getAttribute("member_id");
+    String role = (String) request.getAttribute("role");
+    %>
 
 <body>
   <header>
@@ -32,6 +36,7 @@
           <a href=""><span class="material-symbols-outlined">search</span></a>
           <a href=""><span class="material-symbols-outlined">person</span></a>
           <a href=""><span class="material-symbols-outlined">shopping_bag</span></a>
+          <script type="text/javascript" src="${pageContext.request.contextPath}/JS/ShopppingBasket.js"></script>
         </div>
         <div class="banner_middle">
           <div class="df">

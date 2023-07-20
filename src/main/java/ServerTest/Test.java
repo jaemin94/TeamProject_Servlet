@@ -42,6 +42,7 @@ public class Test extends HttpServlet {
             String sql = "SELECT * FROM tbl_product"; // table_name은 실제 테이블 이름으로 변경해야 함
             rs = stmt.executeQuery(sql);
 
+            
             // 결과 출력
             while (rs.next()) {
                 int product_code = rs.getInt("product_code"); // column1은 테이블의 열 이름으로 변경해야 함

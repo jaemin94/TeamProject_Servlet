@@ -2,6 +2,9 @@
 <%@ page import="java.net.URLEncoder" %>
 <%@ page import="java.sql.*" %>
 <%@ page import="java.io.PrintWriter" %>
+<%@ page import="Domain.Common.Dto.OrderDto , java.util.*" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 
 <!DOCTYPE html>
 <html>
@@ -84,13 +87,15 @@ String role = (String) request.getAttribute("role");
 	</header>
 
 	<main>
-		<div class="main">
+		
 		<div class="main">
 			<div class="odrmanage">쇼핑몰관리</div>
 			<div class="odrlisttag">주문목록조회</div>
 			<!-- 검색창 -->
+			
 			<div class="searchwrapper">
 				<div class="midsearchwrapper">
+			
 					<select name="category" id="c_select">
 						<option value="주문 ID">주문 ID</option>
 						<option value="User ID">User ID</option>
@@ -102,7 +107,9 @@ String role = (String) request.getAttribute("role");
 						<option value="가격">가격</option>
 					</select>
 					<input type="text" id="odrtype" autocomplete="off">
+					
 					<input type="button" id="submint_button" value="조회">
+					
 					<div class ="buttons">
 						<input type="button" id="edit_button" value="수정">
 						<input type="button" id="delete_button" value="삭제">
@@ -114,74 +121,51 @@ String role = (String) request.getAttribute("role");
 					<div id="suggestedd_items"></div>
 				</div>
 			</div>
-			
+		</form>	
     <section>
-      <ul class="table">
-      
-      		<li class="li" id="listhead">
-      			<span>
-      			<input type="checkbox" id="select-all-checkbox">주문 ID</span>
-				<span>User ID</span>
-				<span>제품코드</span>
-				<span>제품명</span>
-				<span>주소</span>
-				<span>수량</span>
-				<span>날짜</span>
-				<span>가격</span>
-			</li>
-      		<% 
-      		Connection conn = null;
-			PreparedStatement pstmt = null;
-			ResultSet rs = null;
-		
-			response.setContentType("text/html;charset=utf-8");
-			PrintWriter outt = response.getWriter();
-			
-			try{
-				Class.forName("com.mysql.jdbc.Driver");
-	        	String url = "jdbc:mysql://localhost:3306/shoppingdb";
-	        	String id = "root";
-	       		String pw = "1234";
-	       		conn = DriverManager.getConnection(url, id, pw);
-	        	
-	        	String query = "SELECT * FROM tbl_order";
-	        	pstmt = conn.prepareStatement(query);
-	        	rs = pstmt.executeQuery();
-	        	
-	        	while (rs.next()) {
-	        		String Order_id= rs.getString("order_id");
-					String Member_id=rs.getString("Member_id");
-					int Product_code=rs.getInt("product_code");
-					String Product_name=rs.getString("product_name");
-					String Adr_addr=rs.getString("adr_addr");
-					int Odr_amount=rs.getInt("odr_amount");
-					Date Odr_date=rs.getDate("odr_date");
-					int Price=rs.getInt("price");
-	           %>
-	       		<li class="li">
-	       		 	
-	          	  <span>
-	          	 	<input type="checkbox" id="select-all-checkbox">
-	          		<label for="select-checkbox"><%=Order_id %> </label>
-				  </span>
-	          	  <span><%= Member_id %></span>
-	          	  <span><%= Product_code %></span>
-	          	  <span id="pname"><%= Product_name%></span>
-	          	  <span><%= Adr_addr %></span>
-	          	  <span><%= Odr_amount%></span>
-	          	  <span><%= Odr_date%></span>
-	          	  <span><%= Price %></span>
-	          	</li>
-	           <% 
-	           	} 
-	        	rs.close();
-	            pstmt.close();
-	            conn.close();
-	            }catch(Exception e){
-				e.printStackTrace();			
-			}		
-			%>
-      </ul>
+         <h1>주문 전체 조회 결과</h1>
+    <table border="1">
+        <tr>
+            <th>주문 ID</th>
+            <th>회원 ID</th>
+            <th>상품 코드</th>
+            <th>상품 이름</th>
+            <th>주소</th>
+            <th>주문 수량</th>
+            <th>주문 일자</th>
+            <th>가격</th>
+        </tr>
+        <%-- 서블릿에서 전달받은 주문 정보 리스트를 반복하여 출력 --%>
+        <%@ page import="java.util.List" %>
+        <%@ page import="java.util.Iterator" %>
+        <%@ page import="java.util.Map" %>
+        <%@ page import="java.util.HashMap" %>
+        <%@ page import="java.util.ArrayList" %>
+        <%@ page import="java.util.Date" %>
+        <%@ page import="java.text.SimpleDateFormat" %>
+
+        <%
+        List<OrderDto> orderList = (List<OrderDto>) request.getAttribute("orderList");
+        if (orderList != null && !orderList.isEmpty()) {
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
+            for (OrderDto order : orderList) {
+                out.println("<tr>");
+                out.println("<td>" + order.getOrder_id() + "</td>");
+                out.println("<td>" + order.getMember_id() + "</td>");
+                out.println("<td>" + order.getProduct_code() + "</td>");
+                out.println("<td>" + order.getProduct_name() + "</td>");
+                out.println("<td>" + order.getAdr_addr() + "</td>");
+                out.println("<td>" + order.getOdr_amount() + "</td>");
+                out.println("<td>" + sdf.format(order.getOdr_date()) + "</td>");
+                out.println("<td>" + order.getPrice() + "</td>");
+                out.println("</tr>");
+            }
+        } else {
+            out.println("<tr><td colspan=\"8\">주문 정보가 없습니다.</td></tr>");
+        }
+        %>
+    </table>
    
     </section>
   </div>

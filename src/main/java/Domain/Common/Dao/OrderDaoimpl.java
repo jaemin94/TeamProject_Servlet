@@ -37,7 +37,7 @@ public class OrderDaoimpl extends ConnectionPool implements OrderDao{
 			{
 				while(rs.next())
 				{
-					dto = new OrderDto();
+					
 					dto.setOrder_id(rs.getString("order_id"));
 					dto.setMember_id(rs.getString("member_id"));
 					dto.setProduct_code(rs.getInt("product_code"));

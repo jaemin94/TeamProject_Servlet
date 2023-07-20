@@ -26,7 +26,7 @@ public class Login extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	private MemberService memberService;
-	public Map<String,Session> sessionMap;
+	public Map<String,HttpSession> sessionMap;
        
 	public void init() throws ServletException {
         memberService = MemberServiceImpl.getInstance();
@@ -49,7 +49,11 @@ public class Login extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-        
+		System.out.println(result);
+		String sid = (String)result.get("sid");
+		String role = (String)result.get("role");
+		
+         
 		
         if (dao != null) {
             // 사용자가 존재하는 경우
@@ -58,9 +62,14 @@ public class Login extends HttpServlet {
                 // 세션에 사용자 정보 및 로그인 상태 저장
                 HttpSession session = request.getSession();
                 session.setAttribute("member_id", member_id);
-                session.setAttribute("role", memberService.getRole(member_id));
+                session.setAttribute("role", role);
                 session.setAttribute("loggedIn", true);
-                response.sendRedirect("./JSP/Main.jsp");
+                response.sendRedirect("./JSP/Main.jsp?role=" + role);
+                
+                System.out.println("Session ID: " + session);
+                System.out.println("Member ID: " + member_id);
+                System.out.println("Role: " + role);
+  
                 
 //                // 역할에 따른 권한 설정
 //                if (member.getRole().equals("admin")) {
