@@ -125,7 +125,9 @@ public class OrderServiceImpl implements OrderService {
 		// 주문 전체확인
 	public List<OrderDto> getOrder() throws Exception
 	{
+		System.out.println("서비스 호출");
 		return oDao.select();
+		
 	}
 	
 	// 건별 주문 확인

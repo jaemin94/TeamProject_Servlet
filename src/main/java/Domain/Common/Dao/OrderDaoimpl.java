@@ -29,15 +29,16 @@ public class OrderDaoimpl extends ConnectionPool implements OrderDao{
 	{
 		List<OrderDto> list = new ArrayList();
 		OrderDto dto = null;
-		
+		System.out.println("Dao 실행");
 		try {
 			pstmt = conn.prepareStatement("select * from tbl_order");
 			rs = pstmt.executeQuery();
+			System.out.println("error");
 			if(rs != null)
 			{
 				while(rs.next())
 				{
-					
+					dto = new OrderDto();
 					dto.setOrder_id(rs.getString("order_id"));
 					dto.setMember_id(rs.getString("member_id"));
 					dto.setProduct_code(rs.getInt("product_code"));

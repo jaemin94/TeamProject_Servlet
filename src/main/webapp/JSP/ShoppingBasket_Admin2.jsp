@@ -157,7 +157,7 @@ String role = (String) request.getAttribute("role");
                 out.println("<td>" + order.getProduct_name() + "</td>");
                 out.println("<td>" + order.getAdr_addr() + "</td>");
                 out.println("<td>" + order.getOdr_amount() + "</td>");
-                out.println("<td>" + sdf.format(order.getOdr_date()) + "</td>");
+                out.println("<td>" + order.getOdr_date() + "</td>");
                 out.println("<td>" + order.getPrice() + "</td>");
                 out.println("</tr>");
             }
