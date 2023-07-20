@@ -5,9 +5,16 @@
 <head>
 <link href=" ${pageContext.request.contextPath}/CSS/Common.css" rel="stylesheet" type="text/css">
 <link href=" ${pageContext.request.contextPath}/CSS/mCommon.css" rel="stylesheet" type="text/css" media="all and (max-width: 480px) ">
+ 
+ <!-- 구글 아이콘 / 폰트 -->
  <link rel="stylesheet"
     href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
   <link href="https://fonts.googleapis.com/css2?family=Chewy&display=swap" rel="stylesheet">
+  
+  <!-- Swiper -->
+   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
+   <script  src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+ 
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -20,7 +27,7 @@
       <div class="banner">
         <div class="logo">
           <a href = "./Main.jsp">
-            <img src=""></img>
+            <img src="${pageContext.request.contextPath}/SRC/logo.png"></img>
           </a>
         </div>
         <div class="banner_top">
@@ -78,52 +85,80 @@
     </div>
   </header>
 
+  
+  <div class="swiper-container">
+	<h3>[7월] 신상세일</h3> <button class="close-button">닫기</button>
+	<div class="swiperF">
+		<div class="swiper-wrapper">
+    		<div class="swiper-slideF"><img src="${pageContext.request.contextPath}/SRC/app-coupon_1100x640_7.jpg" alt="Slide 1"></div>
+  		</div>
+		
+	</div>
+  	  	
+  </div>
+  
   <main>
+
     <div class="main">
+		<h1 class="bs">Best Sellers</h1>
+       <section class="swiper_section">
+            <!-- Slider main container -->
+            
+            <div class="swiper">
+                <!-- Additional required wrapper -->
+                <div class="swiper-wrapper" id="swiperWrapper">
+                    <!-- Slides -->
+                    <div class="swiper-slide"> <img src="${pageContext.request.contextPath}/SRC/332578_1.jpg" id="img1" alt="img1"></img></div>
+                    <div class="swiper-slide"> <img src="${pageContext.request.contextPath}/SRC/406530_1.jpg" id="img2" alt="img2"></img></div>
+                    <div class="swiper-slide"> <img src="${pageContext.request.contextPath}/SRC/65f58b33-7e4c-44f5-9d92-ad98e4689fa4_20221108192859.jpg" id="img3" alt="img3"></img></div>
+                    <div class="swiper-slide"> <img src="${pageContext.request.contextPath}/SRC/회색 반팔.jpg" id="img4" alt="img4"></img></div>
+                    <div class="swiper-slide"> <img src="${pageContext.request.contextPath}/SRC/1671524103263_8175765baf6408b47c8fec63314384e8_0.jpg" alt="img5"></img></div>
+                    <div class="swiper-slide"> <img src="${pageContext.request.contextPath}/SRC/bd4ffa64-07fb-4f07-99bb-b1b3e236746b.jpg" id="img5" alt="img6"></img></div>
+				</div>
+                <!-- If we need pagination -->
+                <div class="swiper-pagination"></div>
 
-      <section>
-         <div class="slide-frame">
-         
+                <!-- If we need navigation buttons -->
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-button-next"></div>
 
-          <div class="imageframe">
-         
-          </div>
+                <!-- If we need scrollbar -->
+                <div class="swiper-scrollbar"></div>
+            </div>
 
-          
-        </div>
-      </section>
+        </section>
 
       <hr>
 
       <section>
-
+		<h2 class="bs">New Arrival!</h2>
         <aside></aside>
-
+		
         <article>
-          <div class="grid-container">
-            <div class="grid-item">1</div>
-            <div class="grid-item">2</div>
-            <div class="grid-item">3</div>
-            <div class="grid-item">4</div>
+          <div class="grid-container" id="gridContainer">
+            <div class="grid-item"><img src="${pageContext.request.contextPath}/SRC/2000005784729_1_large.jpg" id="img1"alt="img6"></img></div>
+            <div class="grid-item"><img src="${pageContext.request.contextPath}/SRC/1000543535401_i1_290.jpg" id="img1"alt="img6"></img></div>
+            <div class="grid-item"><img src="${pageContext.request.contextPath}/SRC/blue  긴.jpg" id="img1"alt="img6"></img></div>
+            <div class="grid-item"><img src="${pageContext.request.contextPath}/SRC/blue shot.jpg" id="img1"alt="img6"></img></div>
+		
+            <div class="grid-item"><img src="${pageContext.request.contextPath}/SRC/65f58b33-7e4c-44f5-9d92-ad98e4689fa4_20221108192859.jpg" id="img1"alt="img6"></img></div>
+            <div class="grid-item"><img src="${pageContext.request.contextPath}/SRC/55e6196dfa7a26e039a67d04fb7a6c3343c8905c2828953037cf168bdbde.jpg" id="img1"alt="img6"></img></div>
+            <div class="grid-item"><img src="${pageContext.request.contextPath}/SRC/230208004099500.jpg" id="img1"alt="img6"></img></div>
+            <div class="grid-item"><img src="${pageContext.request.contextPath}/SRC/자주 가디건.jpg" id="img1"alt="img6"></img></div>
 
-            <div class="grid-item">1</div>
-            <div class="grid-item">2</div>
-            <div class="grid-item">3</div>
-            <div class="grid-item">4</div>
+            <div class="grid-item"><img src="${pageContext.request.contextPath}/SRC/여자 블랙 자켓.jpg" id="img1"alt="img6"></img></div>
+            <div class="grid-item"><img src="${pageContext.request.contextPath}/SRC/check short p.jpg" id="img1"alt="img6"></img></div>
+            <div class="grid-item"><img src="${pageContext.request.contextPath}/SRC/a.jpg" id="img1"alt="img6"></img></div>
+            <div class="grid-item"><img src="${pageContext.request.contextPath}/SRC/여성 베이지 테니스 스커트.jpg" id="img1"alt="img6"></img></div>
 
-            <div class="grid-item">1</div>
-            <div class="grid-item">2</div>
-            <div class="grid-item">3</div>
-            <div class="grid-item">4</div>
 
-          
     </div>
     </article>
     <aside>
 
-    </aside>
+     </aside>
     </section>
-
+	</div>
   </main>
 
   <hr style="margin-left: 10px; margin-right: 10px;">
@@ -137,8 +172,12 @@
       <p>email : dfteam9@naver.com</p>
     </div>
   </Footer>
+   <script  src="${pageContext.request.contextPath}/JS/Swiper.js" type="text/javascript"></script>
+   <script  src="${pageContext.request.contextPath}/JS/ProductDetail.js" type="text/javascript"></script>
+   <script defer src="${pageContext.request.contextPath}/JS/fixedbanner.js" type="text/javascript"></script>
+  	
+  	
 
-
-
+  	
 </body>
 </html>
