@@ -52,6 +52,7 @@ public class OrderServiceImpl implements OrderService {
 		    OrderDto odto = new OrderDto();
 		    
 		    String role = sid;
+		    System.out.println("Role is: " + role);
 		    if (!role.equals("Role_user")) {
 		        System.out.println("[WARN] 회원만 주문 할 수 있습니다.");
 		        return false;

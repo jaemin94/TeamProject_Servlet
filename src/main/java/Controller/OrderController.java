@@ -81,7 +81,7 @@ private OrderService service;
 		Boolean rValue=false;
 		try {
 			rValue = service.reqOrder(role,id, product_code,odr_amount);
-		
+			System.out.println(role);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

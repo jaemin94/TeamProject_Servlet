@@ -41,8 +41,7 @@ public class Test2 extends HttpServlet {
 		
 		
 		Map<String,Object>result = new HashMap();
-		result.put("order_id", "200");
-		result.put("sid", "123");
+	
 		result = a.execute(1, result);
 		System.out.println(result);
 		
