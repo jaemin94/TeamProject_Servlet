@@ -1,4 +1,4 @@
-package ServerTest;
+package Member;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
@@ -18,7 +18,7 @@ import javax.servlet.http.HttpServletResponse;
  * Servlet implementation class RegisterServlet
  */
 @WebServlet("/register")
-public class RegisterServlet extends HttpServlet {
+public class Member_Insert extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	   String jdbcURL = "jdbc:mysql://localhost:3306/shoppingdb?useUnicode=true&characterEncoding=UTF-8";
        String dbUser = "root";
@@ -28,7 +28,7 @@ public class RegisterServlet extends HttpServlet {
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public RegisterServlet() {
+    public Member_Insert() {
         super();
         // TODO Auto-generated constructor stub
     }

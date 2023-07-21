@@ -1,35 +1,23 @@
-package ServerTest;
+package Product;
 
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import Controller.FrontController;
-import Controller.OrderController;
-
 /**
- * Servlet implementation class Order
+ * Servlet implementation class Prod_Delete_Admin
  */
-@WebServlet("/Order")
-public class Order_user extends HttpServlet {
+@WebServlet("/Prod_Delete_Admin")
+public class Prod_Delete_Admin extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private OrderController controller;
-	
-	public void init() throws ServletException {
-        // 컨트롤러 인스턴스 생성
-        controller = new OrderController();
-    }
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Order_user() {
+    public Prod_Delete_Admin() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -39,11 +27,7 @@ public class Order_user extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		int serviceNo= Integer.parseInt(request.getParameter("serviceNo"));
-		Map<String,Object> param = new HashMap<>();
-		
-		
-		controller.execute(serviceNo, param);
+		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**

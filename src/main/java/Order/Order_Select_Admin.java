@@ -1,4 +1,4 @@
-package ServerTest;
+package Order;
 
 import java.io.IOException;
 import java.util.List;
@@ -16,12 +16,12 @@ import Domain.Common.Service.OrderService;
 import Domain.Common.Service.OrderServiceImpl;
 
 @WebServlet("/Shopping_Admin2")
-public class Shopping_Admin extends HttpServlet {
+public class Order_Select_Admin extends HttpServlet {
     private static final long serialVersionUID = 1L;
     private OrderService service;
     private OrderDao dao;
 
-    public Shopping_Admin() {
+    public Order_Select_Admin() {
     	service = OrderServiceImpl.getInstance();
     	dao = OrderDaoimpl.getInstance();
     }
