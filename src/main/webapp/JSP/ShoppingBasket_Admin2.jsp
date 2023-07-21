@@ -1,9 +1,13 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ page import="java.net.URLEncoder" %>
 <%@ page import="java.sql.*" %>
 <%@ page import="java.io.PrintWriter" %>
-<%@ page import="Domain.Common.Dto.OrderDto , java.util.*" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page import="Domain.Common.Dto.OrderDto" %>
+<%@ page import="java.util.*" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="myc" %>
+
+<%@ page isELIgnored="false" %>
 
 
 <!DOCTYPE html>
@@ -27,6 +31,10 @@
   
 <title>장바구니</title>
 </head>
+<%
+List<OrderDto> orderList = (List<OrderDto>) request.getAttribute("orderList");
+System.out.println(orderList);
+%>
 
 <%
 String memberId = (String) request.getAttribute("member_id");
@@ -88,7 +96,7 @@ String role = (String) request.getAttribute("role");
 
 	<main>
 		
-		<div class="main">
+		<div class="Main">
 			<div class="odrmanage">쇼핑몰관리</div>
 			<div class="odrlisttag">주문목록조회</div>
 			<!-- 검색창 -->
@@ -114,6 +122,7 @@ String role = (String) request.getAttribute("role");
 						<input type="button" id="edit_button" value="수정">
 						<input type="button" id="delete_button" value="삭제">
 	  				</div>
+	  				
 			
 				</div>
 			<!-- 추천창 -->
@@ -121,10 +130,12 @@ String role = (String) request.getAttribute("role");
 					<div id="suggestedd_items"></div>
 				</div>
 			</div>
-		</form>	
-    <section>
-         <h1>주문 전체 조회 결과</h1>
+		
+ 
+         <!-- 주문 전체 조회 결과 출력 -->
+ <h1>주문 전체 조회 결과</h1>	
     <table border="1">
+    <thead>
         <tr>
             <th>주문 ID</th>
             <th>회원 ID</th>
@@ -135,39 +146,25 @@ String role = (String) request.getAttribute("role");
             <th>주문 일자</th>
             <th>가격</th>
         </tr>
-        <%-- 서블릿에서 전달받은 주문 정보 리스트를 반복하여 출력 --%>
-        <%@ page import="java.util.List" %>
-        <%@ page import="java.util.Iterator" %>
-        <%@ page import="java.util.Map" %>
-        <%@ page import="java.util.HashMap" %>
-        <%@ page import="java.util.ArrayList" %>
-        <%@ page import="java.util.Date" %>
-        <%@ page import="java.text.SimpleDateFormat" %>
-
-        <%
-        List<OrderDto> orderList = (List<OrderDto>) request.getAttribute("orderList");
-        if (orderList != null && !orderList.isEmpty()) {
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-
-            for (OrderDto order : orderList) {
-                out.println("<tr>");
-                out.println("<td>" + order.getOrder_id() + "</td>");
-                out.println("<td>" + order.getMember_id() + "</td>");
-                out.println("<td>" + order.getProduct_code() + "</td>");
-                out.println("<td>" + order.getProduct_name() + "</td>");
-                out.println("<td>" + order.getAdr_addr() + "</td>");
-                out.println("<td>" + order.getOdr_amount() + "</td>");
-                out.println("<td>" + order.getOdr_date() + "</td>");
-                out.println("<td>" + order.getPrice() + "</td>");
-                out.println("</tr>");
-            }
-        } else {
-            out.println("<tr><td colspan=\"8\">주문 정보가 없습니다.</td></tr>");
-        }
-        %>
+        <thead>
+        <tbody>
+        <c:forEach items="${orderList}" var="order" varStatus="status">
+        <c:out value="${order}" />
+            <tr>
+        		<td>${order.order_id}</td>
+                <td>${order.member_id}</td>
+                <td>${order.product_code}</td>
+                <td>${order.product_name}</td>
+                <td>${order.adr_addr}</td>
+                <td>${order.odr_amount}</td>
+                <td>${order.odr_date}</td>
+                <td>${order.price}</td> 
+	
+            </tr>
+        </c:forEach>
+        <tbody>
     </table>
-   
-    </section>
+ 
   </div>
 
 	</main>

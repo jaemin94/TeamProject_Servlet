@@ -21,10 +21,7 @@ import Domain.Common.Service.OrderServiceImpl;
 @WebServlet("/Test2")
 public class Order_select extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-   
 
-    
 	private OrderService service;
 	
 	public Order_select() {
@@ -45,7 +42,7 @@ public class Order_select extends HttpServlet {
 		System.out.println(result);
 		
 		request.setAttribute("result", result);
-	    RequestDispatcher rd = request.getRequestDispatcher("./JSP/ShoppingBasket_user.jsp");
+	    RequestDispatcher rd = request.getRequestDispatcher("/JSP/ShoppingBasket_user.jsp");
 	    rd.forward(request, response);
 	       
 		response.getWriter().append("Served at: ").append(request.getContextPath());
