@@ -19,7 +19,7 @@ import Domain.Common.Dto.OrderDto;
 import Domain.Common.Service.OrderService;
 import Domain.Common.Service.OrderServiceImpl;
 
-@WebServlet("/Shopping_Admin2")
+@WebServlet("/ShoppingBasket_Admin2")
 public class Order_Select_Admin extends HttpServlet {
     private static final long serialVersionUID = 1L;
     private OrderService service;
@@ -44,7 +44,7 @@ public class Order_Select_Admin extends HttpServlet {
         try {
             // 주문 정보 조회
             orderList = service.getOrder();
-            System.out.println("Order List: " + orderList);
+			/* System.out.println("Order List: " + orderList); */
         } catch (Exception e) {
             e.printStackTrace();
             // 에러 처리 로직 작성 (예: 오류 페이지로 리다이렉트)
@@ -54,7 +54,7 @@ public class Order_Select_Admin extends HttpServlet {
             System.out.println("Order List Size: " + orderList.size());
             // JSP로 포워딩
             request.getRequestDispatcher("/JSP/ShoppingBasket_Admin2.jsp").forward(request, response);
-            response.getWriter().append("Served at: ").append(request.getContextPath());
+//            response.getWriter().append("Served at: ").append(request.getContextPath());
     	
  	}
     

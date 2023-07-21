@@ -5,7 +5,7 @@
 <%@ page import="java.io.PrintWriter" %>
 <%@ page import="Domain.Common.Dto.OrderDto" %>
 <%@ page import="java.util.*" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="myc" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <%@ page isELIgnored="false" %>
 
@@ -148,9 +148,16 @@ String role = (String) request.getAttribute("role");
         </tr>
         <thead>
         <tbody>
-        <c:forEach items="${orderList}" var="order" varStatus="status">
-        <c:out value="${order}" />
-            <tr>
+        
+        <%@page import="Domain.Common.Dto.* ,java.util.*"%>
+        <%
+       /*  String orderList2 = request.getParameter("orderList"); */
+      /*   System.out.println("orderList2 : " + orderList2); */
+        	
+        %>
+<c:forEach items="${orderList}" var="order" varStatus="status">         
+        <%-- <c:out value="${order}" /> --%>
+             <tr>
         		<td>${order.order_id}</td>
                 <td>${order.member_id}</td>
                 <td>${order.product_code}</td>
@@ -160,8 +167,8 @@ String role = (String) request.getAttribute("role");
                 <td>${order.odr_date}</td>
                 <td>${order.price}</td> 
 	
-            </tr>
-        </c:forEach>
+            </tr> 
+ </c:forEach>        
         <tbody>
     </table>
  
