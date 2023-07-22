@@ -62,7 +62,6 @@ String role = (String) request.getAttribute("role");
     					let role = '<%=session.getAttribute("role")%>';
 						let shoppingBtn = document.getElementById("shopping");
 
-
 						// 역할에 따른 이벤트 처리
 						if (role === "Role_Member") {
 							shoppingBtn
@@ -120,41 +119,12 @@ String role = (String) request.getAttribute("role");
 			</div>
 		</div>
 	</header>
-	<div class="swiper-container">
-	 <h3>[7월] 신상세일</h3> <button class="close-button">닫기</button>
-	 <div class="swiperF">
-		<div class="swiper-wrapper">
-    		<div class="swiper-slideF"><img src="${pageContext.request.contextPath}/SRC/app-coupon_1100x640_7.jpg" alt="Slide 1"></div>
-  		</div>
-		
-	 </div>
-  	  	
-  </div>
-	
+
 	<main>
 		<div class="main">
 			<h1 class="bs">Best Sellers</h1>
 			<section class="swiper_section">
 				<!-- Slider main container -->
-  <main>
-    <div class="main">
-		<h1 class="bs">Best Sellers</h1>
-       <section class="swiper_section">
-            <!-- Slider main container -->
-            
-            <div class="swiper">
-                <!-- Additional required wrapper -->
-                <div class="swiper-wrapper">
-                    <!-- Slides -->
-                    <div class="swiper-slide"> <img src="${pageContext.request.contextPath}/SRC/332578_1.jpg" id="img1"></img></div>
-                    <div class="swiper-slide"> <img src="${pageContext.request.contextPath}/SRC/406530_1.jpg" id="img2"></img></div>
-                    <div class="swiper-slide"> <img src="${pageContext.request.contextPath}/SRC/65f58b33-7e4c-44f5-9d92-ad98e4689fa4_20221108192859.jpg" id="img3"></img></div>
-                    <div class="swiper-slide"> <img src="${pageContext.request.contextPath}/SRC/회색 반팔.jpg" id="img4"></img></div>
-                    <div class="swiper-slide"> <img src="${pageContext.request.contextPath}/SRC/1671524103263_8175765baf6408b47c8fec63314384e8_0.jpg"></img></div>
-                    <div class="swiper-slide"> <img src="${pageContext.request.contextPath}/SRC/bd4ffa64-07fb-4f07-99bb-b1b3e236746b.jpg" id="img5"></img></div>
-				</div>
-                <!-- If we need pagination -->
-                <div class="swiper-pagination"></div>
 
 				<div class="swiper">
 					<!-- Additional required wrapper -->
@@ -271,32 +241,6 @@ String role = (String) request.getAttribute("role");
 			</section>
 		</div>
 	</main>
-
-      <section>
-		<h2 class="bs">New Arrival!</h2>
-        <aside></aside>
-		
-        <article>
-          <div class="grid-container">
-            <div class="grid-item"><img src="${pageContext.request.contextPath}/SRC/2000005784729_1_large.jpg" id="img1"></img></div>
-            <div class="grid-item"><img src="${pageContext.request.contextPath}/SRC/1000543535401_i1_290.jpg" id="img1"></img></div>
-            <div class="grid-item"><img src="${pageContext.request.contextPath}/SRC/blue  긴.jpg" id="img1"></img></div>
-            <div class="grid-item"><img src="${pageContext.request.contextPath}/SRC/blue shot.jpg" id="img1"></img></div>
-
-            <div class="grid-item"><img src="${pageContext.request.contextPath}/SRC/65f58b33-7e4c-44f5-9d92-ad98e4689fa4_20221108192859.jpg" id="img1"></img></div>
-            <div class="grid-item"><img src="${pageContext.request.contextPath}/SRC/55e6196dfa7a26e039a67d04fb7a6c3343c8905c2828953037cf168bdbde.jpg" id="img1"></img></div>
-            <div class="grid-item"><img src="${pageContext.request.contextPath}/SRC/230208004099500.jpg" id="img1"></img></div>
-            <div class="grid-item"><img src="${pageContext.request.contextPath}/SRC/자주 가디건.jpg" id="img1"></img></div>
-
-            <div class="grid-item"><img src="${pageContext.request.contextPath}/SRC/여자 블랙 자켓.jpg" id="img1"></img></div>
-            <div class="grid-item"><img src="${pageContext.request.contextPath}/SRC/check short p.jpg" id="img1"></img></div>
-            <div class="grid-item"><img src="${pageContext.request.contextPath}/SRC/a.jpg" id="img1"></img></div>
-            <div class="grid-item"><img src="${pageContext.request.contextPath}/SRC/여성 베이지 테니스 스커트.jpg" id="img1"></img></div>
-
-    </div>
-    </article>
-    <aside>
-
 
 	<hr style="margin-left: 10px; margin-right: 10px;">
 
