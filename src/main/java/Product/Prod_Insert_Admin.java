@@ -12,18 +12,17 @@ import Domain.Common.Service.ProductService;
 import Domain.Common.Service.ProductServiceImpl;
 
 /**
- * Servlet implementation class Prod_Delete_Admin
+ * Servlet implementation class Prod_Inser_Admin
  */
 
-public class Prod_Delete_Admin implements SubController {
+public class Prod_Insert_Admin implements SubController {
 	private ProductService service  = ProductServiceImpl.getInstance();
 
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse resp) {
-		System.out.println("Prod_Delete_Admin Execute");
+		System.out.println("Prod_Inser_Admin Execute");
 		
 	}
        
-
 
 }

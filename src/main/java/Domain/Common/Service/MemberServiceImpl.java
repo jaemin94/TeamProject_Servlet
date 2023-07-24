@@ -6,6 +6,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import Domain.Common.Dao.MemberDao;
 import Domain.Common.Dao.MemberDaoimpl;
 import Domain.Common.Dto.MemberDto;
@@ -119,28 +122,29 @@ public class MemberServiceImpl implements MemberService {
 	
 	
 	//로그인
-	public Map<String, Object> login(String id, String pw) throws Exception{
+	public boolean login(HttpServletRequest req) throws Exception{
+		String id = (String) req.getParameter("id");
+		String pw = (String) req.getParameter("pw");
+		
 		//1 ID/PW 체크 ->Dao 전달받은 id와 일치하는 정보를 가져와서 Pw일치 확인
 		MemberDto dbDto = dao.select(id);
-		if(!id.equals(dbDto.getId())) {
+		if(dbDto==null) {
 			System.out.println("[ERROR] Login Fail... 아이디가 일치하지 않습니다");
-			return null;
+			req.setAttribute("msg", "[ERROR] Login Fail... 아이디가 일치하지 않습니다");
+			return false;
 		}
 		if(!pw.equals(dbDto.getPw())) {
 			System.out.println("[ERROR] Login Fail... 패스워드가 일치하지 않습니다");
-			return null;
+			req.setAttribute("msg", "[ERROR] Login Fail... 패스워드가 일치하지 않습니다");
+			return false;
 		}
 		//2 사용자에대한 정보(Session)을 MemberService에 저장
-		String sid=UUID.randomUUID().toString();
-		Session session = new Session(sid,dbDto.getId(),dbDto.getRole(), dbDto.getAdr_addr());
-		sessionMap.put(sid, session);
 		
-		//3 세션에 대한정보를 클라이언트가 접근할수 있도록하는 세션구별Id(Session Cookie) 전달
-		Map<String,Object> result = new HashMap();
-		result.put("sid", sid);
-		result.put("role", dbDto.getRole());
+		HttpSession session = req.getSession();
+		session.setAttribute("ID: ", id);
+		session.setAttribute("ROLE: ", dbDto.getRole());
 		
-		return result;
+		return true;
 	}
 	
 	//로그아웃

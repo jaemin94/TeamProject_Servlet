@@ -1,44 +1,82 @@
 package Controller;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-public class FrontController {
+import javax.servlet.ServletConfig;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import Member.Member_Delete;
+import Member.Member_Select_Admin;
+import Member.Member_Select_User;
+import Member.Member_Update_Admin;
+import Member.Member_Update_User;
+import Member.auth.LoginController;
+import Member.auth.LogoutController;
+import Order.Order_Delete_Admin;
+import Order.Order_Insert_User;
+import Order.Order_Select_Admin2;
+import Order.Order_Update_User;
+import Product.Prod_Delete_Admin;
+import Product.Prod_Insert_Admin;
+import Product.Prod_Select_Admin;
+import Product.Prod_Select_User;
+import Product.Prod_Update_Admin;
+
+public class FrontController extends HttpServlet{
 
 	
 	private Map<String,SubController> map = new HashMap();
 	
 	
-	// 초기값 설정
-	private void init()
-	{
-		// 주문 정보 요구 사항 - > 컨트롤러 맵핑
-		map.put("/order",new OrderController());
-		
-		// 회원 정보 요구 사항 - > 컨트롤러 맵핑
-		map.put("/member",new MemberController());
-		
-		// 상품 정보 요구 사항 - > 컨트롤러 맵핑
-		map.put("/product",new ProductController());
-	}
-	
-	public FrontController()
-	{
-		init();
-	}
-	
-	// 각 컨트롤러에 맞게 다운캐스팅 해주면서 어떠한 서비스를 사용할건지 지정
-	public Map<String,Object> execute(String request,int serviceNo,Map<String,Object> param)
-	{
-		SubController controller = map.get(request);
-		Map<String,Object> result = new HashMap();
-		result = controller.execute(serviceNo,param);
 
+	@Override
+	public void init(ServletConfig config) throws ServletException {
+
+		String projectPath = config.getServletContext().getContextPath();
 		
-		return result;
+		// order
+		map.put(projectPath+"/order/search.do", new Order_Select_Admin2() );
+		map.put(projectPath+"/order/delete.do", new Order_Delete_Admin() );
+		map.put(projectPath+"/order/insert.do", new Order_Insert_User() );
+		map.put(projectPath+"/order/update.do", new Order_Update_User() );
+		
+		// member
+		map.put(projectPath+"/Member/search.do", new Member_Select_Admin() );
+		map.put(projectPath+"/Member/search1.do", new Member_Select_User() );
+		map.put(projectPath+"/Member/update.do", new Member_Update_Admin() );		
+		map.put(projectPath+"/Member/update.do", new Member_Update_User() );
+		map.put(projectPath+"/Member/delete.do", new Member_Delete() );
+		
+		// auth
+		map.put(projectPath+"/login.do", new LoginController() );
+		map.put(projectPath+"/logout.do", new LogoutController() );
+		
+		// product
+		map.put(projectPath+"/Product/search.do", new Prod_Select_Admin() );
+		map.put(projectPath+"/Product/search.do", new Prod_Select_User() );
+		map.put(projectPath+"/Product/search.do", new Prod_Insert_Admin() );
+		map.put(projectPath+"/Product/search.do", new Prod_Update_Admin() );
+		map.put(projectPath+"/Product/search.do", new Prod_Delete_Admin() );
+		
+		map.put(projectPath+"/Main.do", new MainController() );
 		
 	}
 	
-	
-	
+
+	@Override
+	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		
+		System.out.println("FrontContoller's Service uri : " + req.getRequestURI());
+		
+		
+		SubController controller = map.get(req.getRequestURI());
+		controller.execute(req,resp);
+
+	}	
+		
 }

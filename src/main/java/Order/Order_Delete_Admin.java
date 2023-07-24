@@ -7,35 +7,23 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import Controller.SubController;
+import Domain.Common.Service.OrderService;
+import Domain.Common.Service.OrderServiceImpl;
+
 /**
  * Servlet implementation class Order_Delete_Admin
  */
-@WebServlet("/Order_Delete_Admin")
-public class Order_Delete_Admin extends HttpServlet {
-	private static final long serialVersionUID = 1L;
+
+public class Order_Delete_Admin implements SubController {
+	private OrderService service= OrderServiceImpl.getInstance();
+
+	@Override
+	public void execute(HttpServletRequest req, HttpServletResponse resp) {
+		System.out.println("Order_Delete_Admin Execute");
+		
+	}
        
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public Order_Delete_Admin() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
-	}
 
 }

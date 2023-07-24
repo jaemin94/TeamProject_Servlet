@@ -6,14 +6,13 @@
 <%@ page import="Domain.Common.Dto.OrderDto" %>
 <%@ page import="java.util.*" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 <%@ page isELIgnored="false" %>
 
 
 <!DOCTYPE html>
 <html>
 <head>
-
-
 <link href=" ${pageContext.request.contextPath}/CSS/Common_Admin.css" 
 	rel="stylesheet" type="text/css">
 <link href=" ${pageContext.request.contextPath}/CSS/mCommon.css"
@@ -28,15 +27,14 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
- <!-- jQuery UI CSS 파일 -->
-  <link href="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css" rel="stylesheet" />
-
-  <!-- Bootstrap CSS 파일 -->
-  <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet" />
- 
+  
   
 <title>장바구니</title>
 </head>
+<%
+List<OrderDto> orderList = (List<OrderDto>) request.getAttribute("orderList");
+System.out.println(orderList);
+%>
 
 <%
 String memberId = (String) request.getAttribute("member_id");
@@ -44,7 +42,8 @@ String role = (String) request.getAttribute("role");
 %>
 
 <body>
- 
+
+
 	<header>
 		<div class="header">
 			<div class="banner">
@@ -97,7 +96,7 @@ String role = (String) request.getAttribute("role");
 
 	<main>
 		
-		<div id="ShoppingBasketAdminMain">
+		<div class="Main">
 			<div class="odrmanage">쇼핑몰관리</div>
 			<div class="odrlisttag">주문목록조회</div>
 			<!-- 검색창 -->
@@ -131,45 +130,50 @@ String role = (String) request.getAttribute("role");
 					<div id="suggestedd_items"></div>
 				</div>
 			</div>
-						
-		<!-- 주문 전체 조회 결과 출력 -->
-		<div class="table-editable" id="table-e">
-		 
-		  <table class="table">
-		    <thead>
-		      <tr id="tablehead">
-		        <th>주문 ID</th>
-		        <th>회원 ID</th>
-		        <th>상품 코드</th>
-		        <th>상품 이름</th>
-		        <th>주소</th>
-		        <th>주문 수량</th>
-		        <th>주문 일자</th>
-		        <th>가격</th>
-		        <th><span class="table-add glyphicon glyphicon-plus" id="plusbt"></span></th>
-		      </tr>
-		    </thead>
-		    <tbody>
-		      <c:forEach var="order" items="${orderList}">
-		        <tr id="tablebody">
-		          <td contenteditable="true">${order.order_id}</td>
-		          <td contenteditable="true">${order.member_id}</td>
-		          <td contenteditable="true">${order.product_code}</td>
-		          <td contenteditable="true">${order.product_name}</td>
-		          <td contenteditable="true">${order.adr_addr}</td>
-		          <td contenteditable="true">${order.odr_amount}</td>
-		          <td contenteditable="true">${order.odr_date}</td>
-		          <td contenteditable="true">${order.price}</td>
-		          <td>
-		            <span class="table-remove glyphicon glyphicon-remove" id="removebt"></span>
-		          </td>
-		        </tr>
-		      </c:forEach>
-		    </tbody>
-		  </table>
-		</div>
-
-	 
+		
+ 
+         <!-- 주문 전체 조회 결과 출력 -->
+ <h1>주문 전체 조회 결과</h1>	
+    <table border="1">
+    <thead>
+        <tr>
+            <th>주문 ID</th>
+            <th>회원 ID</th>
+            <th>상품 코드</th>
+            <th>상품 이름</th>
+            <th>주소</th>
+            <th>주문 수량</th>
+            <th>주문 일자</th>
+            <th>가격</th>
+        </tr>
+        <thead>
+        <tbody>
+        //강사님 첨삭 코드
+        <%@page import="Domain.Common.Dto.* ,java.util.*"%>
+        <%
+       /*  String orderList2 = request.getParameter("orderList"); */
+      /*   System.out.println("orderList2 : " + orderList2); */
+        	
+        %>
+<c:forEach items="${orderList}" var="order" varStatus="status">         
+        <%-- <c:out value="${order}" /> --%>
+             <tr>
+        		<td>${order.order_id}</td>
+                <td>${order.member_id}</td>
+                <td>${order.product_code}</td>
+                <td>${order.product_name}</td>
+                <td>${order.adr_addr}</td>
+                <td>${order.odr_amount}</td>
+                <td>${order.odr_date}</td>
+                <td>${order.price}</td> 
+	
+            </tr> 
+ </c:forEach>        
+ 
+ 
+        <tbody>
+    </table>
+ 
   </div>
 
 	</main>
@@ -188,12 +192,52 @@ String role = (String) request.getAttribute("role");
 		</div>
 	</Footer>
 	
-
-	 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-	  <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
-	  <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
-	  <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.6.0/underscore.js"></script>
-	  <script src="/JS/ordertable.js"></script>
+	<script>
+  document.getElementById('select-all-checkbox').addEventListener('change', function() {
+    var checkboxes = document.querySelectorAll('.li input[type="checkbox"]');
+    var selectAllCheckbox = document.getElementById('select-all-checkbox');
+    
+    checkboxes.forEach(function(checkbox) {
+      checkbox.checked = selectAllCheckbox.checked;
+    });
+  });
+  
+  document.getElementById('edit-button').addEventListener('click', function() {
+    var selectedOrderIds = [];
+    var checkboxes = document.querySelectorAll('.li input[type="checkbox"]');
+    
+    checkboxes.forEach(function(checkbox) {
+      if (checkbox.checked) {
+        var orderId = checkbox.parentElement.querySelector('span:nth-child(1)').innerText;
+        selectedOrderIds.push(orderId);
+      }
+    });
+    
+    // 선택된 주문 ID에 대한 수정 기능 실행
+    // selectedOrderIds 배열을 이용하여 선택된 주문 ID를 전달하고 수정을 수행
+    
+    // 예시: 선택된 주문 ID를 콘솔에 출력
+    console.log(selectedOrderIds);
+  });
+  
+  document.getElementById('delete-button').addEventListener('click', function() {
+    var selectedOrderIds = [];
+    var checkboxes = document.querySelectorAll('.li input[type="checkbox"]');
+    
+    checkboxes.forEach(function(checkbox) {
+      if (checkbox.checked) {
+        var orderId = checkbox.parentElement.querySelector('span:nth-child(1)').innerText;
+        selectedOrderIds.push(orderId);
+      }
+    });
+    
+    // 선택된 주문 ID에 대한 삭제 기능 실행
+    // selectedOrderIds 배열을 이용하여 선택된 주문 ID를 전달하고 삭제를 수행
+    
+    // 예시: 선택된 주문 ID를 콘솔에 출력
+    console.log(selectedOrderIds);
+  });
+</script>
 	
 </body>
 
