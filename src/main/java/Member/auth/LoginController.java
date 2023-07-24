@@ -25,7 +25,7 @@ System.out.println("LoginController execute");
 		if(req.getMethod().equals("GET"))
 		{
 			try {
-				req.getRequestDispatcher("/WEB-INF/View/member/auth/login.jsp").forward(req, resp);
+				req.getRequestDispatcher("/WEB-INF/View/member/auth/Login.jsp").forward(req, resp);
 			
 			} catch (ServletException e) {
 				// TODO Auto-generated catch block
@@ -47,7 +47,7 @@ System.out.println("LoginController execute");
 			if (id.isEmpty() || pw.isEmpty()) {
 				System.out.println("[ERROR] Data Validation Check Error!");
 				req.setAttribute("msg", "[ERROR] ID나 PW가 공백입니다.");
-				req.getRequestDispatcher("/WEB-INF/View/member/auth/login.jsp").forward(req, resp);
+				req.getRequestDispatcher("/WEB-INF/View/member/auth/Login.jsp").forward(req, resp);
 				return ;
 			}
 			//3 서비스 실행
@@ -60,12 +60,12 @@ System.out.println("LoginController execute");
 			if(isLogin)
 			{
 				//main.do 이동 - Redirect
-				resp.sendRedirect(req.getContextPath()+"/main.do");
+				resp.sendRedirect(req.getContextPath()+"/Main.do");
 			}
 			else
 			{
 				//login.do 이동 - Forward
-				req.getRequestDispatcher("/WEB-INF/View/member/auth/login.jsp").forward(req, resp);
+				req.getRequestDispatcher("/WEB-INF/View/member/auth/Login.jsp").forward(req, resp);
 			}
 		
 		} catch (Exception e) {
