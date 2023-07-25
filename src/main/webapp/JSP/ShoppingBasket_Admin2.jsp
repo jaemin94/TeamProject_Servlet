@@ -140,14 +140,14 @@ String role = (String) request.getAttribute("role");
 		        <tr id="tablebody">
 		        
 		          <td contenteditable="false"><input type="checkbox" class="order-checkbox" /></td>
-		          <td contenteditable="true">${order.order_id}</td>
-		          <td contenteditable="true">${order.member_id}</td>
-		          <td contenteditable="true">${order.product_code}</td>
-		          <td contenteditable="true">${order.product_name}</td>
-		          <td contenteditable="true">${order.adr_addr}</td>
-		          <td contenteditable="true">${order.odr_amount}</td>
-		          <td contenteditable="true">${order.odr_date}</td>
-		          <td contenteditable="true">${order.price}</td>
+		          <td contenteditable="true" name="order_id">${order.order_id}</td>
+		          <td contenteditable="true" name="member_id">${order.member_id}</td>
+		          <td contenteditable="true" name="product_code">${order.product_code}</td>
+		          <td contenteditable="true" name="product_name">${order.product_name}</td>
+		          <td contenteditable="true" name="adr_addr">${order.adr_addr}</td>
+		          <td contenteditable="true" name="odr_amount">${order.odr_amount}</td>
+		          <td contenteditable="true" name="odr_date">${order.odr_date}</td>
+		          <td contenteditable="true" name="price">${order.price}</td>
 		          <td>
 		            <span class="table-remove glyphicon glyphicon-remove" id="removebt"></span>
 		          </td>
@@ -156,15 +156,16 @@ String role = (String) request.getAttribute("role");
 		      </c:forEach>
 		         <!-- This is our clonable table line -->
 			      <tr class="hide">
-			        <td contenteditable="true">Untitled</td>
-			        <td contenteditable="true">undefined</td>
-			    	<td contenteditable="true">undefined</td>
-			    	<td contenteditable="true">undefined</td>
-			    	<td contenteditable="true">undefined</td>
-			    	<td contenteditable="true">undefined</td>
-			    	<td contenteditable="true">undefined</td>
-			    	<td contenteditable="true">undefined</td>
-					<td contenteditable="true">undefined</td>
+			      	<td contenteditable="false"><input type="checkbox" class="order-checkbox" /></td>
+			        <td contenteditable="true" name="order_id">Untitled</td>
+			        <td contenteditable="true" name="memeber_id">undefined</td>
+			    	<td contenteditable="true" name="product_code">undefined</td>
+			    	<td contenteditable="true" name="product_name">undefined</td>
+			    	<td contenteditable="true" name="adr_addr">undefined</td>
+			    	<td contenteditable="true" name="odr_amount">undefined</td>
+			    	<td contenteditable="true" name="odr_date">undefined</td>
+			    	<td contenteditable="true"  name="price">undefined</td>
+					
 			               
 			        <td>
 			          <span class="table-remove glyphicon glyphicon-remove"></span>
@@ -180,7 +181,7 @@ String role = (String) request.getAttribute("role");
 		  
 		</div>
 		
-		<form id="orderForm" action="http://localhost:13419/TeamProject2/JSP/Shopping_Basket_Admin/update" method="post">
+		<form id="orderForm" action="TeamProject2/JSP/Shopping_Basket_Admin/update" method="post">
 											
 				    <div class ="buttons">
 						<input type="button" id="edit_button" value="저장">
