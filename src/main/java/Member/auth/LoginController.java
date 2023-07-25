@@ -15,7 +15,7 @@ import Domain.Common.Dto.MemberDto;
 import Domain.Common.Service.MemberService;
 import Domain.Common.Service.MemberServiceImpl;
 
-@WebServlet("/login")
+
 public class LoginController implements SubController{
 
 	private MemberService service = MemberServiceImpl.getInstance();

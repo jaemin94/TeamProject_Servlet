@@ -54,7 +54,7 @@ public class FrontController extends HttpServlet{
 		
 		// auth
 		map.put(projectPath+"/login.do", new LoginController() );					// 완료
-		map.put(projectPath+"/logout.do", new LogoutController() );
+		map.put(projectPath+"/logout.do", new LogoutController() );					
 		
 		// product
 		map.put(projectPath+"/Product/search.do", new Prod_Select_Admin() );
