@@ -19,7 +19,7 @@ public class MainController implements SubController{
 		
 		// 4 view로 이동
 		try {
-			req.getRequestDispatcher("WEB-INF/View/Main.jsp").forward(req, resp);
+			req.getRequestDispatcher("/JSP/Main.jsp").forward(req, resp);
 		} catch (ServletException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

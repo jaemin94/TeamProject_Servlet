@@ -53,7 +53,7 @@ public class FrontController extends HttpServlet{
 		map.put(projectPath+"/Member/delete.do", new Member_Delete() );
 		
 		// auth
-		map.put(projectPath+"/login.do", new LoginController() );
+		map.put(projectPath+"/login.do", new LoginController() );					// 완료
 		map.put(projectPath+"/logout.do", new LogoutController() );
 		
 		// product
@@ -63,7 +63,7 @@ public class FrontController extends HttpServlet{
 		map.put(projectPath+"/Product/search.do", new Prod_Update_Admin() );
 		map.put(projectPath+"/Product/search.do", new Prod_Delete_Admin() );
 		
-		map.put(projectPath+"/Main.do", new MainController() );
+		map.put(projectPath+"/Main.do", new MainController() );						// 완료
 		
 	}
 	

@@ -37,7 +37,8 @@
 
 <%
 String memberId = (String) request.getAttribute("member_id");
-String role = (String) request.getAttribute("role");
+String role = (String) session.getAttribute("ROLE");
+System.out.println("ROLE : " + role);
 %>
 
 
@@ -64,7 +65,7 @@ String role = (String) request.getAttribute("role");
 					<span class="material-symbols-outlined" id="shopping">shopping_bag</span>
 					<script>
     					// 세션에서 역할 정보 가져오기
-    					let role = '<%=session.getAttribute("role")%>';
+    					let role = '<%=session.getAttribute("ROLE")%>';
 						let shoppingBtn = document.getElementById("shopping");
 
 						// 역할에 따른 이벤트 처리
@@ -73,14 +74,14 @@ String role = (String) request.getAttribute("role");
 									.addEventListener(
 											"click",
 											function() {
-												window.location.href = "./ShoppingBasket_Admin.jsp";
+												window.location.href = "./JSP/ShoppingBasket_Admin3.jsp";
 											});
 						} else if (role === "Role_user") {
 							shoppingBtn
 									.addEventListener(
 											"click",
 											function() {
-												window.location.href = "./ShoppingBasket_user.jsp";
+												window.location.href = "./order/ShoppingBasket_user.jsp";
 											});
 						} else {
 							shoppingBtn.addEventListener("click", function() {

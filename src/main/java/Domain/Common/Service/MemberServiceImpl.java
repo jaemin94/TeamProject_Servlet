@@ -142,7 +142,9 @@ public class MemberServiceImpl implements MemberService {
 		
 		HttpSession session = req.getSession();
 		session.setAttribute("ID: ", id);
-		session.setAttribute("ROLE: ", dbDto.getRole());
+		session.setAttribute("ROLE", dbDto.getRole());
+		System.out.println("Session : " + session);
+		
 		
 		return true;
 	}

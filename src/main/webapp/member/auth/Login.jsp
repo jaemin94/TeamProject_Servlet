@@ -75,15 +75,15 @@
 	</header>
 	<!-- 로그인 폼 -->
 	<div class="Main">
-		<form action="" method="post" id="login-form">
+		<form action="${pageContext.request.contextPath}/login.do" method="post" id="login-form">
 			<h1>로그인</h1>
 			<label><input type="text" id="username" name="id" placeholder="아이디"></label>
 			<label><input type="password" id="password" name="pw"
 				placeholder="비밀번호"></label>
 			<button class="login" type="submit">로그인</button>
-			<button class="register" type="button" id="regis">회원가입</button>
-			<script type="text/javascript"
-						src="${pageContext.request.contextPath}/JS/Register.js"></script>
+			<a href="${pageContext.request.contextPath}/member/Register.jsp"><button class="register" type="button" id="regis">회원가입</button></a>
+<%-- 			<script type="text/javascript"
+						src="${pageContext.request.contextPath}/JS/Register.js"></script> --%>
 
 		</form>
 	</div>
