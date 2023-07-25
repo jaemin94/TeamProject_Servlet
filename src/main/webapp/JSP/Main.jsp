@@ -68,7 +68,7 @@ String role = (String) request.getAttribute("role");
 									.addEventListener(
 											"click",
 											function() {
-												window.location.href = "./ShoppingBasket_Admin2.jsp";
+												window.location.href = "./Shopping_Basket_Admin";
 											});
 						} else if (role === "Role_user") {
 							shoppingBtn

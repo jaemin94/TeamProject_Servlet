@@ -203,14 +203,7 @@ String role = (String) request.getAttribute("role");
 	</Footer>
 	
 	<script>
-  document.getElementById('select-all-checkbox').addEventListener('change', function() {
-    var checkboxes = document.querySelectorAll('.li input[type="checkbox"]');
-    var selectAllCheckbox = document.getElementById('select-all-checkbox');
-    
-    checkboxes.forEach(function(checkbox) {
-      checkbox.checked = selectAllCheckbox.checked;
-    });
-  });
+
   
   document.getElementById('edit-button').addEventListener('click', function() {
     var selectedOrderIds = [];

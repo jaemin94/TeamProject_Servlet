@@ -7,15 +7,14 @@
  
 }
 
-.main{
+#ShoppingBasketAdminMain{ 
+
   height: 100%;
-  width: 70%;
-  /* width: 1024px; */
-  /* display: flex;  */
+  width: 94%;
+
   justify-content: center;
   align-items: center;
-  /* border: 1px solid purple; */
-  /* position:relative; */
+ 
   left: 0;
   right: 0;
   padding-top: 20px;
@@ -48,10 +47,22 @@
 .searchwrapper{
   height: 55px;
   line-height: 55px;
-  text-align: left; position: relative;
+  text-align: left;
+  position: relative;
+  align-items: center;
 }
-.midsearchwrapper>*{
+.midsearchwrapper>{
   height: 25px;
+  line-height: 25px;
+  text-align: left;
+  position: relative;
+  align-items: center;
+}
+
+.midsearchwrapper> *{
+  height: 25px;
+  line-height: 25px;
+  top: 0; bottom: 0;
 }
 
 .grid-container {
@@ -82,83 +93,74 @@
     
   }
 
-  
- .table {
-    list-style : none;
-    width: 100%;
-    height: fit-content;
-    display: flex;
-    position: relative;
-    margin-bottom: 50px;
-    padding: 0;
-    box-shadow: 2px 2px 3px gray;
-    flex-direction: column;
-  }
-  
-  .li{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 0;
-  	width: 100%;
-  	height:30px;
-  }
-  .li:last-child{
-    /* border-bottom: 1px solid; */
-  }
 
-  li:not(:first-child) span:first-child {
-    background-color: lightgrey;
-    overflow: hidden;
-    position:relative;
-    font-size:7px;
+@import "compass/css3";
+
+.table-editable {
+  position: relative;
+  text-align: center;
+
   
+  .glyphicon {
+    font-size: 20px;
   }
-  .li span input[type="checkbox"] {
-  	position: absolute;
- 	left: 3px;
-  	top: 50%;
- 	transform: translateY(-50%);
- 	margin: 0;
-  }
-  .li span label {
-  padding-left: 25px; /* 체크박스 크기에 따라 조정 */
 }
+
+#table-e{
+	box-shadow: 1px 1px 2px;
+}
+#tablebody>*{
+	text-align: center;
+	border-left: 1px solid lightgrey;
+}
+
+#select-all-checkbox{
+	position: relative;
+	left: 0;
+}
+#tablehead{
+	background-color: rgb(247, 247, 247);
+}
+#tablehead>*{
+	text-align: center;
+	border-left: 1px solid lightgrey;
+}
+
+.table-remove {
+  color: #700;
+  cursor: pointer;
   
-  #listhead{
-    box-sizing: border-box;
-    height: 40px;
-    font-size: 1rem;
-    font-weight: bold;
-    background-color: rgb(216, 216, 216);
-    border: 1px solid white;
+  &:hover {
+    color: #f00;
   }
+}
 
-  #listhead>span{
-    overflow: hidden;
-    height: 40px;
-    line-height: 40px;
-    display: block;
-    border: 1px solid white;
-    border-bottom: 2px solid white;
-    background-color: rgb(193, 193, 193);
+.table-up, .table-down {
+  color: #007;
+  cursor: pointer;
+  
+  &:hover {
+    color: #00f;
   }
+}
 
-
-  .li>span{
-    justify-content:space-evenly;
-    height: 30px;
-    line-height: 30px;
-    width: 12%;
-    overflow: hidden;
-    flex: 1;
-    background-color: rgb(237, 237, 237);
-    border: 1px solid white;
-
+.table-add {
+  color: #070;
+  cursor: pointer;
+  position: absolute;
+  top: 8px;
+  right: 0;
+  
+  &:hover {
+    color: #0b0;
   }
-	#select-all-checkbox{
-		text-align:left;
-	}
+}
+
+
+
+
+
+
 
   .imageframe {
     position: absolute;
@@ -193,14 +195,19 @@
     top:0px;
   }
   
+  
+  
 .buttons{
   display: inline-block;
   text-align: right;
   margin-bottom: 20px;
   position: absolute;
   right: 0px;
+  
 } 
 .buttons>*{
     display: inline-block;
-    padding: 2px;
+    height: 25px;
+    margin-top: 10px;
+    line-height: 25px;
   }

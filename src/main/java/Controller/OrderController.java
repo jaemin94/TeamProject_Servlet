@@ -121,7 +121,7 @@ private OrderService service;
 				e.printStackTrace();
 			}
 			
-			System.out.println("Product_Add Block!");
+			System.out.println("Order_Add Block!");
 			Map<String,Object>result= new HashMap();
 			result.put("result", rValue);
 			return result;
