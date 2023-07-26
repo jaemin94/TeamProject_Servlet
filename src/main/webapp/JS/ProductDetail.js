@@ -11,11 +11,11 @@ let gridBtn = document.getElementById("gridContainer");
 	 if(swiperBtn || gridBtn)
 	 {
 		 swiperBtn.addEventListener("click",function(){
-			 window.location.href="./ProductDetail.jsp"
+			 window.location.href="TeamProject2/product/ProductDetail.jsp"
 			 
 		 });
 		 gridBtn.addEventListener("click",function(){
-			 window.location.href="./ProductDetail.jsp"
+			 window.location.href="TeamProject2/product/ProductDetail.jsp"
 		 });
 		 break;
 	 }

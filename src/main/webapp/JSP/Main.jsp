@@ -52,7 +52,7 @@ System.out.println("ROLE : " + role);
 		<div class="header">
 			<div class="banner">
 				<div class="logo">
-					<a href="./Main.jsp"> <img
+					<a href="${pageContext.request.contextPath}/JSP/Main.jsp"> <img
 						src="${pageContext.request.contextPath}/SRC/logo.png"></img>
 					</a>
 				</div>
