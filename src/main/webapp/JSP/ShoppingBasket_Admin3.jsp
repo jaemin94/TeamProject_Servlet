@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="java.net.URLEncoder" %>
 <%@ page import="java.sql.*" %>
 <%@ page import="java.io.PrintWriter" %>
@@ -124,48 +124,8 @@ String role = (String) request.getAttribute("role");
 					<input type="text" id="odrtype" autocomplete="off">
 					
 					<button class="search_btn">조회</button>
-					<script>
-					 const search_btn_el = document.querySelector(".search_btn");
-						
-						search_btn_el.addEventListener("click",function(){
-							const projectPath='${pageContext.request.contextPath}';
-							const ServerPort ='${pageContext.request.serverPort}';
-							console.log("search_btn_el click..",projectPath);
-							
-							const tableBody = document.querySelector('#tablebody'); // 테이블의 tbody 요소를 가져옵니다.
-							tableBody.innerHTML = ' '; // 기존 테이블 데이터를 지우기 위해 비웁니다. 
-					    	
-					    	
-							axios.get("http://localhost:"+ ServerPort+projectPath+"/order/search.do")
-							.then(response=>{alert("Success!",response.data);
-								const list = response.data;
-								console.log("list : " + list);
-	
-								list.forEach((order) => {
-									console.log("order : " + order)
-							        // 주문 정보를 테이블에 추가합니다.
-								     const row = tableBody.insertRow(); // 새로운 행 요소 생성
-							           row.innerHTML = `
-							        	   <td>${order.order_id}</td>
-							        	    <td>${order.member_id}</td>
-							        	    <td>${order.product_code}</td>
-							        	    <td>${order.product_name}</td>
-							        	    <td>${order.adr_addr}</td>
-							        	    <td>${order.odr_amount}</td>
-							        	    <td>${order.odr_date}</td>
-							        	    <td>${order.price}</td>
-							             <td>
-							               <span class="table-remove glyphicon glyphicon-remove" id="removebt"></span>
-							             </td>
-							           `;
-							        })
-							      })
-							    
-							    .catch(error => {
-							      console.log("fail..", error);
-							    });
-							});
-					</script>
+					<script type="text/javascript"
+						src="${pageContext.request.contextPath}/JS/Order.js"></script>
 					
 					<div class ="buttons">
 						<input type="button" id="edit_button" value="수정">
@@ -197,22 +157,8 @@ String role = (String) request.getAttribute("role");
 		        <th><span class="table-add glyphicon glyphicon-plus" id="plusbt"></span></th>
 		      </tr>
 		    </thead>
-		    <tbody id="tablebody">
-		     <%--  <c:forEach var="order" items="${orderList}">
-		      <tr>
- 	          	  <td contenteditable="true">${order.order_id}</td>
-		          <td contenteditable="true">${order.member_id}</td>
-		          <td contenteditable="true">${order.product_code}</td>
-		          <td contenteditable="true">${order.product_name}</td>
-		          <td contenteditable="true">${order.adr_addr}</td>
-		          <td contenteditable="true">${order.odr_amount}</td>
-		          <td contenteditable="true">${order.odr_date}</td>
-		          <td contenteditable="true">${order.price}</td>
-		          <td> 
-		            <span class="table-remove glyphicon glyphicon-remove" id="removebt"></span>
-		          </td>
-		        </tr>
-		      </c:forEach>  --%>
+		    <tbody class="table-body">
+		    
 		    </tbody>
 		  </table>
 		</div>

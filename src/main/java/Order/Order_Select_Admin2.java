@@ -39,6 +39,7 @@ public class Order_Select_Admin2 implements SubController {
 		        String jsonConverted = objectMapper.writeValueAsString(orderList);
 				System.out.println("jsonConverted: " + jsonConverted);
 				// 4 View로 전달			
+				resp.setCharacterEncoding("UTF-8");
 				resp.setContentType("application/json");
 				PrintWriter out = resp.getWriter();
 				out.print(jsonConverted);
