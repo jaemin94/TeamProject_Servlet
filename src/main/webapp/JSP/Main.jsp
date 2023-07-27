@@ -18,6 +18,11 @@
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
 <script
+	src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.4.0/axios.min.js"
+	integrity="sha512-uMtXmF28A2Ab/JJO2t/vYhlaa/3ahUOgj1Zf27M5rOo8/+fcTUVH0/E0ll68njmjrLqOBjXM3V9NiPFL5ywWPQ=="
+	crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<script
 	src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
 <script defer src="${pageContext.request.contextPath}/JS/Swiper.js"
 	type="text/javascript"></script>
@@ -32,7 +37,8 @@
 
 <%
 String memberId = (String) request.getAttribute("member_id");
-String role = (String) request.getAttribute("role");
+String role = (String) session.getAttribute("ROLE");
+System.out.println("ROLE : " + role);
 %>
 
 
@@ -46,7 +52,7 @@ String role = (String) request.getAttribute("role");
 		<div class="header">
 			<div class="banner">
 				<div class="logo">
-					<a href="./Main.jsp"> <img
+					<a href="${pageContext.request.contextPath}/JSP/Main.jsp"> <img
 						src="${pageContext.request.contextPath}/SRC/logo.png"></img>
 					</a>
 				</div>
@@ -59,7 +65,7 @@ String role = (String) request.getAttribute("role");
 					<span class="material-symbols-outlined" id="shopping">shopping_bag</span>
 					<script>
     					// 세션에서 역할 정보 가져오기
-    					let role = '<%=session.getAttribute("role")%>';
+    					let role = '<%=session.getAttribute("ROLE")%>';
 						let shoppingBtn = document.getElementById("shopping");
 
 						// 역할에 따른 이벤트 처리
@@ -68,14 +74,14 @@ String role = (String) request.getAttribute("role");
 									.addEventListener(
 											"click",
 											function() {
-												window.location.href = "./ShoppingBasket_Admin.jsp";
+												window.location.href = "./order/ShoppingBasket_Admin.jsp";
 											});
 						} else if (role === "Role_user") {
 							shoppingBtn
 									.addEventListener(
 											"click",
 											function() {
-												window.location.href = "./ShoppingBasket_user.jsp";
+												window.location.href = "./order/ShoppingBasket_user.jsp";
 											});
 						} else {
 							shoppingBtn.addEventListener("click", function() {
