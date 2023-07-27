@@ -17,9 +17,10 @@ import Member.Member_Update_Admin;
 import Member.Member_Update_User;
 import Member.auth.LoginController;
 import Member.auth.LogoutController;
-import Order.Order_Delete_Admin;
 import Order.Order_Insert_User;
+import Order.Order_Select_Admin;
 import Order.Order_Select_Admin2;
+import Order.Order_Update_Admin;
 import Order.Order_Update_User;
 import Product.Prod_Delete_Admin;
 import Product.Prod_Insert_Admin;
@@ -41,10 +42,11 @@ public class FrontController extends HttpServlet{
 		
 		// order
 		map.put(projectPath+"/order/search.do", new Order_Select_Admin2() );
-		map.put(projectPath+"/order/delete.do", new Order_Delete_Admin() );
+		map.put(projectPath+"/order/select.do", new Order_Select_Admin() );
 		map.put(projectPath+"/order/insert.do", new Order_Insert_User() );
 		map.put(projectPath+"/order/update.do", new Order_Update_User() );
-		
+		map.put(projectPath+"/order/updateadmin.do", new Order_Update_Admin());
+		 
 		// member
 		map.put(projectPath+"/Member/search.do", new Member_Select_Admin() );
 		map.put(projectPath+"/Member/search1.do", new Member_Select_User() );
