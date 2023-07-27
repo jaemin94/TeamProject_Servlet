@@ -91,7 +91,7 @@ public class OrderServiceImpl implements OrderService {
 		                    // insert 가 무사히 되었을시 true값을 리턴
 		                    if (insertSuccess==1) {
 		                        System.out.println("[INFO] 주문완료");
-		                        omDao.insert(new OrderMsgDto(0, mdto.getId(), pdto.getProduct_code() + " 상품 주문 완료."));
+		                        omDao.insert(new OrderMsgDto(0, oid, pdto.getProduct_code() + " 상품 주문 완료."));
 		                        return true;
 		                        
 		                    } 

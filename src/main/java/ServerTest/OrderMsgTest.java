@@ -124,9 +124,7 @@ public class OrderMsgTest extends HttpServlet {
 	                    if (insertSuccess==1) {
 	                        System.out.println("[INFO] 주문완료");
 	                        try {
-	                        	System.out.println("Flag!! write message127: ");
-								omDao.insert(new OrderMsgDto(0, mdto.getId(), pdto.getProduct_code() + " 상품 주문 완료."));
-	                        	System.out.println("Flag!! write message129: ");
+								omDao.insert(new OrderMsgDto(0, oid, pdto.getProduct_code() + " 상품 주문 완료."));
 							} catch (Exception e) {
 								// TODO Auto-generated catch block
 								e.printStackTrace();
