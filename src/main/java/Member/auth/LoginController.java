@@ -60,6 +60,7 @@ System.out.println("LoginController execute");
 			isLogin=service.login(req);
 			HttpSession session = req.getSession();
 			String role = (String) session.getAttribute("ROLE");
+			String member_id = (String) session.getAttribute("ID");
 			System.out.println("LoginController ROLE : " + role);
 			session.setAttribute("ROLE", role);
 			

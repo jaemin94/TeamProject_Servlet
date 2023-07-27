@@ -5,8 +5,9 @@
 					 function insertDataIntoTable(data) {
 					      const tableBody = document.querySelector('.table-body');
 					      tableBody.innerHTML = ''; // 기존 테이블 데이터를 지우기 위해 비웁니다.
+						  const dataArray = Array.isArray(data) ? data : [data];
 
-					      data.forEach((order) => {
+					      dataArray.forEach((order) => {
 					        const row = tableBody.insertRow(); // 새로운 행 요소 생성
 
 					        // 각 데이터에 해당하는 셀을 생성하고 데이터를 추가합니다.
@@ -50,8 +51,15 @@
 							console.log(tableBody);
 							tableBody.innerHTML = ' '; // 기존 테이블 데이터를 지우기 위해 비웁니다. 
 					    	
+					    	  // 입력한 주문 ID 값을 가져옴
+  							const orderIdInput = document.getElementById("odrtype");
+  							const orderId = orderIdInput.value.trim(); // 입력값 앞뒤 공백 제거
+  							console.log(orderId);
 					    	
-							axios.get("http://localhost:"+ ServerPort+projectPath+"/order/search.do")
+					    	const url = "http://localhost:" + ServerPort + projectPath + "/order/search.do" +
+              							(orderId !== "" ? "?orderId=" + orderId : ""); // orderId가 비어있지 않으면 쿼리 파라미터에 추가
+
+							axios.get(url)
 							.then(response=>{alert("Success!",response.data);
 								console.log(response.data);
 								const list = response.data;

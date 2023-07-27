@@ -17,27 +17,38 @@
 	href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 <link href="https://fonts.googleapis.com/css2?family=Chewy&display=swap"
 	rel="stylesheet">
+<script defer
+	src="${pageContext.request.contextPath}/JS/pageRout.js"
+	type="text/javascript"></script>
+	
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>장바구니</title>
+<%
+String memberId = (String) request.getAttribute("member_id");
+String role = (String) session.getAttribute("ROLE");
+%>
+
+<script>
+let role = '<%= session.getAttribute("ROLE") %>';
+</script>
+
 </head>
 <body>
 	<header>
 		<div class="header">
 			<div class="banner">
-				<div class="logo">
-					<a href="./Main.jsp"> <img
+				<div class="logo" id="logo">
+					<a href=""> <img
 						src="${pageContext.request.contextPath}/SRC/logo.png"></img>
 					</a>
 				</div>
 				<div class="banner_top">
 					<span class="material-symbols-outlined" id="login-button">login</span>
-					<script type="text/javascript"
-						src="${pageContext.request.contextPath}/JS/Login.js"></script>
 					<a href=""><span class="material-symbols-outlined">search</span></a>
 					<a href=""><span class="material-symbols-outlined">person</span></a>
-					<a href=""><span class="material-symbols-outlined">shopping_bag</span></a>
+					<span class="material-symbols-outlined" id="shopping">shopping_bag</span>
 				</div>
 				<div class="banner_middle">
 					<div class="df">Daily Friday</div>

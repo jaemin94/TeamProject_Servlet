@@ -39,7 +39,9 @@
 	  <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.6.0/underscore.js"></script>
 	  <script src="${pageContext.request.contextPath}/JS/OrderTable.js"></script>
 	  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.4.0/axios.min.js" integrity="sha512-uMtXmF28A2Ab/JJO2t/vYhlaa/3ahUOgj1Zf27M5rOo8/+fcTUVH0/E0ll68njmjrLqOBjXM3V9NiPFL5ywWPQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
- 
+ <script defer
+	src="${pageContext.request.contextPath}/JS/pageRout.js"
+	type="text/javascript"></script>
   
 <title>장바구니</title>
 </head>
@@ -49,22 +51,24 @@ String memberId = (String) request.getAttribute("member_id");
 String role = (String) request.getAttribute("role");
 %>
 
+<script>
+let role = '<%= session.getAttribute("ROLE") %>';
+</script>
+
 <body>
  
 	<header>
 		<div class="header">
 			<div class="banner">
-				<div class="logo">
-					<a href="./Main.jsp"> <img src="${pageContext.request.contextPath}/SRC/logo.png"></img>
+				<div class="logo" id="logo">
+					<a href=""> <img src="${pageContext.request.contextPath}/SRC/logo.png"></img>
 					</a>
 				</div>
 				<div class="banner_top">
 					<span class="material-symbols-outlined" id="login-button">login</span>
-					<script type="text/javascript"
-						src="${pageContext.request.contextPath}/JS/Login.js"></script>
 					<a href=""><span class="material-symbols-outlined">search</span></a>
 					<a href=""><span class="material-symbols-outlined">person</span></a>
-					<a href=""><span class="material-symbols-outlined">shopping_bag</span></a>
+					<span class="material-symbols-outlined" id="shopping">shopping_bag</span>
 				</div>
 				<div class="banner_middle">
 					<div class="df">Daily Friday</div>
@@ -128,7 +132,8 @@ String role = (String) request.getAttribute("role");
 						src="${pageContext.request.contextPath}/JS/Order.js"></script>
 					
 					<div class ="buttons">
-						<input type="button" id="edit_button" value="수정">
+						<button class="edit">수정</button>
+
 						<input type="button" id="delete_button" value="삭제">
 	  				</div>
 	  				

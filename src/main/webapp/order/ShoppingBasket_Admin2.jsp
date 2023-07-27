@@ -34,7 +34,10 @@
   <!-- Bootstrap CSS 파일 -->
   <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet" />
  
-  
+  <script defer
+	src="${pageContext.request.contextPath}/JS/pageRout.js"
+	type="text/javascript"></script>
+   
 <title>장바구니</title>
 </head>
 
@@ -43,22 +46,24 @@ String memberId = (String) request.getAttribute("member_id");
 String role = (String) request.getAttribute("role");
 %>
 
+<script>
+let role = '<%= session.getAttribute("ROLE") %>';
+</script>
+
 <body>
  
 	<header>
 		<div class="header">
 			<div class="banner">
-				<div class="logo">
-					<a href="./Main.jsp"> <img src="${pageContext.request.contextPath}/SRC/logo.png"></img>
+				<div class="logo" id="logo">
+					<a href=""> <img src="${pageContext.request.contextPath}/SRC/logo.png"></img>
 					</a>
 				</div>
 				<div class="banner_top">
 					<span class="material-symbols-outlined" id="login-button">login</span>
-					<script type="text/javascript"
-						src="${pageContext.request.contextPath}/JS/Login.js"></script>
 					<a href=""><span class="material-symbols-outlined">search</span></a>
 					<a href=""><span class="material-symbols-outlined">person</span></a>
-					<a href=""><span class="material-symbols-outlined">shopping_bag</span></a>
+					<span class="material-symbols-outlined" id="shopping">shopping_bag</span>
 				</div>
 				<div class="banner_middle">
 					<div class="df">Daily Friday</div>
@@ -104,8 +109,7 @@ String role = (String) request.getAttribute("role");
 			
 			<div class="searchwrapper">
 				<div class="midsearchwrapper">
-			
-					<select name="category" id="c_select">
+						  <select name="category" id="c_select">
 						<option value="주문 ID">주문 ID</option>
 						<option value="User ID">User ID</option>
 						<option value="제품코드">제품코드</option>
@@ -116,14 +120,10 @@ String role = (String) request.getAttribute("role");
 						<option value="가격">가격</option>
 					</select>
 					<input type="text" id="odrtype" autocomplete="off">
-					
-					<input type="button" id="submint_button" value="조회">
-					
-					<div class ="buttons">
-						<input type="button" id="edit_button" value="수정">
-						<input type="button" id="delete_button" value="삭제">
-	  				</div>
-	  				
+						  <button class="search_btn">조회</button>
+					<script type="text/javascript"
+						src="${pageContext.request.contextPath}/JS/Order.js"></script>
+
 			
 				</div>
 			<!-- 추천창 -->
@@ -131,13 +131,13 @@ String role = (String) request.getAttribute("role");
 					<div id="suggestedd_items"></div>
 				</div>
 			</div>
-						
-		<!-- 주문 전체 조회 결과 출력 -->
+			<!-- 주문 전체 조회 결과 출력 -->
 		<div class="table-editable" id="table-e">
 		 
 		  <table class="table">
 		    <thead>
 		      <tr id="tablehead">
+		      	<th><input type="checkbox" id="select-all-checkbox" /></th>
 		        <th>주문 ID</th>
 		        <th>회원 ID</th>
 		        <th>상품 코드</th>
@@ -149,26 +149,21 @@ String role = (String) request.getAttribute("role");
 		        <th><span class="table-add glyphicon glyphicon-plus" id="plusbt"></span></th>
 		      </tr>
 		    </thead>
-		    <tbody>
-		      <c:forEach var="order" items="${orderList}">
-		        <tr id="tablebody">
-		          <td contenteditable="true">${order.order_id}</td>
-		          <td contenteditable="true">${order.member_id}</td>
-		          <td contenteditable="true">${order.product_code}</td>
-		          <td contenteditable="true">${order.product_name}</td>
-		          <td contenteditable="true">${order.adr_addr}</td>
-		          <td contenteditable="true">${order.odr_amount}</td>
-		          <td contenteditable="true">${order.odr_date}</td>
-		          <td contenteditable="true">${order.price}</td>
-		          <td>
-		            <span class="table-remove glyphicon glyphicon-remove" id="removebt"></span>
-		          </td>
-		        </tr>
-		      </c:forEach>
+		    <tbody id="order-list-body">
+
 		    </tbody>
 		  </table>
+		  
 		</div>
-
+		
+		<form id="orderForm" action="TeamProject2/JSP/Shopping_Basket_Admin/order/updateadmin.do" method="post">
+											
+				    <div class ="buttons">
+						<input type="button" id="edit_button" value="저장">
+					</div>
+	  				<input type="hidden" id="selectedOrderIds" name="selectedOrderIds" value="">
+	  					
+		</form>
 	 
   </div>
 
@@ -187,13 +182,14 @@ String role = (String) request.getAttribute("role");
 			<p>email : dfteam9@naver.com</p>
 		</div>
 	</Footer>
-	
-
 	 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-	  <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
-	  <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
-	  <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.6.0/underscore.js"></script>
-	  <script src="/JS/ordertable.js"></script>
+	 <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
+	 <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+	 <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.6.0/underscore.js"></script>
+
+	
+	<script defer src="${pageContext.request.contextPath}/JS/OrderTable.js"type="text/javascript"></script>
+	
 	
 </body>
 
