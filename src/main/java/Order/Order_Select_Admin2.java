@@ -24,30 +24,36 @@ public class Order_Select_Admin2 implements SubController {
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse resp) {
 	     
-		// 1 파라미터 추출
-		
-		// 2입력값 검증
-		
-		// 3 서비스 실행
-		
 		List<OrderDto> orderList = null;
 		
-		try {
-			 orderList = service.getOrder();
-			// JAVA -> JSON 변환
-				ObjectMapper objectMapper = new ObjectMapper();
-		        String jsonConverted = objectMapper.writeValueAsString(orderList);
-				System.out.println("jsonConverted: " + jsonConverted);
-				// 4 View로 전달			
-				resp.setCharacterEncoding("UTF-8");
-				resp.setContentType("application/json");
-				PrintWriter out = resp.getWriter();
-				out.print(jsonConverted);
-				
-			
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
+		
+		  try {
+			  String orderId = req.getParameter("orderId");
+			  System.out.println(orderId);
+		    if (orderId != null && !orderId.isEmpty()) {
+		      // 클라이언트가 주문 ID를 전달한 경우 단건 조회
+		      OrderDto order = service.getOrder(orderId);
+		      ObjectMapper objectMapper = new ObjectMapper();
+		      String jsonConverted = objectMapper.writeValueAsString(order);
+		      System.out.println("jsonConverted: " + jsonConverted);
+		      resp.setCharacterEncoding("UTF-8");
+		      resp.setContentType("application/json");
+		      PrintWriter out = resp.getWriter();
+		      out.print(jsonConverted);
+		    } else {
+		      // 클라이언트가 주문 ID를 전달하지 않은 경우 전체 목록 조회
+		      orderList = service.getOrder();
+		      ObjectMapper objectMapper = new ObjectMapper();
+		      String jsonConverted = objectMapper.writeValueAsString(orderList);
+		      System.out.println("jsonConverted: " + jsonConverted);
+		      resp.setCharacterEncoding("UTF-8");
+		      resp.setContentType("application/json");
+		      PrintWriter out = resp.getWriter();
+		      out.print(jsonConverted);
+		    }
+		  } catch (Exception e) {
+		    e.printStackTrace();
+		  }
 		}
 	
 		

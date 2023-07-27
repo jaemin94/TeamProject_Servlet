@@ -17,6 +17,7 @@ import javax.json.JsonObjectBuilder;
 import javax.json.JsonReader;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import Controller.OrderController;
 import Controller.SubController;
@@ -37,8 +38,8 @@ public class Order_Update_Admin implements SubController {
 			e.printStackTrace();
 		} // 요청의 인코딩을 UTF-8로 설정
         response.setCharacterEncoding("UTF-8"); // 응답의 인코딩을 UTF-8로 설정
-
-        String role = "Role_Member";
+        HttpSession session = request.getSession();
+        String role = (String)session.getAttribute("ROLE");
         String requestedURL = request.getRequestURI().substring(request.getContextPath().length());
 
         if (requestedURL.equals("/order/updateadmin.do")) {

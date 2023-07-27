@@ -121,11 +121,11 @@ String role = (String) request.getAttribute("role");
 						<option value="날짜">날짜</option>
 						<option value="가격">가격</option>
 					</select>
-					<input type="text" id="odrtype" autocomplete="off">
+					<input type="text" id="odrtype" name="orderId" autocomplete="off">
 					
 					<button class="search_btn">조회</button>
 					<script type="text/javascript"
-						src="${pageContext.request.contextPath}/JS/Order.js"></script>
+						src="${pageContext.request.contextPath}/JS/Order2.js"></script>
 					
 					<div class ="buttons">
 						<input type="button" id="edit_button" value="수정">

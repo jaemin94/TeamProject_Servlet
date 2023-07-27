@@ -4,6 +4,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import Domain.Common.Dto.MemberDto;
 import Domain.Common.Service.MemberService;
 import Domain.Common.Service.MemberServiceImpl;
@@ -203,5 +206,12 @@ public class MemberController implements SubController{
 
 		return null;
 
+	}
+
+
+	@Override
+	public void execute(HttpServletRequest req, HttpServletResponse resp) {
+		// TODO Auto-generated method stub
+		
 	}
 }
