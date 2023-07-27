@@ -2,7 +2,7 @@ package Domain.Common.Dto;
 
 public class OrderMsgDto {
 	private int msgId;
-	private int orderId;
+	private String orderId;
 	private String msg;
 	@Override
 	public String toString() {
@@ -14,10 +14,10 @@ public class OrderMsgDto {
 	public void setMsgId(int msgId) {
 		this.msgId = msgId;
 	}
-	public int getOrderId() {
+	public String getOrderId() {
 		return orderId;
 	}
-	public void setOrderId(int orderId) {
+	public void setOrderId(String orderId) {
 		this.orderId = orderId;
 	}
 	public String getMsg() {
@@ -26,10 +26,10 @@ public class OrderMsgDto {
 	public void setMsg(String msg) {
 		this.msg = msg;
 	}
-	public OrderMsgDto(int msgId, int i, String msg) {
+	public OrderMsgDto(int msgId, String orderId, String msg) {
 		super();
 		this.msgId = msgId;
-		this.orderId = i;
+		this.orderId = orderId;
 		this.msg = msg;
 	}
 	public OrderMsgDto() {}

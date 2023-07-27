@@ -8,10 +8,13 @@ import Domain.Common.Dao.MemberDao;
 import Domain.Common.Dao.MemberDaoimpl;
 import Domain.Common.Dao.OrderDao;
 import Domain.Common.Dao.OrderDaoimpl;
+import Domain.Common.Dao.OrderMsgDao;
+import Domain.Common.Dao.OrderMsgDaoimpl;
 import Domain.Common.Dao.ProdDao;
 import Domain.Common.Dao.ProdDaoimpl;
 import Domain.Common.Dto.MemberDto;
 import Domain.Common.Dto.OrderDto;
+import Domain.Common.Dto.OrderMsgDto;
 import Domain.Common.Dto.ProdDto;
 import Domain.Common.Service.Auth.Session;
 
@@ -23,6 +26,7 @@ public class OrderServiceImpl implements OrderService {
 	private MemberDao mDao;
 	private ProdDao pDao;
 	private static OrderService instance;
+	private OrderMsgDao omDao; //omDao 객체생성
 	
 	
 	public static OrderService getInstance()
@@ -41,7 +45,7 @@ public class OrderServiceImpl implements OrderService {
 		pDao = ProdDaoimpl.getInstance();
 		memberService = MemberServiceImpl.getInstance();
 		productService = ProductServiceImpl.getInstance();
-		
+		omDao=OrderMsgDaoimpl.getInstance();
 	}
 	
 		
@@ -87,6 +91,7 @@ public class OrderServiceImpl implements OrderService {
 		                    // insert 가 무사히 되었을시 true값을 리턴
 		                    if (insertSuccess==1) {
 		                        System.out.println("[INFO] 주문완료");
+		                        omDao.insert(new OrderMsgDto(0, mdto.getId(), pdto.getProduct_code() + " 상품 주문 완료."));
 		                        return true;
 		                        
 		                    } 
@@ -167,9 +172,11 @@ public class OrderServiceImpl implements OrderService {
 		if(role.equals("Role_Member"))
 		{
 		int result = oDao.delete(order_id);
+		
 		if(result > 0)
+			try { omDao.delete(order_id); } catch (Exception e) { }
 			return true;
-		System.out.println("role : " + role);
+//			System.out.println("role : " + role);
 		}
 		return false;
 	}

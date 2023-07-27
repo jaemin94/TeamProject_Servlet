@@ -23,7 +23,7 @@ public class OrderMsgDaoimpl extends ConnectionPool implements OrderMsgDao{
 	@Override
 	public int insert(OrderMsgDto dto) throws Exception{
 		pstmt=conn.prepareStatement("insert into tbl_lend_message values(null,?,?)");
-		pstmt.setInt(1, dto.getOrderId());
+		pstmt.setString(1, dto.getOrderId());
 		pstmt.setString(2,dto.getMsg());
 		int result=pstmt.executeUpdate();
 		pstmt.close();
@@ -43,7 +43,7 @@ public class OrderMsgDaoimpl extends ConnectionPool implements OrderMsgDao{
 			while(rs.next()) {
 				dto=new OrderMsgDto();
 				dto.setMsgId(rs.getInt("msgId"));
-				dto.setOrderId(rs.getInt("orderid"));
+				dto.setOrderId(rs.getString("orderid"));
 				dto.setMsg(rs.getString("msg"));	
 				list.add(dto);
 			}
