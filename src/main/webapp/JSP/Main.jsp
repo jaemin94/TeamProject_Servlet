@@ -18,12 +18,23 @@
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
 <script
+	src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.4.0/axios.min.js"
+	integrity="sha512-uMtXmF28A2Ab/JJO2t/vYhlaa/3ahUOgj1Zf27M5rOo8/+fcTUVH0/E0ll68njmjrLqOBjXM3V9NiPFL5ywWPQ=="
+	crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<script
 	src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
 <script defer src="${pageContext.request.contextPath}/JS/Swiper.js"
 	type="text/javascript"></script>
+	
 <script defer
 	src="${pageContext.request.contextPath}/JS/ProductDetail.js"
 	type="text/javascript"></script>
+	
+<script defer
+	src="${pageContext.request.contextPath}/JS/pageRout.js"
+	type="text/javascript"></script>
+
 
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -32,57 +43,34 @@
 
 <%
 String memberId = (String) request.getAttribute("member_id");
-String role = (String) request.getAttribute("role");
+String role = (String) session.getAttribute("ROLE");
 %>
 
-
+<script>
+let role = '<%= session.getAttribute("ROLE") %>';
+</script>
 
 
 <title>DFMall</title>
 
 </head>
+<input type="hidden" id="roleValue" value="<%= session.getAttribute("ROLE") %>">
+
 <body>
 	<header>
 		<div class="header">
 			<div class="banner">
-				<div class="logo">
-					<a href="./Main.jsp"> <img
-						src="${pageContext.request.contextPath}/SRC/logo.png"></img>
+				<div class="logo" id="logo">
+					<a href=""> <img
+						src="${pageContext.request.contextPath}/SRC/logo.png" ></img>
 					</a>
 				</div>
 				<div class="banner_top">
 					<span class="material-symbols-outlined" id="login-button">login</span>
-					<script type="text/javascript"
-						src="${pageContext.request.contextPath}/JS/Login.js"></script>
 					<a href=""><span class="material-symbols-outlined">search</span></a>
 					<a href=""><span class="material-symbols-outlined">person</span></a>
-					<span class="material-symbols-outlined" id="shopping">shopping_bag</span>
-					<script>
-    					// 세션에서 역할 정보 가져오기
-    					let role = '<%=session.getAttribute("role")%>';
-						let shoppingBtn = document.getElementById("shopping");
-
-						// 역할에 따른 이벤트 처리
-						if (role === "Role_Member") {
-							shoppingBtn
-									.addEventListener(
-											"click",
-											function() {
-												window.location.href = "./ShoppingBasket_Admin.jsp";
-											});
-						} else if (role === "Role_user") {
-							shoppingBtn
-									.addEventListener(
-											"click",
-											function() {
-												window.location.href = "./ShoppingBasket_user.jsp";
-											});
-						} else {
-							shoppingBtn.addEventListener("click", function() {
-								alert("잘못된 접근입니다.");
-							});
-						}
-					</script>
+					<span class="material-symbols-outlined" id="shopping" >shopping_bag</span>
+	
 
 				</div>
 				<div class="banner_middle">
