@@ -42,18 +42,18 @@ public class Login extends HttpServlet {
         // DB에서 해당 사용자 조회
         
          
-		Map<String, Object> result = new HashMap();
-		try {
-			result = memberService.login(member_id, pw);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		System.out.println(result);
-		String sid = (String)result.get("sid");
-		String role = (String)result.get("role");
+//		Map<String, Object> result = new HashMap();
+//		try {
+//			result = memberService.login(member_id, pw);
+//		} catch (Exception e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		System.out.println(result);
+//		String sid = (String)result.get("sid");
+//		String role = (String)result.get("role");
 		
-         
+         String role = null;
 		
         if (dao != null) {
             // 사용자가 존재하는 경우

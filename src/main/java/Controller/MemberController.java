@@ -178,7 +178,7 @@ public class MemberController implements SubController{
 			MemberDto dto = new MemberDto(id, pw, null, null, null);
 			Map<String, Object> result = new HashMap();
 			try {
-				result = service.login(id, pw);
+//				result = service.login(id, pw);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
