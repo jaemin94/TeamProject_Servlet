@@ -14,5 +14,8 @@
 			<attribute name="owner.project.facets" value="jst.web"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/Administrator/Desktop/새 폴더 (2)/Locker/임베디드_이재민/자바강의/Team_Servlet/TeamProject_Servlet/src/main/webapp/WEB-INF/lib/jackson-annotations-2.15.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Administrator/Desktop/새 폴더 (2)/Locker/임베디드_이재민/자바강의/Team_Servlet/TeamProject_Servlet/src/main/webapp/WEB-INF/lib/jackson-core-2.15.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Administrator/Desktop/새 폴더 (2)/Locker/임베디드_이재민/자바강의/Team_Servlet/TeamProject_Servlet/src/main/webapp/WEB-INF/lib/jackson-databind-2.15.2.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

@@ -1,41 +1,26 @@
 package Member;
 
-import java.io.IOException;
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import Controller.SubController;
+import Domain.Common.Service.MemberService;
+import Domain.Common.Service.MemberServiceImpl;
 
 /**
  * Servlet implementation class Member_Delete
  */
-@WebServlet("/Member_Delete")
-public class Member_Delete extends HttpServlet {
-	private static final long serialVersionUID = 1L;
+
+public class Member_Delete implements SubController {
+
+	private MemberService service = MemberServiceImpl.getInstance();
+
+	@Override
+	public void execute(HttpServletRequest req, HttpServletResponse resp) {
+		System.out.println("Member_Delete Execute");
+		
+	}
        
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public Member_Delete() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
-	}
 
 }
