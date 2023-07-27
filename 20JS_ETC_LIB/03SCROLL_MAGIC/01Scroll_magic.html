@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+ <!-- ScrollMagic cdn -->
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.8/ScrollMagic.min.js"
+ integrity="sha512-8E3KZoPoZCD+1dgfqhPbejQBnQfBXe8FuwL4z/c8sTrgeDMFEnoyTlH3obB4/fV+6Sg0a0XF+L/6xS4Xx1fUEg=="
+ crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
+    <style>
+    
+        section{
+            width : 80%;
+            height:500px;
+            border : 1px solid;
+            position:relative;
+            margin : 50px;
+        }
+        #ball,#ball2{
+            margin-top:100px;
+            width:50px;
+            height:50px;
+            
+            border-radius: 50%;
+            position:relative;
+            top:30%;
+            font-size: 0.8rem;
+            line-height: 50px;
+            text-align: center;
+        }
+        /* 왼쪽에서 오른쪽으로 이동 */
+        /* 왼->오른쪽 */
+        .back-to-position{
+            opacity: 0;
+            transition: 1.5s;
+            background-color: orange;
+        }
+        .back-to-position.to-right{
+            transform:translateX(0px); 
+        }
+        .show .back-to-position{
+            opacity: 1; 
+            transform: translateX(800px) scale(1.5) rotate(360deg);
+        }
+        .show2 .back-to-position{
+            opacity: 1;
+            background-color: blueviolet;
+            border-radius: 0%;
+            transform: translateX(800px) scale(1.5) rotate(360deg);
+        }
+    </style>
+</head>
+<body>
+    <!-- class="txt01 back-to-position to-right delay-1" -->
+    <section>
+
+    </section>
+    <section  class="scroll-spy">
+        <div id="ball" class="back-to-position to-right">BALL</div>
+    </section>
+    <section class="scroll-spy">
+        <div id="ball" class="back-to-position to-right">BALL</div>
+    </section>
+    
+    <script>
+  
+        const spyEls = document.querySelectorAll('section.scroll-spy');
+        let cnt = 0;
+           
+        spyEls.forEach(function(spyEl){
+            console.log("spyEl",spyEl);
+            if(cnt==0){
+        
+            new ScrollMagic.Scene({
+                triggerElement : spyEl, //감시할 요소 선택
+                triggerHook : .5       //스크린에서의 스크롤 위치  
+            })
+            .setClassToggle(spyEl,'show')
+            .addTo(new ScrollMagic.Controller());
+            cnt++;
+        }else{
+            new ScrollMagic.Scene({
+            triggerElement : spyEl, //감시할 요소 선택
+            triggerHook : .5       //스크린에서의 스크롤 위치  
+        })
+    
+        .setClassToggle(spyEl,'show2')
+        .addTo(new ScrollMagic.Controller());
+        cnt++;
+        }
+        });
+
+        
+        
+        
+   
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        ul {
+            list-style: none;
+            padding: 0px;
+            margin: 0px;
+        }
+        a {
+            text-decoration: none;
+            color: black;
+        }
+
+        .wrapper {
+            width: 100%;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .page {
+            flex-basis: 50%;
+            display: none;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        .pagination {
+            margin-top: 10px;
+        }
+
+        .pagination .page-button {
+            display: inline-block;
+            padding: 5px 10px;
+            margin-right: 5px;
+            background-color: lightgray;
+            border: none;
+            cursor: pointer;
+        }
+
+        .pagination .page-button.active {
+            background-color: gray;
+            color: white;
+        }
+        .wrapper > main > .item {
+            display: flex;
+            flex-wrap: wrap;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .wrapper > main > .item > ul {
+            border: 1px solid red;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-basis: 50%;
+        }
+
+        .wrapper > main > .item > ul > li {
+            border: 1px solid violet;
+            width: 300px;
+            position: relative;
+            text-align: center;
+        }
+        .wrapper > main > .item > ul > li:last-child::before {
+            content: "";
+        }
+
+        .wrapper > main > .item > ul > li > a {
+            display: block;
+        }
+
+        .item-info {
+            margin-top: 10px;
+            padding: 10px;
+            border: 1px solid lightgray;
+            background-color: #f9f9f9;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <main>
+            <div class="item">
+                <ul>
+                    <li><a href="#">Item 1</a></li>
+                    <li><a href="#">Item 2</a></li>
+                    <li><a href="#">Item 3</a></li>
+                    <li><a href="#">Item 4</a></li>
+                    <li><a href="#">Item 5</a></li>
+                    <li><a href="#">Item 6</a></li>
+                    <li><a href="#">Item 7</a></li>
+                    <li><a href="#">Item 8</a></li>
+                    <li><a href="#">Item 9</a></li>
+                    <li><a href="#">Item 10</a></li>
+                    <li><a href="#">Item 11</a></li>
+                    <li><a href="#">Item 12</a></li>
+                    <li><a href="#">Item 13</a></li>
+                    <li><a href="#">Item 14</a></li>
+                    <li><a href="#">Item 15</a></li>
+                    <li><a href="#">Item 16</a></li>
+                    <li><a href="#">Item 17</a></li>
+                    <li><a href="#">Item 18</a></li>
+                    <li><a href="#">Item 19</a></li>
+                    <li><a href="#">Item 20</a></li>
+                </ul>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        var currentPage = 1;
+        var totalPages = 0;
+        var numPerPage = 5;
+
+        function showPage(page) {
+            var pages = document.querySelectorAll('.page');
+            pages.forEach(function (pageEl) {
+                pageEl.classList.remove('active');
+            });
+
+            var currentPageEl = document.querySelector('.page[data-page="' + page + '"]');
+            currentPageEl.classList.add('active');
+
+            var paginationButtons = document.querySelectorAll('.pagination .page-button');
+            paginationButtons.forEach(function (button) {
+                button.classList.remove('active');
+            });
+
+            var currentButton = document.querySelector('.pagination .page-button[data-page="' + page + '"]');
+            currentButton.classList.add('active');
+        }
+
+        function handlePaginationClick(page) {
+            currentPage = page;
+            showPage(currentPage);
+        }
+
+        function createPaginationButtons() {
+            var pagination = document.createElement('div');
+            pagination.classList.add('pagination');
+
+            var lis = document.querySelectorAll('.item ul li');
+
+            var totalPages = Math.ceil(lis.length / numPerPage);
+
+            for (var k = 1; k <= totalPages; k++) {
+                var button = document.createElement('button');
+                button.classList.add('page-button');
+                button.setAttribute('data-page', k);
+                button.textContent = k;
+                if (k === 1) {
+                    button.classList.add('active');
+                }
+                button.addEventListener('click', function () {
+                    handlePaginationClick(parseInt(this.getAttribute('data-page')));
+                });
+                pagination.appendChild(button);
+            }
+
+            return pagination;
+        }
+
+        function paginateList() {
+            var items = document.querySelectorAll('.item ul');
+
+            for (var i = 0; i < items.length; i++) {
+                var item = items[i];
+                var lis = item.querySelectorAll('li');
+
+                if (lis.length > numPerPage) {
+                    var pages = Math.ceil(lis.length / numPerPage);
+                    totalPages += pages;
+
+                    for (var j = 0; j < pages; j++) {
+                        var page = document.createElement('div');
+                        page.classList.add('page');
+                        page.setAttribute('data-page', totalPages - pages + j + 1);
+                        if (j === 0) {
+                            page.classList.add('active');
+                        }
+
+                        var startIndex = j * numPerPage;
+                        var endIndex = startIndex + numPerPage;
+                        var pageLis = Array.from(lis).slice(startIndex, endIndex);
+
+                        var ul = document.createElement('ul');
+                        page.appendChild(ul);
+
+                        pageLis.forEach(function (li) {
+                            ul.appendChild(li);
+                        });
+
+                        item.parentNode.insertBefore(page, item.nextSibling);
+                    }
+
+                    item.remove();
+                }
+            }
+
+            var main = document.querySelector('main');
+            var pagination = createPaginationButtons();
+            main.appendChild(pagination);
+
+            showPage(currentPage);
+
+            var allItems = document.querySelectorAll('.item ul li');
+            allItems.forEach(function (item) {
+                item.addEventListener('click', function () {
+                    var itemText = this.querySelector('a').textContent;
+                    var itemInfo = document.createElement('div');
+                    itemInfo.classList.add('item-info');
+                    itemInfo.textContent = 'You clicked on: ' + itemText;
+                    this.appendChild(itemInfo);
+                });
+            });
+        }
+
+        window.addEventListener('DOMContentLoaded', paginateList);
+    </script>
+</body>
+</html>
