@@ -87,54 +87,95 @@ let role = '<%= session.getAttribute("ROLE") %>';
 
 
 	<h1>장바구니</h1>
-	<div class="Main">
+    <hr>
+    <!-- 도서 조회하기 -->
+    <hr>
+    <div>
+        <div class="search_block">
+            <input placeholder="keyfield" />
+            <input placeholder="keyword" />
+            <button class="search_btn">조회</button>
+        </div>
+        <div class="show_block" style="width:500px;height:500px;border:1px solid;overflow:auto;">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Order ID</th>
+                        <th>Product Name</th>
+                        <th>Address</th>
+                        <th>Amount</th>
+                        <th>Price</th>
+                        <th>Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+    </div>
 
-		<c:set var="result" value="${requestScope.result}" />
-		<c:set var="resultList" value="${result.result}" />
-		<c:set var="resultElement" value="" scope="request" />
+    <hr>
+    <!-- 사서 메뉴로 이동하기 -->
+    <!-- 회원 메뉴로 이동하기 -->
+    <hr/>
+    <c:if test="${empty ROLE}">
+        <a href=<c:url value="/login.do" /> >LOGIN</a></br>
+    </c:if>
+    <c:if test="${not empty ROLE}">
+        <a href=<c:url value="/logout.do" /> >LOGOUT</a></br>
+    </c:if>
+    
+    <hr/>
+    <div class="msg">
+        ${msg}
+    </div>
 
-		<c:if test="${resultList != null}">
-			<c:catch var="resultConversionError">
-				<c:set var="resultElement" value="${resultList[0]}" />
-			</c:catch>
-		</c:if>
+    EL's Project PATH : ${pageContext.request.contextPath}<br/>
+    EL's Project ServerPort :${pageContext.request.serverPort}<br/>
+    
+    <!-- axios cdn -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.4.0/axios.min.js" integrity="sha512-uMtXmF28A2Ab/JJO2t/vYhlaa/3ahUOgj1Zf27M5rOo8/+fcTUVH0/E0ll68njmjrLqOBjXM3V9NiPFL5ywWPQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+    const search_btn_el = document.querySelector('.search_btn');
+    search_btn_el.addEventListener('click', function () {
+        const projectPath = '${pageContext.request.contextPath}';
+        const ServerPort = '${pageContext.request.serverPort}';
+        console.log("search_btn_el click..", projectPath);
 
-		<c:choose>
-			<c:when test="${resultConversionError != null}">
-				<c:set var="singletonList" value="${result.result}" scope="request" />
-				<c:set var="resultget"
-					value="${singletonList ne null ? [singletonList] : []}" />
-			</c:when>
-			<c:otherwise>
-				<c:set var="resultget" value="${resultList}" />
-			</c:otherwise>
-		</c:choose>
+        const show_block_el = document.querySelector('.show_block tbody');
+        
+        axios.get("http://localhost:" + ServerPort + projectPath + "/order/ShoppingBasket_user.do")
+            .then(response => {
+                console.log("success!", response.data);
+                const list = response.data;
+                show_block_el.innerHTML = "";
+                
+                list.forEach((dto) => {
+                    console.log('dto', dto);
+                    const dto_row = document.createElement('tr');
 
-		<table>
-			<thead>
-				<tr>
-					<th>주문 수량</th>
-					<th>주소</th>
-					<th>가격</th>
-					<th>주문 날짜</th>
-					<th>상품명</th>
-				</tr>
-			</thead>
-			<tbody>
-				<c:forEach items="${resultget}" var="vo" varStatus="status">
-					<tr>
-						<td>${vo.odr_amount != null ? vo.odr_amount : 0 }</td>
-						<td>${vo.adr_addr != null ? vo.adr_addr : '-' }</td>
-						<td>${vo.price != null ? vo.price : 0 }</td>
-						<td>${vo.odr_date != null ? vo.odr_date : '-' }</td>
-						<td>${vo.product_name != null ? vo.product_name : '-' }</td>
-					</tr>
-				</c:forEach>
-			</tbody>
-		</table>
-		<button class="order-button" type="button">주문하기</button>
+                    const odr_date = new Date(dto.odr_date);
+                    const odr_date_str = odr_date.toLocaleDateString();
 
-	</div>
+                    dto_row.innerHTML += "<td>" + dto.order_id + "</td>";
+                    dto_row.innerHTML += "<td>" + dto.product_name + "</td>";
+                    dto_row.innerHTML += "<td>" + dto.adr_addr + "</td>";
+                    dto_row.innerHTML += "<td>" + dto.odr_amount + "</td>";
+                    dto_row.innerHTML += "<td>" + dto.price + "</td>";
+                    dto_row.innerHTML += "<td>" + odr_date_str + "</td>";
+
+                    show_block_el.appendChild(dto_row);
+                });
+            })
+            .catch(error => {
+                console.log("Error in HTTP request:", error);
+            });
+    });
+   
+    </script>
+    <button class="order-button" type="button">주문하기</button>
+
+	
 	<hr style="margin-left: 10px; margin-right: 10px;">
 
 	<Footer>

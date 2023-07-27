@@ -1,4 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ page import="java.net.URLEncoder" %>
 <%@ page import="java.sql.*" %>
 <%@ page import="java.io.PrintWriter" %>
@@ -32,17 +33,11 @@
 
   <!-- Bootstrap CSS 파일 -->
   <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet" />
-  
-  	 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-	  <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
-	  <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
-	  <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.6.0/underscore.js"></script>
-	  <script src="${pageContext.request.contextPath}/JS/OrderTable.js"></script>
-	  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.4.0/axios.min.js" integrity="sha512-uMtXmF28A2Ab/JJO2t/vYhlaa/3ahUOgj1Zf27M5rOo8/+fcTUVH0/E0ll68njmjrLqOBjXM3V9NiPFL5ywWPQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
- <script defer
+ 
+  <script defer
 	src="${pageContext.request.contextPath}/JS/pageRout.js"
 	type="text/javascript"></script>
-  
+   
 <title>장바구니</title>
 </head>
 
@@ -114,8 +109,7 @@ let role = '<%= session.getAttribute("ROLE") %>';
 			
 			<div class="searchwrapper">
 				<div class="midsearchwrapper">
-			
-					<select name="category" id="c_select">
+						  <select name="category" id="c_select">
 						<option value="주문 ID">주문 ID</option>
 						<option value="User ID">User ID</option>
 						<option value="제품코드">제품코드</option>
@@ -126,17 +120,10 @@ let role = '<%= session.getAttribute("ROLE") %>';
 						<option value="가격">가격</option>
 					</select>
 					<input type="text" id="odrtype" autocomplete="off">
-					
-					<button class="search_btn">조회</button>
+						  <button class="search_btn">조회</button>
 					<script type="text/javascript"
 						src="${pageContext.request.contextPath}/JS/Order.js"></script>
-					
-					<div class ="buttons">
-						<button class="edit">수정</button>
-						<button class="delete">삭제</button>
-						
-	  				</div>
-	  				
+
 			
 				</div>
 			<!-- 추천창 -->
@@ -144,13 +131,13 @@ let role = '<%= session.getAttribute("ROLE") %>';
 					<div id="suggestedd_items"></div>
 				</div>
 			</div>
-						
-		<!-- 주문 전체 조회 결과 출력 -->
+			<!-- 주문 전체 조회 결과 출력 -->
 		<div class="table-editable" id="table-e">
 		 
 		  <table class="table">
 		    <thead>
 		      <tr id="tablehead">
+		      	<th><input type="checkbox" id="select-all-checkbox" /></th>
 		        <th>주문 ID</th>
 		        <th>회원 ID</th>
 		        <th>상품 코드</th>
@@ -162,12 +149,21 @@ let role = '<%= session.getAttribute("ROLE") %>';
 		        <th><span class="table-add glyphicon glyphicon-plus" id="plusbt"></span></th>
 		      </tr>
 		    </thead>
-		    <tbody class="table-body">
-		    
+		    <tbody id="order-list-body">
+
 		    </tbody>
 		  </table>
+		  
 		</div>
-
+		
+		<form id="orderForm" action="TeamProject2/JSP/Shopping_Basket_Admin/order/delete.do" method="post">
+											
+				    <div class ="buttons">
+						<input type="button" id="delete_button" value="삭제">
+					</div>
+	  				<input type="hidden" id="selectedOrderIds" name="selectedOrderIds" value="">
+	  					
+		</form>
 	 
   </div>
 
@@ -186,25 +182,14 @@ let role = '<%= session.getAttribute("ROLE") %>';
 			<p>email : dfteam9@naver.com</p>
 		</div>
 	</Footer>
-	
-						<!-- axios cdn -->
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.4.0/axios.min.js" integrity="sha512-uMtXmF28A2Ab/JJO2t/vYhlaa/3ahUOgj1Zf27M5rOo8/+fcTUVH0/E0ll68njmjrLqOBjXM3V9NiPFL5ywWPQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<!-- 	<script>
-	const search_btn_el = document.querySelector(".search_btn");
-	
-	search_btn_el.addEventListener("click",function(){
-		const projectPath='%{pageContext.request.contextPath}';
-		console.log("Search_btn_el click!");
-		axios.get("http://localhost:8080"+projectPath+"/order/search.do")
-		.then(response=>{alert("Success!",response.data);
-			const list = response.data;
-			list.forEach((bookdto)=>{console.log(bookdto);});
-		})
-		.catch(error=>{alert("FAIL!!");})
-	}) 
-	
-	</script> -->
+	 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+	 <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
+	 <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+	 <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.6.0/underscore.js"></script>
 
+	
+	<script defer src="${pageContext.request.contextPath}/JS/OrderTable.js"type="text/javascript"></script>
+	
 	
 </body>
 

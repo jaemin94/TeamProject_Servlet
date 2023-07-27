@@ -42,7 +42,7 @@ public class Order_Select_Admin implements SubController {
 		      out.print(jsonConverted);
 		    } else {
 		      // 클라이언트가 주문 ID를 전달하지 않은 경우 전체 목록 조회
-		      orderList = service.getOrder();
+		      orderList = service.getOrder(req);
 		      ObjectMapper objectMapper = new ObjectMapper();
 		      String jsonConverted = objectMapper.writeValueAsString(orderList);
 		      System.out.println("jsonConverted: " + jsonConverted);

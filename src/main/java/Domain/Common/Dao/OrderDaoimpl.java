@@ -21,7 +21,7 @@ public class OrderDaoimpl extends ConnectionPool implements OrderDao{
 	
 	public OrderDaoimpl()
 	{
-		super();
+		
 	}
 	
 	// 주문 전체 조회
@@ -60,7 +60,7 @@ public class OrderDaoimpl extends ConnectionPool implements OrderDao{
 	}
 	
 	// 주문 단건 조회
-	public OrderDto select(String order_id)
+	public OrderDto select1(String order_id) 
 	{
 		OrderDto dto = null;
 		
@@ -92,7 +92,14 @@ public class OrderDaoimpl extends ConnectionPool implements OrderDao{
 		}
 		return dto;	
 	}
-	
+	@Override
+	public List<OrderDto> select(String keyword){
+		return null;
+	}
+	@Override
+	public List<OrderDto> select(String keyfield,String keyword){
+		return null;
+	}
 	// 주문하기
 	public int insert(OrderDto dto)
 	{
@@ -153,3 +160,4 @@ public class OrderDaoimpl extends ConnectionPool implements OrderDao{
 		return 0;
 	}
 }
+

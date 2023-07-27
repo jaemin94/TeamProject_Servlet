@@ -8,8 +8,12 @@ public interface OrderDao {
 
 	List<OrderDto> select();
 
-	OrderDto select(String order_id);
+	OrderDto select1(String order_id);
 
+	List<OrderDto> select(String keyword);
+
+	List<OrderDto> select(String keyfield, String keyword);
+	
 	int insert(OrderDto dto);
 
 	int update(OrderDto dto);

@@ -20,6 +20,7 @@ import Member.auth.LogoutController;
 import Order.Order_Delete_Admin;
 import Order.Order_Insert_User;
 import Order.Order_Select_Admin;
+import Order.Order_Select_User;
 import Order.Order_Update_Admin;
 import Order.Order_Update_User;
 import Product.Prod_Delete_Admin;
@@ -46,6 +47,7 @@ public class FrontController extends HttpServlet{
 		map.put(projectPath+"/order/insert.do", new Order_Insert_User() );
 		map.put(projectPath+"/order/update.do", new Order_Update_User() );
 		map.put(projectPath+"/order/updateadmin.do", new Order_Update_Admin() );	// 완료
+		map.put(projectPath+"/order/ShoppingBasket_user.do", new Order_Select_User() );
 		
 		// member
 		map.put(projectPath+"/Member/search.do", new Member_Select_Admin() );

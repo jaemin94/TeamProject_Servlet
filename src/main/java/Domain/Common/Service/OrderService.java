@@ -2,6 +2,8 @@ package Domain.Common.Service;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import Domain.Common.Dto.OrderDto;
 
 public interface OrderService {
@@ -10,7 +12,7 @@ public interface OrderService {
 	boolean reqOrder(String sid,String id, int product_code, int odr_amount) throws Exception;
 
 	// 주문 전체확인
-	List<OrderDto> getOrder() throws Exception;
+	List<OrderDto> getOrder(HttpServletRequest request) throws Exception;
 
 	// 건별 주문 확인
 	OrderDto getOrder(String order_id);

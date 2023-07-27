@@ -6,6 +6,7 @@
 	let fullURL = null;
 	let shoppingBtn = document.getElementById("shopping");
 	const ed_btn = document.querySelector(".edit");
+	const de_btn = document.querySelector(".delete");
 	
 const logo_btn = document.getElementById("logo");
 logo_btn.addEventListener("click",function(){
@@ -51,5 +52,12 @@ ed_btn.addEventListener("click",function(){
 			fullURL = baseURL + pagePath;
 			location.href = fullURL;
 							});
+							
+de_btn.addEventListener("click",function(){
+			pagePath = "/order/ShoppingBasket_Admin3.jsp"
+			fullURL = baseURL + pagePath;
+			location.href = fullURL;
+							});							
+							
     
     
