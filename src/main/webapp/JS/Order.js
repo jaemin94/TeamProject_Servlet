@@ -49,7 +49,7 @@
 							
 							const tableBody = document.querySelector('.table-body'); // 테이블의 tbody 요소를 가져옵니다.
 							console.log(tableBody);
-							tableBody.innerHTML = ' '; // 기존 테이블 데이터를 지우기 위해 비웁니다. 
+							/*tableBody.innerHTML = ' '; // 기존 테이블 데이터를 지우기 위해 비웁니다.*/ 
 					    	
 					    	  // 입력한 주문 ID 값을 가져옴
   							const orderIdInput = document.getElementById("odrtype");

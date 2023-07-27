@@ -14,8 +14,14 @@ function addCheckboxEventListeners() {
 }
 
 // 주문 정보를 서버로부터 가져와서 테이블에 표시하는 코드
-function fetchAndDisplayOrderData() {
-  fetch('/TeamProject2/order/search.do')
+function fetchAndDisplayOrderData(orderId) {
+
+ let url = '/TeamProject2/order/search.do';
+  if (orderId) {
+    // 주문번호가 입력되어 있다면 해당 주문번호에 해당하는 주문 정보만 가져오도록 URL 수정
+    url += '?orderId=' + encodeURIComponent(orderId);
+  }
+  fetch(url)
     .then((response) => {
       if (!response.ok) {
         throw new Error('주문 정보를 가져오는데 실패했습니다.');
@@ -37,8 +43,10 @@ function fetchAndDisplayOrderData() {
 function displayOrderList(orderList) {
   var tbody = document.getElementById('order-list-body');
   tbody.innerHTML = ''; // 이전에 테이블에 추가된 주문 정보가 있다면 모두 삭제
+	
+	const dataArray = Array.isArray(orderList) ? orderList : [orderList];
 
-  orderList.forEach((order) => {
+  dataArray.forEach((order) => {
     var row = document.createElement('tr');
 
     // 주문 정보를 각 열에 추가
@@ -59,6 +67,15 @@ function displayOrderList(orderList) {
 
     tbody.appendChild(row);
   });
+  
+  // x 버튼을 클릭하면 해당 주문 정보 삭제 이벤트 등록
+  const removeButtons = document.querySelectorAll(".table-remove");
+  removeButtons.forEach((button) => {
+    button.addEventListener("click", function() {
+      const orderRow = this.parentElement.parentElement;
+      orderRow.remove(); // 주문 정보 행 삭제
+    });
+  });
 }
 
 // 주문 정보를 JSON 형태로 변환하여 서버로 전송하는 코드
@@ -73,7 +90,7 @@ function initialize() {
 
 // DOMContentLoaded 이벤트 발생 시 초기화 함수 호출
 document.addEventListener('DOMContentLoaded', function () {
-  initialize();
+  /*initialize();*/
   document.getElementById("edit_button").addEventListener("click", sendData);
 });
 //----------------------------------------------------------------------------
@@ -142,3 +159,17 @@ function sendData() {
 // DOMContentLoaded 이벤트 발생 시 초기화 함수 호출
 document.addEventListener('DOMContentLoaded', initialize);
 document.getElementById("edit_button").addEventListener("click", sendData);
+
+
+// ------------------------------------------------------------------------------------------
+// ------------------------------------------------------------------------------------------
+// 검색 버튼 클릭 이벤트 처리
+document.querySelector(".search_btn").addEventListener("click", function() {
+  const categorySelect = document.getElementById("c_select");
+  const odrtypeInput = document.getElementById("odrtype");
+  const selectedCategory = categorySelect.value;
+  const orderId = odrtypeInput.value.trim(); // 주문번호 입력값
+
+  // 주문번호가 입력되어 있다면 해당 주문 정보만 조회, 없다면 전체 주문 정보 조회
+  fetchAndDisplayOrderData(selectedCategory === '주문 ID' ? orderId : null);
+});

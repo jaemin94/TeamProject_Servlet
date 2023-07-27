@@ -2,6 +2,8 @@ package Domain.Common.Service;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import Domain.Common.Dto.OrderDto;
 
 public interface OrderService {
@@ -22,6 +24,6 @@ public interface OrderService {
 	boolean updateOrder(OrderDto dto, String login_sid);
 
 	// 주문 완료 및 취소 처리
-	boolean removeOrder(String sid, String order_id);
+	boolean removeOrder(HttpServletRequest req);
 
 }

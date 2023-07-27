@@ -1,8 +1,9 @@
 package Domain.Common.Service;
 
 import java.util.List;
-import java.util.Map;
 import java.util.UUID;
+
+import javax.servlet.http.HttpServletRequest;
 
 import Domain.Common.Dao.MemberDao;
 import Domain.Common.Dao.MemberDaoimpl;
@@ -13,7 +14,6 @@ import Domain.Common.Dao.ProdDaoimpl;
 import Domain.Common.Dto.MemberDto;
 import Domain.Common.Dto.OrderDto;
 import Domain.Common.Dto.ProdDto;
-import Domain.Common.Service.Auth.Session;
 
 public class OrderServiceImpl implements OrderService {
 	
@@ -160,17 +160,16 @@ public class OrderServiceImpl implements OrderService {
 	
 	// 주문 완료 및 취소 처리
 	@Override
-	public boolean removeOrder(String sid,String order_id)
+	public boolean removeOrder(HttpServletRequest req)
 	{
 		System.out.println("OrderService's removeOrder()");
-		String role = sid;
-		if(role.equals("Role_Member"))
-		{
+		String order_id = (String) req.getParameter("order_id");
+		
 		int result = oDao.delete(order_id);
-		if(result > 0)
+		if(result > 0) {
 			return true;
-		System.out.println("role : " + role);
 		}
+		
 		return false;
 	}
 
