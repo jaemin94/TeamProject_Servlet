@@ -1,0 +1,21 @@
+shoppingdb database table 추가
+-> create table tbl_order_message (msgId int primary key auto_increment, orderId varchar(45), msg text);
+
+OrderMsgDto.java 추가
+OrderMsgDao.java 추가
+OrderMegDaoimpl.java 추가
+
+
+OrderServiceImple 
+25: private OrderMsgDao omDao; //omDao 객체생성
+47: omDao=OrderMsgDaoimpl.getInstance(); //omDao 인스턴스 저장
+98: omDao.insert(new OrderMsgDto(0, mdto.getId(), pdto.getProduct_code() + "상품 주문 완료.")); return true; // 상품 주문 log 저장
+179~183: 
+		try {
+			result += omDao.delete(order_id);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}//ordermessage 삭제 정상 실행 확인 코드
+
+
+
