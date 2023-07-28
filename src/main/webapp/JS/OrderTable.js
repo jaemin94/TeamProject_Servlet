@@ -148,10 +148,6 @@ function sendData() {
           // Handle successful response from the server
           const response = JSON.parse(xhr.responseText);
           console.log(response);
-
-          // Perform the next action after successful response from the server
-          // For example, update the UI or fetch new data from the server
-          fetchAndDisplayOrderData();
         } else {
           // Handle error response from the server
           console.error("Request failed with status:", xhr.status);

@@ -7,9 +7,7 @@ import java.io.PrintWriter;
 import java.io.StringReader;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.json.Json;
 import javax.json.JsonObject;
@@ -19,7 +17,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import Controller.OrderController;
 import Controller.SubController;
 import Domain.Common.Dto.OrderDto;
 import Domain.Common.Service.OrderService;
@@ -31,15 +28,17 @@ public class Order_Update_Admin implements SubController {
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) {
-        try {
-			request.setCharacterEncoding("UTF-8");
-		} catch (UnsupportedEncodingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} // 요청의 인코딩을 UTF-8로 설정
+    	try {
+            request.setCharacterEncoding("UTF-8");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        } // 요청의 인코딩을 UTF-8로 설정
         response.setCharacterEncoding("UTF-8"); // 응답의 인코딩을 UTF-8로 설정
         HttpSession session = request.getSession();
-        String role = (String)session.getAttribute("ROLE");
+        String role= "Role_Member";
+//        
+//        String role = (String) session.getAttribute("ROLE");
+//        
         String requestedURL = request.getRequestURI().substring(request.getContextPath().length());
 
         if (requestedURL.equals("/order/updateadmin.do")) {
@@ -48,28 +47,25 @@ public class Order_Update_Admin implements SubController {
 
             // Read JSON data from the request
             BufferedReader br = null;
-			try {
-				br = new BufferedReader(new InputStreamReader(request.getInputStream()));
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+            try {
+                br = new BufferedReader(new InputStreamReader(request.getInputStream()));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
             StringBuilder jsonStr = new StringBuilder();
             String line;
             try {
-				while ((line = br.readLine()) != null) {
-				    jsonStr.append(line);
-				}
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+                while ((line = br.readLine()) != null) {
+                    jsonStr.append(line);
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
             try {
-				br.close();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+                br.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
 
             // Parse JSON data into a list of OrderDto objects
             try {
@@ -89,36 +85,31 @@ public class Order_Update_Admin implements SubController {
                 return;
             }
 
-            // Create a Map to pass the data to the OrderController
-            Map<String, Object> paramMap = new HashMap<>();
-            paramMap.put("order_id", orderUpdateRequest.get(0).getOrder_id());
-            paramMap.put("member_id", orderUpdateRequest.get(0).getMember_id());
-            paramMap.put("odr_amount", orderUpdateRequest.get(0).getOdr_amount());
-            paramMap.put("price", orderUpdateRequest.get(0).getPrice());
-            paramMap.put("role",role);
-            // orderUpdateRequest 객체를 이용하여 주문 정보를 처리하는 로직 추가
-            OrderController controller = new OrderController();
-            Map<String, Object> result = controller.execute(4, paramMap);
-
-            // Convert the result map to JSON format manually
-            JsonObjectBuilder jsonObjectBuilder = Json.createObjectBuilder();
-            for (Map.Entry<String, Object> entry : result.entrySet()) {
-                jsonObjectBuilder.add(entry.getKey(), entry.getValue().toString());
+            // Perform the order update logic here
+            boolean success = false;
+            try {
+                for (OrderDto dto : orderUpdateRequest) {
+                    success = service.updateOrder(dto, role);
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
             }
+
+            // Convert the result to JSON format manually
+            JsonObjectBuilder jsonObjectBuilder = Json.createObjectBuilder();
+            jsonObjectBuilder.add("success", success);
             JsonObject jsonResult = jsonObjectBuilder.build();
 
-            // 처리 결과를 JSON 형태로 응답
+            // Send the response as JSON
             response.setContentType("application/json");
             PrintWriter out = null;
-			try {
-				out = response.getWriter();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+            try {
+                out = response.getWriter();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
             out.print(jsonResult.toString());
             out.flush();
-            out.close();
         }
     }
 }
