@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
 <%@ page import="java.net.URLEncoder"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -34,14 +35,45 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-
+<%@ page import="java.util.List" %>
+<%@ page import = "Domain.Common.Dto.ProdDto" %>
 <%
 String memberId = (String) request.getAttribute("member_id");
 String role = (String) session.getAttribute("ROLE");
+
+
+
+
+List<Integer> basketlist = (List<Integer>) session.getAttribute("Basket");
+int alarmCnt;
+if(!(basketlist==null)){
+	alarmCnt = basketlist.size();
+}else{
+	alarmCnt = 0;
+}
 System.out.println("ROLE : " + role);
 %>
 
+<style>
 
+#shopping{
+	position:relative;
+}
+.dotted_bg{
+	width:15px;height:15px;
+	background-color:red;
+	border-radius:50%;
+	position:absolute;
+	left:22px;
+	
+	font-size:0.7rem;
+	font-family: arial;
+	color:white;
+	font-weight:700;
+	text-align:center;
+	line-height:15px;
+}
+</style>
 
 
 <title>DFMall</title>
@@ -58,15 +90,29 @@ System.out.println("ROLE : " + role);
 				</div>
 				<div class="banner_top">
 					<span class="material-symbols-outlined" id="login-button">login</span>
-					<script type="text/javascript"
-						src="${pageContext.request.contextPath}/JS/Login.js"></script>
+ 					<script type="text/javascript" src="${pageContext.request.contextPath}/JS/Login.js"></script>
 					<a href=""><span class="material-symbols-outlined">search</span></a>
 					<a href=""><span class="material-symbols-outlined">person</span></a>
+
+
 					
+					<span class="material-symbols-outlined" id="shopping">
+					  <span class="dotted_bg" id="alarmCount">
+					  <%=alarmCnt %>
+					  </span>
+					  shopping_bag
+					</span>
 					
+					<script>
 					
-					<span class="material-symbols-outlined" id="shopping">shopping_bag</span>
+					  // 동적으로 투명도를 설정하고자 하는 <span> 요소를 가져옴.
+					  var alarmCountEl = document.getElementById('alarmCount');
 					
+					  // alarmCnt 값이 "0"이면 투명하게, 그렇지 않으면 불투명하게 설정.
+					  alarmCountEl.style.opacity = (<%=alarmCnt %> === 0) ? '0' : '1'; // JSTL 변수인 alarmCnt를 문자열로 비교합니다.
+					</script>
+
+
 					
 					
 					
@@ -92,7 +138,7 @@ System.out.println("ROLE : " + role);
 											});
 						} else {
 							shoppingBtn.addEventListener("click", function() {
-								alert("잘못된 접근입니다.");
+								alert("로그인이 필요한 기능입니다.");
 							});
 						}
 					</script>
