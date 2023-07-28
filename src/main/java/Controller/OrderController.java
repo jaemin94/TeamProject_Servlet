@@ -137,7 +137,7 @@ private OrderService service;
 	}
 	Boolean rValue = false;
 	try {
-		rValue=service.removeOrder(role,order_id1);
+//		rValue=service.removeOrder(role,order_id1);
 	} catch (Exception e) {
 		
 		e.printStackTrace();

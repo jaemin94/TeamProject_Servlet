@@ -9,6 +9,9 @@ function addCheckboxEventListeners() {
       } else {
         orderRow.classList.remove("selected");
       }
+         // 체크박스 클릭 시 선택된 주문 ID 출력 (테스트용)
+      const selectedOrderIds = getSelectedOrderIds();
+      console.log("Selected Order IDs:", selectedOrderIds);
     });
   });
 }
@@ -67,25 +70,27 @@ function displayOrderList(orderList) {
 
     tbody.appendChild(row);
   });
+  addRemoveButtonEventListeners();
   
-  // x 버튼을 클릭하면 해당 주문 정보 삭제 이벤트 등록
+/*  // x 버튼을 클릭하면 해당 주문 정보 삭제 이벤트 등록
   const removeButtons = document.querySelectorAll(".table-remove");
   removeButtons.forEach((button) => {
     button.addEventListener("click", function() {
       const orderRow = this.parentElement.parentElement;
       orderRow.remove(); // 주문 정보 행 삭제
     });
-  });
+  });*/
 }
 
 // 주문 정보를 JSON 형태로 변환하여 서버로 전송하는 코드
-function sendData() {
+/*function sendData() {
   // ... (기존 코드를 그대로 유지)
-}
+}*/
 
 // 초기화 함수 - 이벤트 리스너 등록 및 주문 정보 가져오기
 function initialize() {
   fetchAndDisplayOrderData();
+
 }
 
 // DOMContentLoaded 이벤트 발생 시 초기화 함수 호출
@@ -143,6 +148,10 @@ function sendData() {
           // Handle successful response from the server
           const response = JSON.parse(xhr.responseText);
           console.log(response);
+
+          // Perform the next action after successful response from the server
+          // For example, update the UI or fetch new data from the server
+          fetchAndDisplayOrderData();
         } else {
           // Handle error response from the server
           console.error("Request failed with status:", xhr.status);
@@ -158,7 +167,7 @@ function sendData() {
 
 // DOMContentLoaded 이벤트 발생 시 초기화 함수 호출
 document.addEventListener('DOMContentLoaded', initialize);
-document.getElementById("edit_button").addEventListener("click", sendData);
+const edit_btn = document.getElementById("edit_button").addEventListener("click", sendData);
 
 
 // ------------------------------------------------------------------------------------------
@@ -173,3 +182,60 @@ document.querySelector(".search_btn").addEventListener("click", function() {
   // 주문번호가 입력되어 있다면 해당 주문 정보만 조회, 없다면 전체 주문 정보 조회
   fetchAndDisplayOrderData(selectedCategory === '주문 ID' ? orderId : null);
 });
+
+// ----------------------------------------------------------------------------
+// ----------------------------------------------------------------------------
+// 주문 정보를 삭제하는 함수
+function deleteOrders(selectedOrderIds) {
+  if (!selectedOrderIds || selectedOrderIds.length === 0) {
+    console.error("No valid order IDs to delete.");
+    return;
+  }
+
+  const xhr1 = new XMLHttpRequest();
+  xhr1.open("POST", "/TeamProject2/order/delete.do", true);
+  xhr1.setRequestHeader("Content-Type", "application/json");
+  xhr1.onreadystatechange = function() {
+    if (xhr1.readyState === XMLHttpRequest.DONE) {
+      if (xhr1.status === 200) {
+        // Check if the response is valid JSON data
+        try {
+          const response1 = JSON.parse(xhr1.responseText);
+          console.log(response1);
+          // 삭제 성공시 주문 정보 다시 가져와서 테이블 갱신
+          fetchAndDisplayOrderData();
+        } catch (error) {
+          console.error("Invalid JSON data received from the server.");
+        }
+      } else {
+        // Handle error response from the server
+        console.error("Request failed with status:", xhr1.status);
+      }
+    }
+  };
+
+  const data = { "order_id": selectedOrderIds };
+  xhr1.send(JSON.stringify(data));
+}
+
+
+// 삭제 버튼에 대한 이벤트 리스너
+function addRemoveButtonEventListeners() {
+  const removeButtons = document.querySelectorAll(".table-remove");
+  removeButtons.forEach((button) => {
+    button.addEventListener("click", function() {
+      const orderRow = this.closest("tr");
+      const orderId = orderRow.querySelector("[name='order_id']").textContent;
+      deleteOrders([orderId]); // 주문 정보 삭제 요청 보내기
+    });
+  });
+}
+
+// 선택한 항목에 대한 처리
+function getSelectedOrderIds() {
+  const selectedOrders1 = document.querySelectorAll("tbody tr.selected");
+  const orderIds = Array.from(selectedOrders1).map((order) => {
+    return order.querySelector("[name='order_id']").textContent;
+  });
+  return orderIds;
+}

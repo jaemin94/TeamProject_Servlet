@@ -118,6 +118,7 @@ public class Order_Update_Admin implements SubController {
 			}
             out.print(jsonResult.toString());
             out.flush();
+            out.close();
         }
     }
 }

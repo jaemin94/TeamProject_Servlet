@@ -29,7 +29,7 @@ public class Order_Select_Admin implements SubController {
 		
 		  try {
 			  String orderId = req.getParameter("orderId");
-			  System.out.println(orderId);
+			  
 		    if (orderId != null && !orderId.isEmpty()) {
 		      // 클라이언트가 주문 ID를 전달한 경우 단건 조회
 		      OrderDto order = service.getOrder(orderId);

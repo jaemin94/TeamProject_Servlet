@@ -4,6 +4,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+
 import Domain.Common.Dto.OrderDto;
 
 
@@ -29,7 +32,7 @@ public class OrderDaoimpl extends ConnectionPool implements OrderDao{
 	{
 		List<OrderDto> list = new ArrayList();
 		OrderDto dto = null;
-		System.out.println("Dao 실행");
+		
 		try {
 			pstmt = conn.prepareStatement("select * from tbl_order");
 			rs = pstmt.executeQuery();
@@ -140,12 +143,28 @@ public class OrderDaoimpl extends ConnectionPool implements OrderDao{
 	// 주문삭제
 	public int delete(String order_id)
 	{
+		
+		
+		
+		 // order_id가 JSON 배열 형식인 경우 배열에서 문자열로 변환
+	    if (order_id.startsWith("[") && order_id.endsWith("]")) {
+	        try {
+	            JSONArray jsonArray = new JSONArray(order_id);
+	            order_id = jsonArray.optString(0);
+	        } catch (JSONException e) {
+	            e.printStackTrace();
+	            return 0; // 변환에 실패하면 삭제를 진행하지 않고 0을 반환
+	        }
+	    }
+		
 		try {
 			pstmt = conn.prepareStatement("delete from tbl_order where order_id = ?");
 			pstmt.setString(1, order_id);
 			int result = pstmt.executeUpdate();
+			System.out.println("orderDado delete : " + result);
 			pstmt.close();
 			return result;
+			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
