@@ -44,12 +44,12 @@ String role = (String) session.getAttribute("ROLE");
 
 
 
-List<Integer> basketlist = (List<Integer>) session.getAttribute("Basket");
+List<Integer> basketlist = (List<Integer>) session.getAttribute("Basket"); //세션으로 장바구니 정보 전달(임시로 list로 구현)
 int alarmCnt;
-if(!(basketlist==null)){
-	alarmCnt = basketlist.size();
+if(!(basketlist==null)){//장바구니 물품 여부 확인
+	alarmCnt = basketlist.size();//있으면 물건의 개수 만큼 alarmCnt에 저장
 }else{
-	alarmCnt = 0;
+	alarmCnt = 0;//없으면 0
 }
 System.out.println("ROLE : " + role);
 %>
@@ -98,7 +98,7 @@ System.out.println("ROLE : " + role);
 					
 					<span class="material-symbols-outlined" id="shopping">
 					  <span class="dotted_bg" id="alarmCount">
-					  <%=alarmCnt %>
+					  <%=alarmCnt %>//장바구니의 수 출력
 					  </span>
 					  shopping_bag
 					</span>
@@ -109,7 +109,7 @@ System.out.println("ROLE : " + role);
 					  var alarmCountEl = document.getElementById('alarmCount');
 					
 					  // alarmCnt 값이 "0"이면 투명하게, 그렇지 않으면 불투명하게 설정.
-					  alarmCountEl.style.opacity = (<%=alarmCnt %> === 0) ? '0' : '1'; // JSTL 변수인 alarmCnt를 문자열로 비교합니다.
+					  alarmCountEl.style.opacity = (<%=alarmCnt %> === 0) ? '0' : '1';
 					</script>
 
 
