@@ -179,10 +179,10 @@ let role = '<%= session.getAttribute("ROLE") %>';
 			<p>
 				<a href="">공지사항</a> | <a href="">이용약관</a> | <a href="">개인정보취급 방침</a>
 			</p>
-			<p>&copy;상호명 (주) Daily Friday 대표 : 9조</p>
+			<p>&copy;상호명 (주) Daily Friday 대표 : 2조</p>
 			<p>사업자 등록 번호 : 916-14-56874 | 대구 중구 덕산동 00빌딩</p>
 			<p>대표 전화 번호 : 010-4568-5468</p>
-			<p>email : dfteam9@naver.com</p>
+			<p>email : dfteam2@naver.com</p>
 		</div>
 	</Footer>
 	 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
