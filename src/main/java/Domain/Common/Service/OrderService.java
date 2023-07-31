@@ -13,6 +13,8 @@ public interface OrderService {
 
 	// 주문 전체확인
 	List<OrderDto> getOrder() throws Exception;
+	
+	List<OrderDto> getOrder1(String member_id) throws Exception;
 
 	// 건별 주문 확인
 	OrderDto getOrder(String order_id);

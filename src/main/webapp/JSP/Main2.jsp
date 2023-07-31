@@ -32,7 +32,7 @@
 	type="text/javascript"></script>
 	
 <script defer
-	src="${pageContext.request.contextPath}/JS/pageRout.js"
+	src="${pageContext.request.contextPath}/JS/pageRout2.js"
 	type="text/javascript"></script>
 
 
@@ -48,6 +48,7 @@ String role = (String) session.getAttribute("ROLE");
 
 <script>
 let role = '<%= session.getAttribute("ROLE") %>';
+let memberId = '<%= session.getAttribute("ID") %>';
 </script>
 
 

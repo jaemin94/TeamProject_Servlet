@@ -141,7 +141,8 @@ public class MemberServiceImpl implements MemberService {
 		//2 사용자에대한 정보(Session)을 MemberService에 저장
 		
 		HttpSession session = req.getSession();
-		session.setAttribute("ID: ", id);
+		session.setAttribute("ID", id);
+		System.out.println("ID: " + id);
 		session.setAttribute("ROLE", dbDto.getRole());
 		System.out.println("Session : " + session);
 		

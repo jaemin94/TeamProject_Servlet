@@ -11,13 +11,14 @@
 const logo_btn = document.getElementById("logo");
 logo_btn.addEventListener("click",function(){
 
-	pagePath = "/JSP/Main.jsp"
+	pagePath = "/JSP/Main2.jsp"
 	fullURL = baseURL + pagePath;
 	
 	location.href = fullURL;
 });
 
 function handleLoginLogout() {
+  const roleValueInput = document.getElementById("roleValue");
   const loginButton = document.getElementById("login-button");
 
   // 숨겨진 input 필드에서 현재 ROLE 값을 가져옵니다.
@@ -29,7 +30,7 @@ function handleLoginLogout() {
       .then(response => {
         if (response.status === 200) {
           // 세션 정보를 지웁니다.
-         
+          
           loginButton.textContent = 'login'; // 로그인 아이콘으로 변경합니다.
         }
       })
@@ -76,7 +77,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     } else if (role === "Role_user") {
         shoppingBtn.addEventListener("click", function() {
-           			pagePath = "/order/ShoppingBasket_user.jsp"
+           			pagePath = "/order/ShoppingBasket_user2.jsp"
 			fullURL = baseURL + pagePath;
 	
 			location.href = fullURL;

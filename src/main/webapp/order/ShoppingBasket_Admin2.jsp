@@ -45,8 +45,8 @@
 </head>
 
 <%
-String memberId = (String) request.getAttribute("member_id");
-String role = (String) request.getAttribute("role");
+String memberId = (String) session.getAttribute("ID");
+String role = (String) session.getAttribute("ROLE");
 %>
 
 <script>

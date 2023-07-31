@@ -62,6 +62,41 @@ public class OrderDaoimpl extends ConnectionPool implements OrderDao{
 		return list;	
 	}
 	
+	public List<OrderDto> select1(String member_id)
+	{
+		List<OrderDto> list = new ArrayList();
+		OrderDto dto = null;
+		
+		try {
+			pstmt = conn.prepareStatement("select * from tbl_order where member_id = ?");
+			pstmt.setString(1, member_id);
+			rs = pstmt.executeQuery();
+			System.out.println("error");
+			if(rs != null)
+			{
+				while(rs.next())
+				{
+					dto = new OrderDto();
+					dto.setOrder_id(rs.getString("order_id"));
+					dto.setMember_id(rs.getString("member_id"));
+					dto.setProduct_code(rs.getInt("product_code"));
+					dto.setProduct_name(rs.getString("product_name"));
+					dto.setAdr_addr(rs.getString("adr_addr"));
+					dto.setOdr_amount(rs.getInt("odr_amount"));
+					dto.setOdr_date(rs.getDate("odr_date"));
+					dto.setPrice(rs.getInt("price"));
+					list.add(dto);
+				}
+			}
+			rs.close();
+			pstmt.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return list;	
+	}
+	
 	// 주문 단건 조회
 	public OrderDto select(String order_id)
 	{

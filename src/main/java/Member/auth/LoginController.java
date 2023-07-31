@@ -63,6 +63,8 @@ System.out.println("LoginController execute");
 			String member_id = (String) session.getAttribute("ID");
 			System.out.println("LoginController ROLE : " + role);
 			session.setAttribute("ROLE", role);
+			System.out.println("LoginController ID : " + member_id);
+			session.setAttribute("ID", member_id);
 			
 			//4 View로 전달 
 			if(isLogin)

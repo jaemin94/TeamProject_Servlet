@@ -17,8 +17,8 @@
 <script defer
 	src="${pageContext.request.contextPath}/JS/pageRout.js"
 	type="text/javascript"></script>
-	<%
-String memberId = (String) request.getAttribute("member_id");
+<%
+String memberId = (String) session.getAttribute("ID");
 String role = (String) session.getAttribute("ROLE");
 %>
 

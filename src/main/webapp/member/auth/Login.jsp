@@ -23,7 +23,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <%
-String memberId = (String) request.getAttribute("member_id");
+String memberId = (String) session.getAttribute("ID");
 String role = (String) session.getAttribute("ROLE");
 %>
 

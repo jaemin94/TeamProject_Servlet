@@ -1,47 +1,67 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ page import="java.net.URLEncoder"%>
-<%@ page import="java.util.Map"%>
-<%@ page import="Domain.Common.Dto.OrderDto"%>
-<%@ page import="Domain.Common.Dao.OrderDaoimpl"%>
-<%@ page import="java.util.* "%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import="java.net.URLEncoder" %>
+<%@ page import="java.sql.*" %>
+<%@ page import="java.io.PrintWriter" %>
+<%@ page import="Domain.Common.Dto.OrderDto" %>
+<%@ page import="java.util.*" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page isELIgnored="false" %>
+
+
 <!DOCTYPE html>
 <html>
 <head>
-<link href=" ${pageContext.request.contextPath}/CSS/Common_User.css"
+
+
+<link href=" ${pageContext.request.contextPath}/CSS/Common_Admin.css" 
 	rel="stylesheet" type="text/css">
 <link href=" ${pageContext.request.contextPath}/CSS/mCommon.css"
 	rel="stylesheet" type="text/css" media="all and (max-width: 480px) ">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+	
 <link rel="stylesheet"
 	href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 <link href="https://fonts.googleapis.com/css2?family=Chewy&display=swap"
 	rel="stylesheet">
-<script defer
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+ <!-- jQuery UI CSS 파일 -->
+  <link href="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css" rel="stylesheet" />
+
+  <!-- Bootstrap CSS 파일 -->
+  <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet" />
+  
+  	 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+	  <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
+	  <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+	  <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.6.0/underscore.js"></script>
+	  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.4.0/axios.min.js" integrity="sha512-uMtXmF28A2Ab/JJO2t/vYhlaa/3ahUOgj1Zf27M5rOo8/+fcTUVH0/E0ll68njmjrLqOBjXM3V9NiPFL5ywWPQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+ <script defer
 	src="${pageContext.request.contextPath}/JS/pageRout.js"
 	type="text/javascript"></script>
-	
-<meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
 <title>장바구니</title>
+</head>
+
 <%
-String memberId = (String) request.getAttribute("member_id");
+String memberId = (String) session.getAttribute("ID");
 String role = (String) session.getAttribute("ROLE");
 %>
 
 <script>
 let role = '<%= session.getAttribute("ROLE") %>';
+let memberId = '<%= session.getAttribute("ID") %>';
 </script>
 
-</head>
 <body>
+ 
 	<header>
 		<div class="header">
 			<div class="banner">
 				<div class="logo" id="logo">
-					<a href=""> <img
-						src="${pageContext.request.contextPath}/SRC/logo.png"></img>
+					<a href=""> <img src="${pageContext.request.contextPath}/SRC/logo.png"></img>
 					</a>
 				</div>
 				<div class="banner_top">
@@ -85,56 +105,72 @@ let role = '<%= session.getAttribute("ROLE") %>';
 		</div>
 	</header>
 
+	<main>
+		
+		<div id="ShoppingBasketAdminMain">
+			<div class="odrmanage">쇼핑몰관리</div>
+			<div class="odrlisttag">주문목록조회</div>
+			<!-- 검색창 -->
+			
+			<div class="searchwrapper">
+				<div class="midsearchwrapper">
+			
+					<select name="category" id="c_select">
+						<option value="주문 ID">주문 ID</option>
+						<option value="User ID">User ID</option>
+						<option value="제품코드">제품코드</option>
+						<option value="제품명">제품명</option>
+						<option value="주소">주소</option>
+						<option value="수량">수량</option>
+						<option value="날짜">날짜</option>
+						<option value="가격">가격</option>
+					</select>
+					<input type="text" id="odrtype" autocomplete="off">
+					
+					<button class="search_btn">조회</button>
+					<script type="text/javascript"
+						src="${pageContext.request.contextPath}/JS/Order2.js"></script>
+					
+					<div class ="buttons">
+						<button class="edit">수정</button>
 
-	<h1>장바구니</h1>
-	<div class="Main">
+						<input type="button" id="delete_button" value="삭제">
+	  				</div>
+	  				
+			
+				</div>
+			<!-- 추천창 -->
+				<div id="suggestion_box" class="invisible">
+					<div id="suggestedd_items"></div>
+				</div>
+			</div>
+						
+		<!-- 주문 전체 조회 결과 출력 -->
+		<div class="table-editable" id="table-e">
+		 
+		  <table class="table">
+		    <thead>
+		      <tr id="tablehead">
+		        <th>주문 ID</th>
+		        <th>상품 이름</th>
+		        <th>주소</th>
+		        <th>주문 수량</th>
+		        <th>주문 일자</th>
+		        <th>가격</th>
+		        
+		      </tr>
+		    </thead>
+		    <tbody class="table-body">
+		    
+		    </tbody>
+		  </table>
+		</div>
 
-		<c:set var="result" value="${requestScope.result}" />
-		<c:set var="resultList" value="${result.result}" />
-		<c:set var="resultElement" value="" scope="request" />
+	 
+  </div>
 
-		<c:if test="${resultList != null}">
-			<c:catch var="resultConversionError">
-				<c:set var="resultElement" value="${resultList[0]}" />
-			</c:catch>
-		</c:if>
+	</main>
 
-		<c:choose>
-			<c:when test="${resultConversionError != null}">
-				<c:set var="singletonList" value="${result.result}" scope="request" />
-				<c:set var="resultget"
-					value="${singletonList ne null ? [singletonList] : []}" />
-			</c:when>
-			<c:otherwise>
-				<c:set var="resultget" value="${resultList}" />
-			</c:otherwise>
-		</c:choose>
-
-		<table>
-			<thead>
-				<tr>
-					<th>주문 수량</th>
-					<th>주소</th>
-					<th>가격</th>
-					<th>주문 날짜</th>
-					<th>상품명</th>
-				</tr>
-			</thead>
-			<tbody>
-				<c:forEach items="${resultget}" var="vo" varStatus="status">
-					<tr>
-						<td>${vo.odr_amount != null ? vo.odr_amount : 0 }</td>
-						<td>${vo.adr_addr != null ? vo.adr_addr : '-' }</td>
-						<td>${vo.price != null ? vo.price : 0 }</td>
-						<td>${vo.odr_date != null ? vo.odr_date : '-' }</td>
-						<td>${vo.product_name != null ? vo.product_name : '-' }</td>
-					</tr>
-				</c:forEach>
-			</tbody>
-		</table>
-		<button class="order-button" type="button">주문하기</button>
-
-	</div>
 	<hr style="margin-left: 10px; margin-right: 10px;">
 
 	<Footer>
@@ -148,6 +184,26 @@ let role = '<%= session.getAttribute("ROLE") %>';
 			<p>email : dfteam9@naver.com</p>
 		</div>
 	</Footer>
+	
+						<!-- axios cdn -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.4.0/axios.min.js" integrity="sha512-uMtXmF28A2Ab/JJO2t/vYhlaa/3ahUOgj1Zf27M5rOo8/+fcTUVH0/E0ll68njmjrLqOBjXM3V9NiPFL5ywWPQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<!-- 	<script>
+	const search_btn_el = document.querySelector(".search_btn");
+	
+	search_btn_el.addEventListener("click",function(){
+		const projectPath='%{pageContext.request.contextPath}';
+		console.log("Search_btn_el click!");
+		axios.get("http://localhost:8080"+projectPath+"/order/search.do")
+		.then(response=>{alert("Success!",response.data);
+			const list = response.data;
+			list.forEach((bookdto)=>{console.log(bookdto);});
+		})
+		.catch(error=>{alert("FAIL!!");})
+	}) 
+	
+	</script> -->
+
+	
 </body>
 
 </html>

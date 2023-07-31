@@ -130,6 +130,13 @@ public class OrderServiceImpl implements OrderService {
 		
 	}
 	
+	public List<OrderDto> getOrder1(String member_id) throws Exception
+	{
+		
+		return oDao.select1(member_id);
+		
+	}
+	
 	// 건별 주문 확인
 	public OrderDto getOrder(String order_id)
 	{
