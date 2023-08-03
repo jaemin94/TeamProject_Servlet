@@ -84,7 +84,7 @@ let role = '<%= session.getAttribute("ROLE") %>';
 	</header>
 	<!-- 로그인 폼 -->
    <div class="Main">
-  <form action="/TeamProject2/register" method="post" id="register-form">
+  <form action="${pageContext.request.contextPath}/Member/register.do" method="post">
     <h1>회원가입</h1>
     <label for="name"><input type="text" id="name" name="name" placeholder="이름"></label>
     <label for="adr_addr"><input type="text" id="addr" name="adr_addr" placeholder="주소"></label>

@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import Member.Member_Delete;
+import Member.Member_Insert;
 import Member.Member_Select_Admin;
 import Member.Member_Select_User;
 import Member.Member_Update_Admin;
@@ -52,6 +53,7 @@ public class FrontController extends HttpServlet{
 		// member
 		map.put(projectPath+"/Member/search.do", new Member_Select_Admin() );
 		map.put(projectPath+"/Member/search1.do", new Member_Select_User() );
+		map.put(projectPath+"/Member/register.do", new Member_Insert() );
 		map.put(projectPath+"/Member/update.do", new Member_Update_Admin() );		
 		map.put(projectPath+"/Member/update.do", new Member_Update_User() );
 		map.put(projectPath+"/Member/delete.do", new Member_Delete() );
