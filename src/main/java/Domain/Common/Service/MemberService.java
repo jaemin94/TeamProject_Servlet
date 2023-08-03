@@ -10,7 +10,7 @@ import Domain.Common.Dto.MemberDto;
 public interface MemberService {
 
 	//회원 가입하기
-	boolean memberJoin(MemberDto dto) throws Exception;
+	boolean memberJoin(HttpServletRequest req) throws Exception;
 
 	List<MemberDto> memberSearch(String sid) throws Exception;
 
@@ -32,5 +32,7 @@ public interface MemberService {
 
 	//역할반환함수 
 	String getRole(String sid);
+	
+
 
 }

@@ -16,5 +16,7 @@ public interface MemberDao {
 	int update(MemberDto dto);
 
 	int delete(String id);
+	
+	int isDupulicate(String id);
 
 }

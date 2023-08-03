@@ -31,6 +31,8 @@ public class MemberDaoimpl extends ConnectionPool implements MemberDao{
 	// 회원가입
 	public int insert(MemberDto dto)
 	{
+		System.out.println("MEMBERDAO INSERT!");
+		
 		try
 		{
 			
@@ -163,6 +165,26 @@ public class MemberDaoimpl extends ConnectionPool implements MemberDao{
 			ex.printStackTrace();
 		}
 		return 0;	
+	}
+
+	@Override
+	public int isDupulicate(String memer_id) {
+		System.out.println("MEMBERSERVICE isDupulicate");
+		
+		try 
+		{
+			pstmt = conn.prepareStatement("select count(*) from tbl_member where member_id =?");
+			pstmt.setString(1, memer_id);
+			int result = pstmt.executeUpdate();	 
+			pstmt.close();
+			return result;
+		}
+		catch(Exception ex)
+		{
+			ex.printStackTrace();
+		}
+
+		return 0;
 	}
 	
 	

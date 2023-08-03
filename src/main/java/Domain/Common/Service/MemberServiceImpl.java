@@ -40,10 +40,23 @@ public class MemberServiceImpl implements MemberService {
 	
 	//회원 가입하기
 	
-	public boolean memberJoin(MemberDto dto) throws Exception {
-		int result = dao.insert(dto);
-		if(result>0)
-			return true;
+	public boolean memberJoin(HttpServletRequest req) throws Exception {
+		
+		System.out.println("MEMBERJOIN!");
+		String name = (String)req.getParameter("name");
+		String adr_addr = (String)req.getParameter("adr_addr");
+		String id = (String)req.getParameter("member_id");
+		String pw = (String)req.getParameter("pw");
+		
+		int isDupulicate = dao.isDupulicate(id);
+		if(isDupulicate == 0)
+		{
+			MemberDto dto = new MemberDto(id,pw,name,adr_addr,"Role_user");
+			int result = dao.insert(dto);
+			if(result>0)
+				return true;
+		}
+		
 		return false;
 	}
 	
@@ -169,5 +182,7 @@ public String getRole(String sid) {
 		return null;
 	
 	}
+
+
 
 }
